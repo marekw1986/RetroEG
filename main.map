@@ -1,0 +1,1907 @@
+Modules list:
+-------------
+interrupt.o:
+    CODE              Offs=000000  Size=000013  Align=00001  Fill=0000
+vectors.o:
+    VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
+geiger.o:
+    CODE              Offs=000013  Size=00007A  Align=00001  Fill=0000
+    BSS               Offs=000000  Size=000078  Align=00001  Fill=0000
+time.o:
+    CODE              Offs=00008D  Size=00002A  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000008  Align=00001  Fill=0000
+hd44780.o:
+    CODE              Offs=0000B7  Size=0000DC  Align=00001  Fill=0000
+delay.o:
+    CODE              Offs=000193  Size=000013  Align=00001  Fill=0000
+m6242.o:
+ff.o:
+    CODE              Offs=0001A6  Size=00563F  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000023  Align=00001  Fill=0000
+    BSS               Offs=000078  Size=000004  Align=00001  Fill=0000
+diskio.o:
+    CODE              Offs=0057E5  Size=0000BC  Align=00001  Fill=0000
+    BSS               Offs=00007C  Size=000006  Align=00001  Fill=0000
+    DATA              Offs=000008  Size=000001  Align=00001  Fill=0000
+cf.o:
+    CODE              Offs=0058A1  Size=000049  Align=00001  Fill=0000
+main.o:
+    CODE              Offs=0058EA  Size=000286  Align=00001  Fill=0000
+    RODATA            Offs=000023  Size=000077  Align=00001  Fill=0000
+    BSS               Offs=000082  Size=0004FF  Align=00001  Fill=0000
+    DATA              Offs=000009  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_directerrno.o):
+    CODE              Offs=005B70  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_hextab.o):
+    RODATA            Offs=00009A  Size=000010  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_longminstr.o):
+    RODATA            Offs=0000AA  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_oserror.o):
+    BSS               Offs=000581  Size=000001  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_printf.o):
+    CODE              Offs=005B79  Size=0003A5  Align=00001  Fill=0000
+    BSS               Offs=000582  Size=00002B  Align=00001  Fill=0000
+    DATA              Offs=00000F  Size=000003  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_seterrno.o):
+    CODE              Offs=005F1E  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(add.o):
+    CODE              Offs=005F27  Size=000018  Align=00001  Fill=0000
+./lib/ethergeiger.lib(addeqsp.o):
+    CODE              Offs=005F3F  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(addysp.o):
+    CODE              Offs=005F50  Size=00000E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(along.o):
+    CODE              Offs=005F5E  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(aslax1.o):
+    CODE              Offs=005F6B  Size=000008  Align=00001  Fill=0000
+./lib/ethergeiger.lib(aslax2.o):
+    CODE              Offs=005F73  Size=00000B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(aslax4.o):
+    CODE              Offs=005F7E  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(asleax1.o):
+    CODE              Offs=005F8F  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(asleax2.o):
+    CODE              Offs=005F9B  Size=000013  Align=00001  Fill=0000
+./lib/ethergeiger.lib(axlong.o):
+    CODE              Offs=005FAE  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(condes.o):
+    CODE              Offs=005FBB  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000012  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(copydata.o):
+    CODE              Offs=005FC7  Size=00002D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(crt0.o):
+    STARTUP           Offs=000000  Size=00001C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ctype.o):
+    RODATA            Offs=0000B6  Size=000100  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decax1.o):
+    CODE              Offs=005FF4  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decaxy.o):
+    CODE              Offs=005FFB  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp1.o):
+    CODE              Offs=006004  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp2.o):
+    CODE              Offs=00600D  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp3.o):
+    CODE              Offs=00601A  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp4.o):
+    CODE              Offs=006027  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp5.o):
+    CODE              Offs=006034  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp6.o):
+    CODE              Offs=006041  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp7.o):
+    CODE              Offs=00604E  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp8.o):
+    CODE              Offs=00605B  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(enter.o):
+    CODE              Offs=006068  Size=00000E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(errno.o):
+    BSS               Offs=0005AD  Size=000002  Align=00001  Fill=0000
+./lib/ethergeiger.lib(icmp.o):
+    CODE              Offs=006076  Size=00002E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incax1.o):
+    CODE              Offs=0060A4  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incax2.o):
+    CODE              Offs=0060A9  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incax6.o):
+    CODE              Offs=0060B0  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incax8.o):
+    CODE              Offs=0060B5  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incaxy.o):
+    CODE              Offs=0060BA  Size=00000B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp1.o):
+    CODE              Offs=0060C5  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp2.o):
+    CODE              Offs=0060CC  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp3.o):
+    CODE              Offs=0060E1  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp4.o):
+    CODE              Offs=0060E6  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp6.o):
+    CODE              Offs=0060EB  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp7.o):
+    CODE              Offs=0060F0  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp8.o):
+    CODE              Offs=0060F5  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(itoa.o):
+    CODE              Offs=0060FA  Size=000094  Align=00001  Fill=0000
+    RODATA            Offs=0001B6  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ladd.o):
+    CODE              Offs=00618E  Size=000024  Align=00001  Fill=0000
+./lib/ethergeiger.lib(laddeqsp.o):
+    CODE              Offs=0061B2  Size=000023  Align=00001  Fill=0000
+./lib/ethergeiger.lib(land.o):
+    CODE              Offs=0061D5  Size=000021  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lcmp.o):
+    CODE              Offs=0061F6  Size=00003B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lcompl.o):
+    CODE              Offs=006231  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldaxi.o):
+    CODE              Offs=006246  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldaxsp.o):
+    CODE              Offs=006253  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldeaxi.o):
+    CODE              Offs=00625C  Size=000017  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldeaxysp.o):
+    CODE              Offs=006273  Size=000013  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldec.o):
+    CODE              Offs=006286  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(leaaxsp.o):
+    CODE              Offs=00629B  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(leave.o):
+    CODE              Offs=0062A7  Size=00001B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(leq.o):
+    CODE              Offs=0062C2  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(linc.o):
+    CODE              Offs=0062C8  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lmul.o):
+    CODE              Offs=0062D9  Size=000059  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lne.o):
+    CODE              Offs=006332  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lneg.o):
+    CODE              Offs=006338  Size=00001E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lor.o):
+    CODE              Offs=006356  Size=000021  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lpush.o):
+    CODE              Offs=006377  Size=00001E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lsave.o):
+    CODE              Offs=006395  Size=00001A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lsub.o):
+    CODE              Offs=0063AF  Size=000024  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lsubeqsp.o):
+    CODE              Offs=0063D3  Size=000027  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ltest.o):
+    CODE              Offs=0063FA  Size=00000F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ltoa.o):
+    CODE              Offs=006409  Size=000093  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ludiv.o):
+    CODE              Offs=00649C  Size=000077  Align=00001  Fill=0000
+./lib/ethergeiger.lib(luge.o):
+    CODE              Offs=006513  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lugt.o):
+    CODE              Offs=006519  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lule.o):
+    CODE              Offs=00651F  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lult.o):
+    CODE              Offs=006525  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lumod.o):
+    CODE              Offs=00652B  Size=000017  Align=00001  Fill=0000
+./lib/ethergeiger.lib(makebool.o):
+    CODE              Offs=006542  Size=00002C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(memcpy.o):
+    CODE              Offs=00656E  Size=00003C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(mul8.o):
+    CODE              Offs=0065AA  Size=00003A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(mulax10.o):
+    CODE              Offs=0065E4  Size=000019  Align=00001  Fill=0000
+./lib/ethergeiger.lib(negabs.o):
+    CODE              Offs=0065FD  Size=000012  Align=00001  Fill=0000
+./lib/ethergeiger.lib(or.o):
+    CODE              Offs=00660F  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(popptr1.o):
+    CODE              Offs=006620  Size=00000E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(push1.o):
+    CODE              Offs=00662E  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pusha.o):
+    CODE              Offs=006633  Size=000016  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pushax.o):
+    CODE              Offs=006649  Size=00001A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pushw.o):
+    CODE              Offs=006663  Size=00000F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pushwsp.o):
+    CODE              Offs=006672  Size=00001C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shrax1.o):
+    CODE              Offs=00668E  Size=000008  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shrax4.o):
+    CODE              Offs=006696  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shreax1.o):
+    CODE              Offs=0066A7  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shreax3.o):
+    CODE              Offs=0066B3  Size=00001A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shreax4.o):
+    CODE              Offs=0066CD  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(sprintf.o):
+    CODE              Offs=0066DE  Size=00002B  Align=00001  Fill=0000
+    BSS               Offs=0005AF  Size=000001  Align=00001  Fill=0000
+./lib/ethergeiger.lib(staspidx.o):
+    CODE              Offs=006709  Size=000016  Align=00001  Fill=0000
+./lib/ethergeiger.lib(staxsp.o):
+    CODE              Offs=00671F  Size=00000B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(staxspi.o):
+    CODE              Offs=00672A  Size=00001A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(steaxsp.o):
+    CODE              Offs=006744  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(steaxspi.o):
+    CODE              Offs=006759  Size=000022  Align=00001  Fill=0000
+./lib/ethergeiger.lib(strlen.o):
+    CODE              Offs=00677B  Size=000016  Align=00001  Fill=0000
+./lib/ethergeiger.lib(strlower.o):
+    CODE              Offs=006791  Size=000028  Align=00001  Fill=0000
+./lib/ethergeiger.lib(sub.o):
+    CODE              Offs=0067B9  Size=000014  Align=00001  Fill=0000
+./lib/ethergeiger.lib(subeqsp.o):
+    CODE              Offs=0067CD  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(subysp.o):
+    CODE              Offs=0067E2  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(toslong.o):
+    CODE              Offs=0067EF  Size=000032  Align=00001  Fill=0000
+./lib/ethergeiger.lib(udiv.o):
+    CODE              Offs=006821  Size=00004F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(umod.o):
+    CODE              Offs=006870  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(vsnprintf.o):
+    CODE              Offs=006881  Size=0000DA  Align=00001  Fill=0000
+    DATA              Offs=000037  Size=000008  Align=00001  Fill=0000
+./lib/ethergeiger.lib(vsprintf.o):
+    CODE              Offs=00695B  Size=000012  Align=00001  Fill=0000
+./lib/ethergeiger.lib(zerobss.o):
+    CODE              Offs=00696D  Size=000023  Align=00001  Fill=0000
+./lib/ethergeiger.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000000  000019  00001A  00001
+DATA                  000200  00023E  00003F  00001
+BSS                   00023F  0007EE  0005B0  00001
+STARTUP               00803F  00805A  00001C  00001
+ONCE                  00805B  008066  00000C  00001
+CODE                  008067  00E9F6  006990  00001
+RODATA                00E9F7  00EBB3  0001BD  00001
+VECTORS               00FFFA  00FFFF  000006  00001
+
+
+Exports list by name:
+---------------------
+__BSS_RUN__               00023F RLA    __BSS_SIZE__              0005B0 REA    
+__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     00805B RLA    
+__DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA    
+__DATA_SIZE__             00003F REA    __DESTRUCTOR_COUNT__      000000 REA    
+__DESTRUCTOR_TABLE__      00805B RLA    __RAM_SIZE__              001E00 REA    
+__RAM_START__             000200 RLA    __STARTUP__               000001 REA    
+__ctype                   00EAAD RLA    __directerrno             00DBD7 RLA    
+__errno                   0007EC RLA    __hextab                  00EA91 RLA    
+__longminstr              00EAA1 RLA    __oserror                 0007C0 RLA    
+__printf                  00DCD3 RLA    __seterrno                00DF85 RLA    
+_abs                      00E664 RLA    _cfGetSizeInfo            00D942 RLA    
+_cfInit                   00D908 RLA    _cfReadBlocks             00D92A RLA    
+_cfWriteBlocks            00D936 RLA    _cpm                      0080AA RLA    
+_cpm2sievert              0080E3 RLA    _delay_4us                0081FA RLA    
+_delay_ms                 008203 RLA    _disk_initialize          00D84C RLA    
+_disk_ioctl               00D8B8 RLA    _disk_read                00D86E RLA    
+_disk_status              00D863 RLA    _disk_write               00D893 RLA    
+_f_close                  0086CF RLA    _f_lseek                  009179 RLA    
+_f_mount                  00A57D RLA    _f_open                   00820D RLA    
+_f_putc                   00A628 RLA    _f_puts                   00A659 RLA    
+_get_fattime              008116 RLA    _hd44780_gotoxy           0081AD RLA    
+_hd44780_init             00811E RLA    _hd44780_putc             00815A RLA    
+_init                     00803F RLA    _irq_int                  008068 RLA    
+_ltoa                     00E488 RLA    _main                     00D981 RLA    
+_memcpy                   00E5D5 RLA    _nmi_int                  008067 RLA    
+_sprintf                  00E745 RLA    _strlen                   00E7E2 RLA    
+_strlower                 00E7F8 RLA    _ultoa                    00E4C7 RLA    
+_uptime                   008105 RLA    _utoa                     00E1C1 RLA    
+_vsprintf                 00E9C2 RLA    addeq0sp                  00DFA6 RLA    
+addeqysp                  00DFA8 RLA    addysp                    00DFB8 RLA    
+addysp1                   00DFB7 RLA    aslax1                    00DFD2 RLA    
+aslax2                    00DFDA RLA    aulong                    00DFCB RLA    
+axlong                    00E015 RLA    axulong                   00E01B RLA    
+booleq                    00E5AF RLA    boolne                    00E5A9 RLA    
+booluge                   00E5D0 RLA    boolugt                   00E5CE RLA    
+boolule                   00E5C6 RLA    boolult                   00E5C8 RLA    
+compleax                  00E298 RLA    copydata                  00E02E RLA    
+decax1                    00E05B RLA    decaxy                    00E062 RLA    
+deceaxy                   00E2ED RLA    decsp1                    00E06B RLA    
+decsp2                    00E074 RLA    decsp3                    00E081 RLA    
+decsp4                    00E08E RLA    decsp5                    00E09B RLA    
+decsp6                    00E0A8 RLA    decsp7                    00E0B5 RLA    
+decsp8                    00E0C2 RLA    donelib                   00E022 RLA    
+enter                     00E0CF RLA    getlop                    00E512 RLA    
+incax1                    00E10B RLA    incax2                    00E110 RLA    
+incax6                    00E117 RLA    incax8                    00E11C RLA    
+incaxy                    00E123 RLA    inceaxy                   00E32F RLA    
+incsp1                    00E12C RLA    incsp2                    00E13A RLA    
+incsp3                    00E148 RLA    incsp4                    00E14D RLA    
+incsp6                    00E152 RLA    incsp7                    00E157 RLA    
+incsp8                    00E15C RLA    initlib                   00805B RLA    
+laddeqysp                 00E21B RLA    ldax0sp                   00E2BA RLA    
+ldaxi                     00E2AD RLA    ldaxidx                   00E2AF RLA    
+ldaxysp                   00E2BC RLA    ldeax0sp                  00E2DA RLA    
+ldeaxi                    00E2C3 RLA    ldeaxidx                  00E2C5 RLA    
+ldeaxysp                  00E2DC RLA    leaa0sp                   00E302 RLA    
+leavey                    00E318 RLA    lsubeq0sp                 00E43A RLA    
+lsubeqysp                 00E43C RLA    mulax10                   00E64B RLA    
+negeax                    00E39F RLA    popax                     00E133 RLA    
+popptr1                   00E687 RLA    ptr1                      000008 RLZ    
+ptr2                      00000A RLZ    ptr3                      00000C RLZ    
+ptr4                      00000E RLZ    push0                     00E6B0 RLA    
+push1                     00E695 RLA    pusha                     00E69E RLA    
+pusha0                    00E6B2 RLA    pushax                    00E6B4 RLA    
+pusheax                   00E3E5 RLA    pushl0                    00E3DE RLA    
+pushw                     00E6CA RLA    pushw0sp                  00E6D9 RLA    
+pushwidx                  00E6CC RLA    pushwysp                  00E6DB RLA    
+regbank                   000014 RLZ    regsave                   000004 RLZ    
+resteax                   00E409 RLA    saveeax                   00E3FC RLA    
+shlax1                    00DFD2 RLA    shlax4                    00DFE5 RLA    
+shleax1                   00DFF6 RLA    shleax2                   00E002 RLA    
+shrax1                    00E6F5 RLA    shrax4                    00E6FD RLA    
+shreax1                   00E70E RLA    shreax3                   00E71A RLA    
+shreax4                   00E734 RLA    sp                        000000 RLZ    
+sreg                      000002 RLZ    staspidx                  00E770 RLA    
+stax0sp                   00E786 RLA    staxspidx                 00E791 RLA    
+staxysp                   00E788 RLA    steax0sp                  00E7AB RLA    
+steaxspidx                00E7C0 RLA    steaxysp                  00E7AD RLA    
+subeqysp                  00E836 RLA    subysp                    00E849 RLA    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tmp3                      000012 RLZ    tmp4                      000013 RLZ    
+tosadd0ax                 00E1F5 RLA    tosaddax                  00DF90 RLA    
+tosaddeax                 00E1FB RLA    tosand0ax                 00E23C RLA    
+tosandeax                 00E240 RLA    toseqeax                  00E329 RLA    
+tosicmp                   00E0DF RLA    tosicmp0                  00E0DD RLA    
+toslcmp                   00E25D RLA    toslong                   00E871 RLA    
+tosneeax                  00E399 RLA    tosora0                   00E676 RLA    
+tosorax                   00E678 RLA    tosoreax                  00E3C1 RLA    
+tossuba0                  00E820 RLA    tossubax                  00E822 RLA    
+tossubeax                 00E41A RLA    tosudivax                 00E88A RLA    
+tosudiveax                00E507 RLA    tosugeeax                 00E57A RLA    
+tosugteax                 00E580 RLA    tosuleeax                 00E586 RLA    
+tosulong                  00E856 RLA    tosulteax                 00E58C RLA    
+tosumodax                 00E8D9 RLA    tosumodeax                00E596 RLA    
+tosumul0ax                00E340 RLA    tosumula0                 00E611 RLA    
+tosumuleax                00E344 RLA    udiv16                    00E899 RLA    
+udiv32                    00E535 RLA    utsteax                   00E461 RLA    
+vsnprintf                 00E8EB RLA    zerobss                   00E9D4 RLA    
+
+
+
+Exports list by value:
+----------------------
+__CONSTRUCTOR_COUNT__     000000 REA    __DESTRUCTOR_COUNT__      000000 REA    
+sp                        000000 RLZ    __STARTUP__               000001 REA    
+sreg                      000002 RLZ    regsave                   000004 RLZ    
+ptr1                      000008 RLZ    ptr2                      00000A RLZ    
+ptr3                      00000C RLZ    ptr4                      00000E RLZ    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tmp3                      000012 RLZ    tmp4                      000013 RLZ    
+regbank                   000014 RLZ    __DATA_SIZE__             00003F REA    
+__DATA_RUN__              000200 RLA    __RAM_START__             000200 RLA    
+__BSS_RUN__               00023F RLA    __BSS_SIZE__              0005B0 REA    
+__oserror                 0007C0 RLA    __errno                   0007EC RLA    
+__RAM_SIZE__              001E00 REA    __DATA_LOAD__             008000 RLA    
+_init                     00803F RLA    __CONSTRUCTOR_TABLE__     00805B RLA    
+__DESTRUCTOR_TABLE__      00805B RLA    initlib                   00805B RLA    
+_nmi_int                  008067 RLA    _irq_int                  008068 RLA    
+_cpm                      0080AA RLA    _cpm2sievert              0080E3 RLA    
+_uptime                   008105 RLA    _get_fattime              008116 RLA    
+_hd44780_init             00811E RLA    _hd44780_putc             00815A RLA    
+_hd44780_gotoxy           0081AD RLA    _delay_4us                0081FA RLA    
+_delay_ms                 008203 RLA    _f_open                   00820D RLA    
+_f_close                  0086CF RLA    _f_lseek                  009179 RLA    
+_f_mount                  00A57D RLA    _f_putc                   00A628 RLA    
+_f_puts                   00A659 RLA    _disk_initialize          00D84C RLA    
+_disk_status              00D863 RLA    _disk_read                00D86E RLA    
+_disk_write               00D893 RLA    _disk_ioctl               00D8B8 RLA    
+_cfInit                   00D908 RLA    _cfReadBlocks             00D92A RLA    
+_cfWriteBlocks            00D936 RLA    _cfGetSizeInfo            00D942 RLA    
+_main                     00D981 RLA    __directerrno             00DBD7 RLA    
+__printf                  00DCD3 RLA    __seterrno                00DF85 RLA    
+tosaddax                  00DF90 RLA    addeq0sp                  00DFA6 RLA    
+addeqysp                  00DFA8 RLA    addysp1                   00DFB7 RLA    
+addysp                    00DFB8 RLA    aulong                    00DFCB RLA    
+aslax1                    00DFD2 RLA    shlax1                    00DFD2 RLA    
+aslax2                    00DFDA RLA    shlax4                    00DFE5 RLA    
+shleax1                   00DFF6 RLA    shleax2                   00E002 RLA    
+axlong                    00E015 RLA    axulong                   00E01B RLA    
+donelib                   00E022 RLA    copydata                  00E02E RLA    
+decax1                    00E05B RLA    decaxy                    00E062 RLA    
+decsp1                    00E06B RLA    decsp2                    00E074 RLA    
+decsp3                    00E081 RLA    decsp4                    00E08E RLA    
+decsp5                    00E09B RLA    decsp6                    00E0A8 RLA    
+decsp7                    00E0B5 RLA    decsp8                    00E0C2 RLA    
+enter                     00E0CF RLA    tosicmp0                  00E0DD RLA    
+tosicmp                   00E0DF RLA    incax1                    00E10B RLA    
+incax2                    00E110 RLA    incax6                    00E117 RLA    
+incax8                    00E11C RLA    incaxy                    00E123 RLA    
+incsp1                    00E12C RLA    popax                     00E133 RLA    
+incsp2                    00E13A RLA    incsp3                    00E148 RLA    
+incsp4                    00E14D RLA    incsp6                    00E152 RLA    
+incsp7                    00E157 RLA    incsp8                    00E15C RLA    
+_utoa                     00E1C1 RLA    tosadd0ax                 00E1F5 RLA    
+tosaddeax                 00E1FB RLA    laddeqysp                 00E21B RLA    
+tosand0ax                 00E23C RLA    tosandeax                 00E240 RLA    
+toslcmp                   00E25D RLA    compleax                  00E298 RLA    
+ldaxi                     00E2AD RLA    ldaxidx                   00E2AF RLA    
+ldax0sp                   00E2BA RLA    ldaxysp                   00E2BC RLA    
+ldeaxi                    00E2C3 RLA    ldeaxidx                  00E2C5 RLA    
+ldeax0sp                  00E2DA RLA    ldeaxysp                  00E2DC RLA    
+deceaxy                   00E2ED RLA    leaa0sp                   00E302 RLA    
+leavey                    00E318 RLA    toseqeax                  00E329 RLA    
+inceaxy                   00E32F RLA    tosumul0ax                00E340 RLA    
+tosumuleax                00E344 RLA    tosneeax                  00E399 RLA    
+negeax                    00E39F RLA    tosoreax                  00E3C1 RLA    
+pushl0                    00E3DE RLA    pusheax                   00E3E5 RLA    
+saveeax                   00E3FC RLA    resteax                   00E409 RLA    
+tossubeax                 00E41A RLA    lsubeq0sp                 00E43A RLA    
+lsubeqysp                 00E43C RLA    utsteax                   00E461 RLA    
+_ltoa                     00E488 RLA    _ultoa                    00E4C7 RLA    
+tosudiveax                00E507 RLA    getlop                    00E512 RLA    
+udiv32                    00E535 RLA    tosugeeax                 00E57A RLA    
+tosugteax                 00E580 RLA    tosuleeax                 00E586 RLA    
+tosulteax                 00E58C RLA    tosumodeax                00E596 RLA    
+boolne                    00E5A9 RLA    booleq                    00E5AF RLA    
+boolule                   00E5C6 RLA    boolult                   00E5C8 RLA    
+boolugt                   00E5CE RLA    booluge                   00E5D0 RLA    
+_memcpy                   00E5D5 RLA    tosumula0                 00E611 RLA    
+mulax10                   00E64B RLA    _abs                      00E664 RLA    
+tosora0                   00E676 RLA    tosorax                   00E678 RLA    
+popptr1                   00E687 RLA    push1                     00E695 RLA    
+pusha                     00E69E RLA    push0                     00E6B0 RLA    
+pusha0                    00E6B2 RLA    pushax                    00E6B4 RLA    
+pushw                     00E6CA RLA    pushwidx                  00E6CC RLA    
+pushw0sp                  00E6D9 RLA    pushwysp                  00E6DB RLA    
+shrax1                    00E6F5 RLA    shrax4                    00E6FD RLA    
+shreax1                   00E70E RLA    shreax3                   00E71A RLA    
+shreax4                   00E734 RLA    _sprintf                  00E745 RLA    
+staspidx                  00E770 RLA    stax0sp                   00E786 RLA    
+staxysp                   00E788 RLA    staxspidx                 00E791 RLA    
+steax0sp                  00E7AB RLA    steaxysp                  00E7AD RLA    
+steaxspidx                00E7C0 RLA    _strlen                   00E7E2 RLA    
+_strlower                 00E7F8 RLA    tossuba0                  00E820 RLA    
+tossubax                  00E822 RLA    subeqysp                  00E836 RLA    
+subysp                    00E849 RLA    tosulong                  00E856 RLA    
+toslong                   00E871 RLA    tosudivax                 00E88A RLA    
+udiv16                    00E899 RLA    tosumodax                 00E8D9 RLA    
+vsnprintf                 00E8EB RLA    _vsprintf                 00E9C2 RLA    
+zerobss                   00E9D4 RLA    __hextab                  00EA91 RLA    
+__longminstr              00EAA1 RLA    __ctype                   00EAAD RLA    
+
+
+
+Imports list:
+-------------
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__DATA_LOAD__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DATA_RUN__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DATA_SIZE__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__RAM_SIZE__ ([linker generated]):
+    crt0.o                    crt0.s(11)
+__RAM_START__ ([linker generated]):
+    crt0.o                    crt0.s(11)
+__STARTUP__ (crt0.o):
+    main.o                    main.s(13)
+__ctype (ctype.o):
+    strlower.o                common/strlower.s(13)
+__directerrno (_directerrno.o):
+    vsnprintf.o               /opt/cc65/asminc/errno.inc(10)
+__errno (errno.o):
+    _seterrno.o               /opt/cc65/asminc/errno.inc(7)
+__hextab (_hextab.o):
+    ltoa.o                    common/ltoa.s(10)
+    itoa.o                    common/itoa.s(10)
+__longminstr (_longminstr.o):
+    ltoa.o                    common/ltoa.s(10)
+__oserror (_oserror.o):
+    _directerrno.o            /opt/cc65/asminc/errno.inc(7)
+__printf (_printf.o):
+    vsnprintf.o               common/vsnprintf.s(10)
+__seterrno (_seterrno.o):
+    _directerrno.o            /opt/cc65/asminc/errno.inc(9)
+_abs (negabs.o):
+    main.o                    main.s(15)
+_cfGetSizeInfo (cf.o):
+    diskio.o                  diskio.s(21)
+_cfInit (cf.o):
+    diskio.o                  diskio.s(18)
+_cfReadBlocks (cf.o):
+    diskio.o                  diskio.s(19)
+_cfWriteBlocks (cf.o):
+    diskio.o                  diskio.s(20)
+_cpm (geiger.o):
+    main.o                    main.s(29)
+_cpm2sievert (geiger.o):
+    main.o                    main.s(30)
+_delay_4us (delay.o):
+    hd44780.o                 hd44780.s(18)
+_delay_ms (delay.o):
+    main.o                    main.s(21)
+    hd44780.o                 hd44780.s(19)
+_disk_initialize (diskio.o):
+    ff.o                      ff.s(34)
+_disk_ioctl (diskio.o):
+    ff.o                      ff.s(38)
+_disk_read (diskio.o):
+    ff.o                      ff.s(36)
+_disk_status (diskio.o):
+    ff.o                      ff.s(35)
+_disk_write (diskio.o):
+    ff.o                      ff.s(37)
+_f_close (ff.o):
+    main.o                    main.s(23)
+_f_lseek (ff.o):
+    main.o                    main.s(24)
+_f_mount (ff.o):
+    main.o                    main.s(25)
+_f_open (ff.o):
+    main.o                    main.s(22)
+_f_putc (ff.o):
+    main.o                    main.s(26)
+_f_puts (ff.o):
+    main.o                    main.s(27)
+_get_fattime (time.o):
+    ff.o                      ff.s(33)
+_hd44780_gotoxy (hd44780.o):
+    main.o                    main.s(20)
+_hd44780_init (hd44780.o):
+    main.o                    main.s(18)
+_hd44780_putc (hd44780.o):
+    main.o                    main.s(19)
+_init (crt0.o):
+    vectors.o                 vectors.s(7)
+    interrupt.o               interrupt.s(9)
+_irq_int (interrupt.o):
+    vectors.o                 vectors.s(8)
+_ltoa (ltoa.o):
+    _printf.o                 common/_printf.s(12)
+_main (main.o):
+    crt0.o                    crt0.s(8)
+_memcpy (memcpy.o):
+    vsnprintf.o               common/vsnprintf.s(10)
+_nmi_int (interrupt.o):
+    vectors.o                 vectors.s(8)
+_sprintf (sprintf.o):
+    main.o                    main.s(14)
+_strlen (strlen.o):
+    _printf.o                 common/_printf.s(13)
+    main.o                    main.s(17)
+_strlower (strlower.o):
+    _printf.o                 common/_printf.s(13)
+_ultoa (ltoa.o):
+    _printf.o                 common/_printf.s(12)
+_uptime (time.o):
+    main.o                    main.s(28)
+_utoa (itoa.o):
+    main.o                    main.s(16)
+_vsprintf (vsprintf.o):
+    sprintf.o                 common/sprintf.s(8)
+addeq0sp (addeqsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+addeqysp (addeqsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+addysp (addysp.o):
+    sprintf.o                 common/sprintf.s(8)
+    leave.o                   runtime/leave.s(14)
+    incsp8.o                  runtime/incsp8.s(8)
+    incsp7.o                  runtime/incsp7.s(8)
+    incsp6.o                  runtime/incsp6.s(8)
+    incsp4.o                  runtime/incsp4.s(8)
+    incsp3.o                  runtime/incsp3.s(8)
+    cf.o                      cf.s(117)
+    cf.o                      cf.s(117)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+addysp1 (addysp.o):
+    sub.o                     runtime/sub.s(8)
+    or.o                      runtime/or.s(9)
+    ludiv.o                   runtime/ludiv.s(9)
+    lsub.o                    runtime/lsub.s(11)
+    lor.o                     runtime/lor.s(9)
+    lmul.o                    runtime/lmul.s(9)
+    land.o                    runtime/land.s(9)
+    ladd.o                    runtime/ladd.s(8)
+    itoa.o                    common/itoa.s(9)
+aslax1 (aslax1.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+aslax2 (aslax2.o):
+    ff.o                      ff.s(10329)
+aulong (along.o):
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+axlong (axlong.o):
+    _printf.o                 common/_printf.s(11)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+axulong (axlong.o):
+    _printf.o                 common/_printf.s(11)
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+booleq (makebool.o):
+    leq.o                     runtime/leq.s(8)
+    ff.o                      ff.s(10329)
+boolne (makebool.o):
+    lne.o                     runtime/lne.s(8)
+booluge (makebool.o):
+    luge.o                    runtime/luge.s(8)
+boolugt (makebool.o):
+    lugt.o                    runtime/lugt.s(8)
+boolule (makebool.o):
+    lule.o                    runtime/lule.s(8)
+boolult (makebool.o):
+    lult.o                    runtime/lult.s(8)
+compleax (lcompl.o):
+    ff.o                      ff.s(10329)
+copydata (copydata.o):
+    crt0.o                    crt0.s(13)
+decax1 (decax1.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+decaxy (decaxy.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+deceaxy (ldec.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+decsp1 (decsp1.o):
+    main.o                    main.s(394)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+    geiger.o                  geiger.s(123)
+decsp2 (decsp2.o):
+    toslong.o                 runtime/toslong.s(8)
+    main.o                    main.s(394)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+decsp3 (decsp3.o):
+    ff.o                      ff.s(10329)
+decsp4 (decsp4.o):
+    sprintf.o                 common/sprintf.s(8)
+    lpush.o                   runtime/lpush.s(12)
+    main.o                    main.s(394)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+decsp5 (decsp5.o):
+    ff.o                      ff.s(10329)
+decsp6 (decsp6.o):
+    _printf.o                 common/_printf.s(11)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+decsp7 (decsp7.o):
+    ff.o                      ff.s(10329)
+decsp8 (decsp8.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+donelib (condes.o):
+    crt0.o                    crt0.s(13)
+enter (enter.o):
+    ff.o                      ff.s(10329)
+getlop (ludiv.o):
+    lumod.o                   runtime/lumod.s(9)
+incax1 (incax1.o):
+    main.o                    main.s(394)
+    hd44780.o                 hd44780.s(179)
+incax2 (incax2.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+incax6 (incax6.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+incax8 (incax8.o):
+    ff.o                      ff.s(10329)
+incaxy (incaxy.o):
+    incax8.o                  runtime/incax8.s(8)
+    incax6.o                  runtime/incax6.s(8)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+inceaxy (linc.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+incsp1 (incsp1.o):
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    hd44780.o                 hd44780.s(179)
+    hd44780.o                 hd44780.s(179)
+    geiger.o                  geiger.s(123)
+incsp2 (incsp2.o):
+    vsnprintf.o               common/vsnprintf.s(9)
+    staxspi.o                 runtime/staxspi.s(9)
+    staspidx.o                runtime/staspidx.s(8)
+    popptr1.o                 runtime/popptr1.s(8)
+    hd44780.o                 hd44780.s(179)
+    geiger.o                  geiger.s(123)
+incsp3 (incsp3.o):
+    hd44780.o                 hd44780.s(179)
+    geiger.o                  geiger.s(123)
+incsp4 (incsp4.o):
+    lcmp.o                    runtime/lcmp.s(9)
+    main.o                    main.s(394)
+    main.o                    main.s(394)
+    cf.o                      cf.s(117)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+incsp6 (incsp6.o):
+    vsnprintf.o               common/vsnprintf.s(9)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+incsp7 (incsp7.o):
+    ff.o                      ff.s(10329)
+incsp8 (incsp8.o):
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+initlib (condes.o):
+    crt0.o                    crt0.s(13)
+laddeqysp (laddeqsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+ldax0sp (ldaxsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    hd44780.o                 hd44780.s(179)
+ldaxi (ldaxi.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+ldaxidx (ldaxi.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+ldaxysp (ldaxsp.o):
+    vsnprintf.o               common/vsnprintf.s(9)
+    main.o                    main.s(394)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+ldeax0sp (ldeaxysp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+ldeaxi (ldeaxi.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+ldeaxidx (ldeaxi.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+ldeaxysp (ldeaxysp.o):
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+leaa0sp (leaaxsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+leavey (leave.o):
+    ff.o                      ff.s(10329)
+lsubeq0sp (lsubeqsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+lsubeqysp (lsubeqsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+mulax10 (mulax10.o):
+    ff.o                      ff.s(10329)
+negeax (lneg.o):
+    ltoa.o                    common/ltoa.s(9)
+popax (incsp2.o):
+    memcpy.o                  common/memcpy.s(14)
+    ltoa.o                    common/ltoa.s(9)
+    _printf.o                 common/_printf.s(11)
+    vsnprintf.o               common/vsnprintf.s(9)
+popptr1 (popptr1.o):
+    memcpy.o                  common/memcpy.s(14)
+    ltoa.o                    common/ltoa.s(9)
+    umod.o                    runtime/umod.s(8)
+    udiv.o                    runtime/udiv.s(9)
+    steaxspi.o                runtime/steaxspi.s(9)
+    mul8.o                    runtime/mul8.s(9)
+ptr1 (zeropage.o):
+    strlower.o                common/strlower.s(14)
+    memcpy.o                  common/memcpy.s(15)
+    ltoa.o                    common/ltoa.s(11)
+    _printf.o                 /opt/cc65/asminc/zeropage.inc(12)
+    vsnprintf.o               common/vsnprintf.s(11)
+    lcmp.o                    runtime/lcmp.s(10)
+    copydata.o                common/copydata.s(9)
+    zerobss.o                 common/zerobss.s(9)
+    udiv.o                    runtime/udiv.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staspidx.o                runtime/staspidx.s(9)
+    sprintf.o                 common/sprintf.s(9)
+    pushw.o                   runtime/pushw.s(9)
+    popptr1.o                 runtime/popptr1.s(9)
+    mulax10.o                 runtime/mulax10.s(9)
+    mul8.o                    runtime/mul8.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    lmul.o                    runtime/lmul.s(10)
+    ldeaxi.o                  runtime/ldeaxi.s(8)
+    ldaxi.o                   runtime/ldaxi.s(8)
+    main.o                    main.s(11)
+    ff.o                      ff.s(11)
+    hd44780.o                 hd44780.s(11)
+    geiger.o                  geiger.s(11)
+ptr2 (zeropage.o):
+    strlower.o                common/strlower.s(14)
+    memcpy.o                  common/memcpy.s(15)
+    ltoa.o                    common/ltoa.s(11)
+    _printf.o                 /opt/cc65/asminc/zeropage.inc(12)
+    copydata.o                common/copydata.s(9)
+    strlen.o                  common/strlen.s(12)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    itoa.o                    common/itoa.s(11)
+ptr3 (zeropage.o):
+    memcpy.o                  common/memcpy.s(15)
+    ltoa.o                    common/ltoa.s(11)
+    ludiv.o                   runtime/ludiv.s(10)
+    lmul.o                    runtime/lmul.s(10)
+    itoa.o                    common/itoa.s(11)
+ptr4 (zeropage.o):
+    umod.o                    runtime/umod.s(9)
+    udiv.o                    runtime/udiv.s(10)
+    mul8.o                    runtime/mul8.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    lmul.o                    runtime/lmul.s(10)
+    linc.o                    runtime/linc.s(8)
+push0 (pushax.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+push1 (push1.o):
+    _printf.o                 common/_printf.s(11)
+pusha (pusha.o):
+    main.o                    main.s(394)
+    main.o                    main.s(394)
+    main.o                    main.s(394)
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    hd44780.o                 hd44780.s(179)
+    hd44780.o                 hd44780.s(179)
+    hd44780.o                 hd44780.s(179)
+pusha0 (pushax.o):
+    push1.o                   runtime/push1.s(8)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+pushax (pushax.o):
+    _printf.o                 common/_printf.s(11)
+    pushw.o                   runtime/pushw.s(8)
+    main.o                    main.s(394)
+    main.o                    main.s(394)
+    cf.o                      cf.s(117)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    hd44780.o                 hd44780.s(179)
+    geiger.o                  geiger.s(123)
+pusheax (lpush.o):
+    _printf.o                 common/_printf.s(11)
+    main.o                    main.s(394)
+    cf.o                      cf.s(117)
+    cf.o                      cf.s(117)
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+pushl0 (lpush.o):
+    ff.o                      ff.s(10329)
+pushw (pushw.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+pushw0sp (pushwsp.o):
+    vsprintf.o                common/vsprintf.s(8)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    geiger.o                  geiger.s(123)
+pushwidx (pushw.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+pushwysp (pushwsp.o):
+    diskio.o                  diskio.s(178)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+regbank (zeropage.o):
+    _printf.o                 /opt/cc65/asminc/zeropage.inc(14)
+regsave (zeropage.o):
+    lsave.o                   runtime/lsave.s(9)
+    ff.o                      ff.s(10)
+resteax (lsave.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+saveeax (lsave.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shlax1 (aslax1.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shlax4 (aslax4.o):
+    ff.o                      ff.s(10329)
+shleax1 (asleax1.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shleax2 (asleax2.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shrax1 (shrax1.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shrax4 (shrax4.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shreax1 (shreax1.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shreax3 (shreax3.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+shreax4 (shreax4.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+sp (zeropage.o):
+    memcpy.o                  common/memcpy.s(15)
+    _printf.o                 /opt/cc65/asminc/zeropage.inc(11)
+    vsnprintf.o               common/vsnprintf.s(11)
+    lcmp.o                    runtime/lcmp.s(10)
+    toslong.o                 runtime/toslong.s(9)
+    subysp.o                  runtime/subysp.s(9)
+    subeqsp.o                 runtime/subeqsp.s(8)
+    sub.o                     runtime/sub.s(9)
+    steaxsp.o                 runtime/steaxsp.s(8)
+    staxspi.o                 runtime/staxspi.s(10)
+    staxsp.o                  runtime/staxsp.s(8)
+    staspidx.o                runtime/staspidx.s(9)
+    sprintf.o                 common/sprintf.s(9)
+    pushwsp.o                 runtime/pushwsp.s(8)
+    pushax.o                  runtime/pushax.s(8)
+    pusha.o                   runtime/pusha.s(8)
+    popptr1.o                 runtime/popptr1.s(9)
+    or.o                      runtime/or.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    lsubeqsp.o                runtime/lsubeqsp.s(8)
+    lsub.o                    runtime/lsub.s(12)
+    lpush.o                   runtime/lpush.s(13)
+    lor.o                     runtime/lor.s(10)
+    lmul.o                    runtime/lmul.s(10)
+    leave.o                   runtime/leave.s(15)
+    leaaxsp.o                 runtime/leaaxsp.s(8)
+    ldeaxysp.o                runtime/ldeaxysp.s(12)
+    ldaxsp.o                  runtime/ldaxsp.s(8)
+    land.o                    runtime/land.s(10)
+    laddeqsp.o                runtime/laddeqsp.s(8)
+    ladd.o                    runtime/ladd.s(9)
+    itoa.o                    common/itoa.s(11)
+    incsp2.o                  runtime/incsp2.s(8)
+    incsp1.o                  runtime/incsp1.s(8)
+    icmp.o                    runtime/icmp.s(9)
+    enter.o                   runtime/enter.s(8)
+    decsp8.o                  runtime/decsp8.s(8)
+    decsp7.o                  runtime/decsp7.s(8)
+    decsp6.o                  runtime/decsp6.s(8)
+    decsp5.o                  runtime/decsp5.s(8)
+    decsp4.o                  runtime/decsp4.s(8)
+    decsp3.o                  runtime/decsp3.s(8)
+    decsp2.o                  runtime/decsp2.s(8)
+    decsp1.o                  runtime/decsp1.s(8)
+    crt0.o                    /opt/cc65/asminc/zeropage.inc(11)
+    addysp.o                  runtime/addysp.s(8)
+    addeqsp.o                 runtime/addeqsp.s(8)
+    add.o                     runtime/add.s(12)
+    main.o                    main.s(10)
+    diskio.o                  diskio.s(10)
+    ff.o                      ff.s(10)
+    hd44780.o                 hd44780.s(10)
+    geiger.o                  geiger.s(10)
+sreg (zeropage.o):
+    lneg.o                    runtime/lneg.s(11)
+    ltoa.o                    common/ltoa.s(11)
+    _printf.o                 /opt/cc65/asminc/zeropage.inc(11)
+    lcmp.o                    runtime/lcmp.s(10)
+    umod.o                    runtime/umod.s(9)
+    udiv.o                    runtime/udiv.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    steaxsp.o                 runtime/steaxsp.s(8)
+    shreax4.o                 runtime/shreax4.s(8)
+    shreax3.o                 runtime/shreax3.s(8)
+    shreax1.o                 runtime/shreax1.s(8)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    ltest.o                   runtime/ltest.s(8)
+    lsubeqsp.o                runtime/lsubeqsp.s(8)
+    lsub.o                    runtime/lsub.s(12)
+    lsave.o                   runtime/lsave.s(9)
+    lpush.o                   runtime/lpush.s(13)
+    lor.o                     runtime/lor.s(10)
+    lmul.o                    runtime/lmul.s(10)
+    linc.o                    runtime/linc.s(8)
+    ldec.o                    runtime/ldec.s(9)
+    ldeaxysp.o                runtime/ldeaxysp.s(12)
+    ldeaxi.o                  runtime/ldeaxi.s(8)
+    lcompl.o                  runtime/lcompl.s(8)
+    land.o                    runtime/land.s(10)
+    laddeqsp.o                runtime/laddeqsp.s(8)
+    ladd.o                    runtime/ladd.s(9)
+    itoa.o                    common/itoa.s(11)
+    icmp.o                    runtime/icmp.s(9)
+    axlong.o                  runtime/axlong.s(9)
+    asleax2.o                 runtime/asleax2.s(8)
+    asleax1.o                 runtime/asleax1.s(8)
+    along.o                   runtime/along.s(9)
+    main.o                    main.s(10)
+    ff.o                      ff.s(10)
+    time.o                    time.s(10)
+staspidx (staspidx.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+stax0sp (staxsp.o):
+    main.o                    main.s(394)
+    diskio.o                  diskio.s(178)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    hd44780.o                 hd44780.s(179)
+staxspidx (staxspi.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+staxysp (staxsp.o):
+    vsprintf.o                common/vsprintf.s(8)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+steax0sp (steaxsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+steaxspidx (steaxspi.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+steaxysp (steaxsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+subeqysp (subeqsp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+subysp (subysp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tmp1 (zeropage.o):
+    ltoa.o                    common/ltoa.s(11)
+    _printf.o                 /opt/cc65/asminc/zeropage.inc(13)
+    copydata.o                common/copydata.s(9)
+    steaxspi.o                runtime/steaxspi.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staspidx.o                runtime/staspidx.s(9)
+    shreax4.o                 runtime/shreax4.s(8)
+    shreax3.o                 runtime/shreax3.s(8)
+    shreax1.o                 runtime/shreax1.s(8)
+    shrax4.o                  runtime/shrax4.s(8)
+    shrax1.o                  runtime/shrax1.s(8)
+    or.o                      runtime/or.s(10)
+    ltest.o                   runtime/ltest.s(8)
+    lor.o                     runtime/lor.s(10)
+    ldec.o                    runtime/ldec.s(9)
+    land.o                    runtime/land.s(10)
+    ladd.o                    runtime/ladd.s(9)
+    itoa.o                    common/itoa.s(11)
+    incaxy.o                  runtime/incaxy.s(8)
+    decaxy.o                  runtime/decaxy.s(8)
+    asleax2.o                 runtime/asleax2.s(8)
+    asleax1.o                 runtime/asleax1.s(8)
+    aslax4.o                  runtime/aslax4.s(8)
+    aslax2.o                  runtime/aslax2.s(8)
+    aslax1.o                  runtime/aslax1.s(8)
+    ff.o                      ff.s(11)
+tmp2 (zeropage.o):
+    steaxspi.o                runtime/steaxspi.s(10)
+    lmul.o                    runtime/lmul.s(10)
+tmp3 (zeropage.o):
+    steaxspi.o                runtime/steaxspi.s(10)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    lmul.o                    runtime/lmul.s(10)
+tmp4 (zeropage.o):
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    lmul.o                    runtime/lmul.s(10)
+tosadd0ax (ladd.o):
+    ff.o                      ff.s(10329)
+tosaddax (add.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosaddeax (ladd.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosand0ax (land.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosandeax (land.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+toseqeax (leq.o):
+    main.o                    main.s(394)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosicmp (icmp.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosicmp0 (icmp.o):
+    ff.o                      ff.s(10329)
+toslcmp (lcmp.o):
+    lult.o                    runtime/lult.s(8)
+    lule.o                    runtime/lule.s(8)
+    lugt.o                    runtime/lugt.s(8)
+    luge.o                    runtime/luge.s(8)
+    lne.o                     runtime/lne.s(8)
+    leq.o                     runtime/leq.s(8)
+toslong (toslong.o):
+    ff.o                      ff.s(10329)
+tosneeax (lne.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosora0 (or.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosorax (or.o):
+    ff.o                      ff.s(10329)
+tosoreax (lor.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tossuba0 (sub.o):
+    ff.o                      ff.s(10329)
+tossubax (sub.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tossubeax (lsub.o):
+    main.o                    main.s(394)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosudivax (udiv.o):
+    main.o                    main.s(394)
+tosudiveax (ludiv.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosugeeax (luge.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosugteax (lugt.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosuleeax (lule.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosulong (toslong.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosulteax (lult.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+tosumodax (umod.o):
+    main.o                    main.s(394)
+tosumodeax (lumod.o):
+    ff.o                      ff.s(10329)
+tosumul0ax (lmul.o):
+    ff.o                      ff.s(10329)
+tosumula0 (mul8.o):
+    geiger.o                  geiger.s(123)
+tosumuleax (lmul.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+udiv16 (udiv.o):
+    umod.o                    runtime/umod.s(8)
+udiv32 (ludiv.o):
+    lumod.o                   runtime/lumod.s(9)
+utsteax (ltest.o):
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+    ff.o                      ff.s(10329)
+vsnprintf (vsnprintf.o):
+    vsprintf.o                common/vsprintf.s(9)
+zerobss (zerobss.o):
+    crt0.o                    crt0.s(13)
+
