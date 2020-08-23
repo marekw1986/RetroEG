@@ -1,84 +1,233 @@
+//0x4000 - EEPROM
+//0x6000 - CS0		LCD + BUTTONS
+//		0x6000 - NOT USED
+//		0x6080 - NOT USED
+//		0x6100 - NOT USED
+//		0x6180 - NOT USED
+//		0x6200 - NOT USED
+//		0x6280 - NOT USED
+//		0x6300 - BUTTONS
+//		0x6380 - HD44780 LCD
+
+//0x6400 - CS1
+//		0x6400 - RTC
+//		0x6480 - TIMER
+//		0x6500 - UART
+//		0x6580 - CF CARD
+//		0x6600 - 8255
+//		0x6680 - NOT USED
+//		0x6700 - NOT USED
+//		0x6780 - NOT USED
+
+//0x6800 - CS2
+//0x6C00 - CS3
+//0x7000 - CS4
+//0x7400 - CS5
+//0x7800 - CS6
+//0x7C00 - CS7
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-//#include "config.h"
+#include <6502.h>
+#include "config.h"
 #include "hd44780.h"
+#include "mos6551.h"
+#include "mc6840.h"
+#include "m6242.h"
 #include "delay.h"
-#include "ff.h"
-#include "time.h"
-#include "geiger.h"
+#include "parser.h"
+#include "io.h"
+//#include "ff.h"
 
-//0x6000 - CS0
-//0x6300 - BUTTONS
-//0x6400 - LCD
-//0x7C00 - 373
-#define PORT (*(volatile uint8_t*)0x7C00)
-#define BUTTONS (*(volatile uint8_t*)0x6300)
+typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
+static state_t state = SHOW_RAD;
 
-//extern cfg_t Config;
+//FATFS CFFatFS;
+static char buffer[64];
+static uint32_t change_state_timer = 0;
+static uint32_t last_uptime = 0;
+static uint8_t  last_millis = 0;
+static int16_t integer;
+static uint16_t fraction, cpmin;
+static uint32_t siv;
 
-FATFS CFFatFS;
-uint16_t zmienna = 0;
-char buffer[64];
+key_t key0, key1, key2;	
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
+char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
 size_t __fastcall__ strlen (const char* s);
 
+void prepare_disp (void);
+void update_disp (void);
 
-void hd44780_write (uint8_t* buf, uint8_t len) {
-	uint8_t i;
-	for (i=0; i<len; i++) {
-		hd44780_putc(buf[i]);
-	}
-}
-
+void key0_func (void);
+void key1_func (void);
+void key2_func (void);
 
 int main (void) {
 	
-	FRESULT res;
+//	FRESULT res;
 	
+	port_write(0x80);
 	
-	PORT = 0x84;
+	CONF_8255 = 0x82;
+    mc6840_init();
+    m6242_init();
+    mos6551_init();
 	hd44780_init();
-	hd44780_write("6502 is still alive!", 20);
-	hd44780_gotoxy(1, 0);
-	hd44780_write("Device designed by", 18);
-	hd44780_gotoxy(2, 0);
-	hd44780_write("Marek Wiecek SQ9RZI", 19);
+
+	prepare_disp();
+	key_init(&key0, BTN0, key0_func);
+	key_init(&key1, BTN1, key1_func);
+	key_init(&key2, BTN2, key2_func);
 	
-	res = f_mount(&CFFatFS, "0:", 1);
-    if (res != FR_OK) {
+	CLI();
+	
+//	res = f_mount(&CFFatFS, "0:", 1);
+//    if (res != FR_OK) {
 		//Dodać raportowanie przez UART
-	}
-    else {
+//	}
+//    else {
 		//Dodać raportowanie przez UART
-	}
+//	}
 	
 	while(1) {
-		hd44780_gotoxy(3, 0);
-		hd44780_write("     ", 5);
-		hd44780_gotoxy(3, 0);
-		zmienna++;
-		utoa(zmienna, buffer, 10);
-		hd44780_write(buffer, strlen(buffer));
-		
-		PORT = 0x80;
-		delay_ms(250);
-		
-		if (!(BUTTONS & 0x04)) {
-			zmienna += 5;
+		if (uptime() != last_uptime) {
+			last_uptime = uptime();
+			if ( (uint32_t)(uptime() - change_state_timer) > 10 ) {
+				change_state_timer = uptime();
+				state++;
+				if (state > SHOW_STATS) { state = SHOW_RAD; }
+				prepare_disp();
+			}
+			update_disp();	
 		}
 		
-		PORT = 0x05;
-		delay_ms(250);
-
+		if ( (uint8_t)(millis() - last_millis) > 12 ) {			//12x20ms
+			last_millis = millis();
+			port_tgl(0x85);										//Toggle both LEDs and watchgod line
+		}
+//		key_update(&key0);	
+//		key_update(&key1);	
+//		key_update(&key2);			
+		mos6551_handle_rx();
 	}
 	
 	return 0;
 }
 
+
+void prepare_disp (void) {
+	hd44780_clrscr();
+	switch (state) {
+		case SHOW_RAD:
+		hd44780_gotoxy(0, 0);
+		hd44780_write("Promieniowanie", 14);
+		break;
+		
+		case SHOW_TIME:
+		hd44780_gotoxy(0, 0);
+		hd44780_write("Czas", 4);		
+		break;
+		
+		case SHOW_STATS:
+		hd44780_gotoxy(0, 0);
+		hd44780_write("Stats", 5);		
+		break;		
+	}
+}
+
+
+void update_disp (void) {
+	switch (state) {
+		case SHOW_RAD:
+		cpmin = get_geiger_pulses();
+		siv = get_geiger_usv();
+		integer = siv/10000;
+		fraction = siv%10000;
+		hd44780_gotoxy(1, 0);
+		hd44780_write("                    ", 20);
+		hd44780_gotoxy(1, 0);
+		itoa(integer, buffer, 10);
+		hd44780_write(buffer, strlen(buffer));
+		hd44780_write(".", 1);
+		if (fraction < 1000) {
+			hd44780_write("0", 1);
+			if (fraction < 100) {
+				hd44780_write("0", 1);
+				if (fraction < 10) {
+					hd44780_write("0", 1);
+				}
+			}
+		}
+		utoa(fraction, buffer, 10);
+		hd44780_write(buffer, strlen(buffer));
+		hd44780_write(" uS/h", 5);
+		hd44780_gotoxy(2, 0);
+		hd44780_write("                    ", 20);
+		hd44780_gotoxy(2, 0);
+		utoa(cpmin, buffer, 10);
+		hd44780_write(buffer, strlen(buffer));
+		hd44780_write(" CPM", 4);		
+		break;
+		
+		case SHOW_TIME:
+		hd44780_gotoxy(1, 0);
+		hd44780_write("                    ", 20);
+		hd44780_gotoxy(1, 0);
+		hd44780_write(m6242_read_time_str(), 8);
+		hd44780_gotoxy(2, 0);
+		hd44780_write("                    ", 20);
+		hd44780_gotoxy(2, 0);
+		hd44780_write(m6242_read_date_str(), 8);		
+		break;
+		
+		case SHOW_STATS:
+		hd44780_gotoxy(1, 0);
+		hd44780_write("                    ", 20);
+		hd44780_gotoxy(1, 0);
+		hd44780_write("U: ", 3);
+		ultoa(uptime(), buffer, 10);
+		hd44780_write(buffer, strlen(buffer));
+        hd44780_gotoxy(2, 0);
+		hd44780_write("                    ", 20);
+		hd44780_gotoxy(2, 0);
+        hd44780_write("B: ", 3);
+        utoa(BTNS, buffer, 10);
+        hd44780_write(buffer, strlen(buffer));		
+		break;
+		
+	}
+}
+
+
+void key0_func (void) {
+    port_tgl(0x80);
+	//state = SHOW_RAD;
+	//prepare_disp();
+	//update_disp();
+}
+
+
+void key1_func (void) {
+    port_tgl(0x80);
+	//state = SHOW_TIME;
+	//prepare_disp();
+	//update_disp();
+}
+
+
+void key2_func (void) {
+    port_tgl(0x10);
+	//state = SHOW_STATS;
+	//prepare_disp();
+	//update_disp();
+}
+
+/*
 void handle_cf_log (void) {
     
     static uint32_t timer = 0;
@@ -126,3 +275,4 @@ void handle_cf_log (void) {
 		f_close(&file);            
     }   
 }
+*/

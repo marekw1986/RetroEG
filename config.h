@@ -3,8 +3,8 @@
 
 #include <stdint.h>
 
-#define EEPROM 0x6000
-#define EEConfig (*(volatile cfg_t*)0x6000)
+#define EEPROM_ADDRESS 0x4000
+#define EEConfig (*(volatile cfg_t*)EEPROM_ADDRESS)
 
 typedef struct cfg_t {
 	uint8_t element1;

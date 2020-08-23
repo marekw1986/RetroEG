@@ -10,9 +10,9 @@ void hd44780_init (void) {
 	HD_CMD = 0x30;
 	delay_ms(100);
 	HD_CMD = 0x30;
-	delay_4us(26);
+	delay_16us(7);
 	HD_CMD = 0x30;
-	delay_4us(26);
+	delay_16us(7);
 	hd44780_cmd(0x38);
 	hd44780_cmd(0x08);
 	hd44780_cmd(0x01);
@@ -26,6 +26,12 @@ void hd44780_putc (char c) {
 	HD_DATA = c;
 }	
 
+void hd44780_write (uint8_t* buf, uint8_t len) {
+	uint8_t ind;
+	for (ind=0; ind<len; ind++) {
+		hd44780_putc(buf[ind]);
+	}
+}
 
 void hd44780_puts (const char *str) {
 	while (*str != '\0') {
@@ -58,5 +64,17 @@ void hd44780_gotoxy (uint8_t x, uint8_t y) {
 	if (y<20)
 		address += y;
 	hd44780_cmd(address);	
+}
+
+
+void hd44780_clrscr (void) {
+	hd44780_gotoxy(0, 0);
+	hd44780_write("                    ", 20);
+	hd44780_gotoxy(1, 0);
+	hd44780_write("                    ", 20);
+	hd44780_gotoxy(2, 0);
+	hd44780_write("                    ", 20);
+	hd44780_gotoxy(3, 0);
+	hd44780_write("                    ", 20);
 }
 
