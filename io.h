@@ -20,17 +20,15 @@
 #define BTN4	0x40
 #define BTN5	0x80
 
+#define BACKLIGHT_PIN 0x10
+
 #define SHORT_WAIT 3    // 3 * 20ms = 60 ms.
 
 typedef struct key {
-    uint8_t pin;
     uint8_t last_state;
 	uint8_t timer;
-	void (*push_proc)(void);
 } key_t;
 
-void key_init (key_t *key, uint8_t pin, void (*push_proc)(void));
-void key_update (key_t *key);
 void port_write (uint8_t data);
 void port_set (uint8_t data);
 void port_clr (uint8_t data);

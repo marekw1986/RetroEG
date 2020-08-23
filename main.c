@@ -47,14 +47,15 @@ static state_t state = SHOW_RAD;
 
 //FATFS CFFatFS;
 static char buffer[64];
-static uint32_t change_state_timer = 0;
 static uint32_t last_uptime = 0;
 static uint8_t  last_millis = 0;
+static uint8_t backlight_timer = 0;
 static int16_t integer;
 static uint16_t fraction, cpmin;
 static uint32_t siv;
 
-key_t key0, key1, key2;	
+static uint8_t key_press;
+key_t key0, key1, key2, key3;	
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
@@ -66,12 +67,18 @@ void update_disp (void);
 void key0_func (void);
 void key1_func (void);
 void key2_func (void);
+void key3_func (void);
 
 int main (void) {
 	
 //	FRESULT res;
 	
-	port_write(0x80);
+	port_write(0x90);
+	//Initialize button structures
+	key0.last_state = 0; key0.timer = 0;
+	key1.last_state = 0; key1.timer = 0;
+	key2.last_state = 0; key2.timer = 0;
+	key3.last_state = 0; key3.timer = 0;
 	
 	CONF_8255 = 0x82;
     mc6840_init();
@@ -80,9 +87,6 @@ int main (void) {
 	hd44780_init();
 
 	prepare_disp();
-	key_init(&key0, BTN0, key0_func);
-	key_init(&key1, BTN1, key1_func);
-	key_init(&key2, BTN2, key2_func);
 	
 	CLI();
 	
@@ -97,12 +101,6 @@ int main (void) {
 	while(1) {
 		if (uptime() != last_uptime) {
 			last_uptime = uptime();
-			//if ( (uint32_t)(uptime() - change_state_timer) > 10 ) {
-			//	change_state_timer = uptime();
-			//	state++;
-			//	if (state > SHOW_STATS) { state = SHOW_RAD; }
-			//	prepare_disp();
-			//}
 			update_disp();	
 		}
 		
@@ -110,9 +108,41 @@ int main (void) {
 			last_millis = millis();
 			port_tgl(0x85);										//Toggle both LEDs and watchgod line
 		}
-		key_update(&key0);	
-		key_update(&key1);	
-		key_update(&key2);			
+		
+		if (backlight_timer && ( (uint8_t)(millis()-backlight_timer) > 200 ) ) {
+			port_set(BACKLIGHT_PIN);							//Turn the backlight off
+			backlight_timer = 0;
+		}	
+
+		//Check and debounce BTN0
+		key_press = !(BTNS & BTN0);	
+		if (key_press != (key0.last_state)) {
+			if (key_press) { key0.timer = millis(); }
+			else { if ( (uint8_t)(millis()-(key0.timer)) > SHORT_WAIT ) key0_func(); }
+			key0.last_state = key_press;
+		}
+		//Check and debounce BTN1
+		key_press = !(BTNS & BTN1);	
+		if (key_press != (key1.last_state)) {
+			if (key_press) { key1.timer = millis(); }
+			else { if ( (uint8_t)(millis()-(key1.timer)) > SHORT_WAIT ) key1_func(); }
+			key1.last_state = key_press;
+		}
+		//Check and debounce BTN2
+		key_press = !(BTNS & BTN2);	
+		if (key_press != (key2.last_state)) {
+			if (key_press) { key2.timer = millis(); }
+			else { if ( (uint8_t)(millis()-(key2.timer)) > SHORT_WAIT ) key2_func(); }
+			key2.last_state = key_press;
+		}
+		//Check and debounce BTN3
+		key_press = !(BTNS & BTN3);	
+		if (key_press != (key3.last_state)) {
+			if (key_press) { key3.timer = millis(); }
+			else { if ( (uint8_t)(millis()-(key3.timer)) > SHORT_WAIT ) key3_func(); }
+			key3.last_state = key_press;
+		}
+							
 		mos6551_handle_rx();
 	}
 	
@@ -205,7 +235,8 @@ void update_disp (void) {
 
 
 void key0_func (void) {
-    //port_tgl(0x80);
+	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
+	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 	state = SHOW_RAD;
 	prepare_disp();
 	update_disp();
@@ -213,7 +244,8 @@ void key0_func (void) {
 
 
 void key1_func (void) {
-    //port_tgl(0x80);
+	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
+	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 	state = SHOW_TIME;
 	prepare_disp();
 	update_disp();
@@ -221,11 +253,19 @@ void key1_func (void) {
 
 
 void key2_func (void) {
-    //port_tgl(0x10);
+	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
+	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 	state = SHOW_STATS;
 	prepare_disp();
 	update_disp();
 }
+
+
+void key3_func (void) {
+	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
+	backlight_timer = millis();				//Set timer for backlight utomatic turn off
+}
+
 
 /*
 void handle_cf_log (void) {
