@@ -97,12 +97,12 @@ int main (void) {
 	while(1) {
 		if (uptime() != last_uptime) {
 			last_uptime = uptime();
-			if ( (uint32_t)(uptime() - change_state_timer) > 10 ) {
-				change_state_timer = uptime();
-				state++;
-				if (state > SHOW_STATS) { state = SHOW_RAD; }
-				prepare_disp();
-			}
+			//if ( (uint32_t)(uptime() - change_state_timer) > 10 ) {
+			//	change_state_timer = uptime();
+			//	state++;
+			//	if (state > SHOW_STATS) { state = SHOW_RAD; }
+			//	prepare_disp();
+			//}
 			update_disp();	
 		}
 		
@@ -110,9 +110,9 @@ int main (void) {
 			last_millis = millis();
 			port_tgl(0x85);										//Toggle both LEDs and watchgod line
 		}
-//		key_update(&key0);	
-//		key_update(&key1);	
-//		key_update(&key2);			
+		key_update(&key0);	
+		key_update(&key1);	
+		key_update(&key2);			
 		mos6551_handle_rx();
 	}
 	
@@ -205,26 +205,26 @@ void update_disp (void) {
 
 
 void key0_func (void) {
-    port_tgl(0x80);
-	//state = SHOW_RAD;
-	//prepare_disp();
-	//update_disp();
+    //port_tgl(0x80);
+	state = SHOW_RAD;
+	prepare_disp();
+	update_disp();
 }
 
 
 void key1_func (void) {
-    port_tgl(0x80);
-	//state = SHOW_TIME;
-	//prepare_disp();
-	//update_disp();
+    //port_tgl(0x80);
+	state = SHOW_TIME;
+	prepare_disp();
+	update_disp();
 }
 
 
 void key2_func (void) {
-    port_tgl(0x10);
-	//state = SHOW_STATS;
-	//prepare_disp();
-	//update_disp();
+    //port_tgl(0x10);
+	state = SHOW_STATS;
+	prepare_disp();
+	update_disp();
 }
 
 /*

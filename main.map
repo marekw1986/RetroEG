@@ -29,7 +29,7 @@ parser.o:
     RODATA            Offs=000015  Size=000085  Align=00001  Fill=0000
     BSS               Offs=0002A3  Size=000012  Align=00001  Fill=0000
 main.o:
-    CODE              Offs=000C41  Size=0003FE  Align=00001  Fill=0000
+    CODE              Offs=000C41  Size=0003C7  Align=00001  Fill=0000
     RODATA            Offs=00009A  Size=000046  Align=00001  Fill=0000
     BSS               Offs=0002B5  Size=000059  Align=00001  Fill=0000
     DATA              Offs=00000A  Size=00000B  Align=00001  Fill=0000
@@ -38,150 +38,150 @@ main.o:
 ./lib/ethergeiger.lib(_longminstr.o):
     RODATA            Offs=0000F0  Size=00000C  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(add.o):
-    CODE              Offs=00103F  Size=000018  Align=00001  Fill=0000
+    CODE              Offs=001008  Size=000018  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(addysp.o):
-    CODE              Offs=001057  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=001020  Size=00000E  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(along.o):
-    CODE              Offs=001065  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=00102E  Size=00000D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(and.o):
-    CODE              Offs=001072  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=00103B  Size=00000F  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(aslax1.o):
-    CODE              Offs=001081  Size=000008  Align=00001  Fill=0000
+    CODE              Offs=00104A  Size=000008  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(atoi.o):
-    CODE              Offs=001089  Size=000096  Align=00001  Fill=0000
+    CODE              Offs=001052  Size=000096  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(axlong.o):
-    CODE              Offs=00111F  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=0010E8  Size=00000D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(bneg.o):
-    CODE              Offs=00112C  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=0010F5  Size=00000E  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(call.o):
-    CODE              Offs=00113A  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001103  Size=000007  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(condes.o):
-    CODE              Offs=001141  Size=00000C  Align=00001  Fill=0000
+    CODE              Offs=00110A  Size=00000C  Align=00001  Fill=0000
     DATA              Offs=000015  Size=000025  Align=00001  Fill=0000
     ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(copydata.o):
-    CODE              Offs=00114D  Size=00002D  Align=00001  Fill=0000
+    CODE              Offs=001116  Size=00002D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(crt0.o):
     STARTUP           Offs=000000  Size=00001C  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(ctype.o):
     RODATA            Offs=0000FC  Size=000100  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(decax1.o):
-    CODE              Offs=00117A  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=001143  Size=000007  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(decaxy.o):
-    CODE              Offs=001181  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=00114A  Size=000009  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(decsp1.o):
-    CODE              Offs=00118A  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001153  Size=000009  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(decsp2.o):
-    CODE              Offs=001193  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=00115C  Size=00000D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(decsp3.o):
-    CODE              Offs=0011A0  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001169  Size=00000D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(decsp4.o):
-    CODE              Offs=0011AD  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001176  Size=00000D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(div.o):
-    CODE              Offs=0011BA  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=001183  Size=000015  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(divt.o):
-    CODE              Offs=0011CF  Size=000013  Align=00001  Fill=0000
+    CODE              Offs=001198  Size=000013  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(icmp.o):
-    CODE              Offs=0011E2  Size=00002E  Align=00001  Fill=0000
+    CODE              Offs=0011AB  Size=00002E  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incaxy.o):
-    CODE              Offs=001210  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=0011D9  Size=00000B  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incsp1.o):
-    CODE              Offs=00121B  Size=000007  Align=00001  Fill=0000
+    CODE              Offs=0011E4  Size=000007  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incsp2.o):
-    CODE              Offs=001222  Size=000015  Align=00001  Fill=0000
+    CODE              Offs=0011EB  Size=000015  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incsp3.o):
-    CODE              Offs=001237  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001200  Size=000005  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incsp4.o):
-    CODE              Offs=00123C  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=001205  Size=000005  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incsp5.o):
-    CODE              Offs=001241  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=00120A  Size=000005  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(incsp7.o):
-    CODE              Offs=001246  Size=000005  Align=00001  Fill=0000
+    CODE              Offs=00120F  Size=000005  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(itoa.o):
-    CODE              Offs=00124B  Size=000094  Align=00001  Fill=0000
+    CODE              Offs=001214  Size=000094  Align=00001  Fill=0000
     RODATA            Offs=0001FC  Size=000007  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(jmpvec.o):
     DATA              Offs=00003A  Size=000003  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(ladd.o):
-    CODE              Offs=0012DF  Size=000024  Align=00001  Fill=0000
+    CODE              Offs=0012A8  Size=000024  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lcmp.o):
-    CODE              Offs=001303  Size=00003B  Align=00001  Fill=0000
+    CODE              Offs=0012CC  Size=00003B  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(ldaxi.o):
-    CODE              Offs=00133E  Size=00000D  Align=00001  Fill=0000
+    CODE              Offs=001307  Size=00000D  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(ldaxsp.o):
-    CODE              Offs=00134B  Size=000009  Align=00001  Fill=0000
+    CODE              Offs=001314  Size=000009  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lmul.o):
-    CODE              Offs=001354  Size=000059  Align=00001  Fill=0000
+    CODE              Offs=00131D  Size=000059  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lne.o):
-    CODE              Offs=0013AD  Size=000006  Align=00001  Fill=0000
+    CODE              Offs=001376  Size=000006  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lneg.o):
-    CODE              Offs=0013B3  Size=00001E  Align=00001  Fill=0000
+    CODE              Offs=00137C  Size=00001E  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lor.o):
-    CODE              Offs=0013D1  Size=000021  Align=00001  Fill=0000
+    CODE              Offs=00139A  Size=000021  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lpush.o):
-    CODE              Offs=0013F2  Size=00001E  Align=00001  Fill=0000
+    CODE              Offs=0013BB  Size=00001E  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lsub.o):
-    CODE              Offs=001410  Size=000024  Align=00001  Fill=0000
+    CODE              Offs=0013D9  Size=000024  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(ltoa.o):
-    CODE              Offs=001434  Size=000093  Align=00001  Fill=0000
+    CODE              Offs=0013FD  Size=000093  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(ludiv.o):
-    CODE              Offs=0014C7  Size=000077  Align=00001  Fill=0000
+    CODE              Offs=001490  Size=000077  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(lumod.o):
-    CODE              Offs=00153E  Size=000017  Align=00001  Fill=0000
+    CODE              Offs=001507  Size=000017  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(makebool.o):
-    CODE              Offs=001555  Size=00002C  Align=00001  Fill=0000
+    CODE              Offs=00151E  Size=00002C  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(mktime.o):
-    CODE              Offs=001581  Size=0003D9  Align=00001  Fill=0000
+    CODE              Offs=00154A  Size=0003D9  Align=00001  Fill=0000
     RODATA            Offs=000203  Size=000024  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(mul.o):
-    CODE              Offs=00195A  Size=000045  Align=00001  Fill=0000
+    CODE              Offs=001923  Size=000045  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(mul8.o):
-    CODE              Offs=00199F  Size=00003A  Align=00001  Fill=0000
+    CODE              Offs=001968  Size=00003A  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(mulax10.o):
-    CODE              Offs=0019D9  Size=000019  Align=00001  Fill=0000
+    CODE              Offs=0019A2  Size=000019  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(negabs.o):
-    CODE              Offs=0019F2  Size=000012  Align=00001  Fill=0000
+    CODE              Offs=0019BB  Size=000012  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(popptr1.o):
-    CODE              Offs=001A04  Size=00000E  Align=00001  Fill=0000
+    CODE              Offs=0019CD  Size=00000E  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(pusha.o):
-    CODE              Offs=001A12  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=0019DB  Size=000016  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(pushax.o):
-    CODE              Offs=001A28  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=0019F1  Size=00001A  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(pushw.o):
-    CODE              Offs=001A42  Size=00000F  Align=00001  Fill=0000
+    CODE              Offs=001A0B  Size=00000F  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(pushwsp.o):
-    CODE              Offs=001A51  Size=00001C  Align=00001  Fill=0000
+    CODE              Offs=001A1A  Size=00001C  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(regswap2.o):
-    CODE              Offs=001A6D  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=001A36  Size=000016  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(shelp.o):
-    CODE              Offs=001A83  Size=000020  Align=00001  Fill=0000
+    CODE              Offs=001A4C  Size=000020  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(shrax2.o):
-    CODE              Offs=001AA3  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=001A6C  Size=00000B  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(staspidx.o):
-    CODE              Offs=001AAE  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=001A77  Size=000016  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(staxsp.o):
-    CODE              Offs=001AC4  Size=00000B  Align=00001  Fill=0000
+    CODE              Offs=001A8D  Size=00000B  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(staxspi.o):
-    CODE              Offs=001ACF  Size=00001A  Align=00001  Fill=0000
+    CODE              Offs=001A98  Size=00001A  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(strchr.o):
-    CODE              Offs=001AE9  Size=000025  Align=00001  Fill=0000
+    CODE              Offs=001AB2  Size=000025  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(stricmp.o):
-    CODE              Offs=001B0E  Size=00003F  Align=00001  Fill=0000
+    CODE              Offs=001AD7  Size=00003F  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(strlen.o):
-    CODE              Offs=001B4D  Size=000016  Align=00001  Fill=0000
+    CODE              Offs=001B16  Size=000016  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(strtok.o):
-    CODE              Offs=001B63  Size=0000C2  Align=00001  Fill=0000
+    CODE              Offs=001B2C  Size=0000C2  Align=00001  Fill=0000
     DATA              Offs=00003D  Size=000002  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(sub.o):
-    CODE              Offs=001C25  Size=000014  Align=00001  Fill=0000
+    CODE              Offs=001BEE  Size=000014  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(toslong.o):
-    CODE              Offs=001C39  Size=000032  Align=00001  Fill=0000
+    CODE              Offs=001C02  Size=000032  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(udiv.o):
-    CODE              Offs=001C6B  Size=00004F  Align=00001  Fill=0000
+    CODE              Offs=001C34  Size=00004F  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(umod.o):
-    CODE              Offs=001CBA  Size=000011  Align=00001  Fill=0000
+    CODE              Offs=001C83  Size=000011  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(zerobss.o):
-    CODE              Offs=001CCB  Size=000023  Align=00001  Fill=0000
+    CODE              Offs=001C94  Size=000023  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(zeropage.o):
     ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
 
@@ -195,8 +195,8 @@ DATA                  000200  00023E  00003F  00001
 BSS                   00023F  00054C  00030E  00001
 STARTUP               00803F  00805A  00001C  00001
 ONCE                  00805B  008066  00000C  00001
-CODE                  008067  009D54  001CEE  00001
-RODATA                009D55  009F7B  000227  00001
+CODE                  008067  009D1D  001CB7  00001
+RODATA                009D1E  009F44  000227  00001
 VECTORS               00FFFA  00FFFF  000006  00001
 
 
@@ -208,75 +208,76 @@ __DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA
 __DATA_SIZE__             00003F REA    __DESTRUCTOR_COUNT__      000000 REA    
 __DESTRUCTOR_TABLE__      00805B RLA    __RAM_SIZE__              001E00 REA    
 __RAM_START__             000200 RLA    __STARTUP__               000001 REA    
-__ctype                   009E51 RLA    __hextab                  009E35 RLA    
-__longminstr              009E45 RLA    _atoi                     0090F0 RLA    
+__ctype                   009E1A RLA    __hextab                  009DFE RLA    
+__longminstr              009E0E RLA    _atoi                     0090B9 RLA    
 _delay_16us               008453 RLA    _delay_ms                 00845C RLA    
-_div                      009236 RLA    _get_geiger_pulses        008168 RLA    
+_div                      0091FF RLA    _get_geiger_pulses        008168 RLA    
 _get_geiger_usv           0081A7 RLA    _hd44780_clrscr           0083FE RLA    
 _hd44780_gotoxy           0083BA RLA    _hd44780_init             008308 RLA    
 _hd44780_write            008356 RLA    _init                     00803F RLA    
-_irq_int                  008068 RLA    _itoa                     0092D0 RLA    
-_key_init                 008812 RLA    _m6242_init               008466 RLA    
-_m6242_read_date_str      0084F1 RLA    _m6242_read_time_str      00847B RLA    
-_m6242_setdate            0087AC RLA    _m6242_settime            008746 RLA    
-_main                     008F9D RLA    _mc6840_init              0080BE RLA    
-_millis                   008112 RLA    _milliseconds             000200 RLA    
-_mktime                   0095E8 RLA    _mos6551_handle_rx        0082C2 RLA    
-_mos6551_init             008277 RLA    _mos6551_puts             008299 RLA    
-_mos6551_rxrb             0002C1 RLA    _mos6551_rxrb_head        000206 RLA    
-_nmi_int                  008067 RLA    _parse_cmd                008929 RLA    
-_port_tgl                 008918 RLA    _port_write               0088E6 RLA    
-_strcasecmp               009B75 RLA    _strchr                   009B50 RLA    
-_strlen                   009BB4 RLA    _strtok                   009BCA RLA    
-_ultoa                    0094F2 RLA    _update_geiger_pulses     00822B RLA    
-_uptime                   008135 RLA    _uptime_value             000201 RLA    
-_utoa                     009312 RLA    addysp                    0090BF RLA    
-addysp1                   0090BE RLA    aslax1                    0090E8 RLA    
-aulong                    0090D2 RLA    axulong                   00918C RLA    
-bnega                     009197 RLA    boolne                    0095BC RLA    
-callax                    0091A1 RLA    copydata                  0091B4 RLA    
-decax1                    0091E1 RLA    decaxy                    0091E8 RLA    
-decsp1                    0091F1 RLA    decsp2                    0091FA RLA    
-decsp3                    009207 RLA    decsp4                    009214 RLA    
-donelib                   0091A8 RLA    getlop                    00953D RLA    
-incax4                    009277 RLA    incaxy                    009279 RLA    
-incsp1                    009282 RLA    incsp2                    009290 RLA    
-incsp3                    00929E RLA    incsp4                    0092A3 RLA    
-incsp5                    0092A8 RLA    incsp7                    0092AD RLA    
-initlib                   00805B RLA    jmpvec                    00023A RLA    
-ldax0sp                   0093B2 RLA    ldaxi                     0093A5 RLA    
-ldaxidx                   0093A7 RLA    ldaxysp                   0093B4 RLA    
-mul8x16                   009A08 RLA    mul8x16a                  009A12 RLA    
-mulax10                   009A40 RLA    negax                     009A5D RLA    
-negeax                    00941A RLA    popax                     009289 RLA    
-popptr1                   009A6B RLA    popsargsudiv16            009AEA RLA    
-ptr1                      000008 RLZ    ptr2                      00000A RLZ    
-ptr3                      00000C RLZ    ptr4                      00000E RLZ    
-push0                     009A8F RLA    push0ax                   00945C RLA    
-pusha                     009A7D RLA    pusha0                    009A91 RLA    
-pushax                    009A93 RLA    pusheax                   009460 RLA    
-pushw                     009AA9 RLA    pushw0sp                  009AB8 RLA    
-pushwidx                  009AAB RLA    pushwysp                  009ABA RLA    
-regbank                   000014 RLZ    regswap2                  009AD4 RLA    
-shrax2                    009B0A RLA    sp                        000000 RLZ    
-sreg                      000002 RLZ    staspidx                  009B15 RLA    
-stax0sp                   009B2B RLA    staxspidx                 009B36 RLA    
-staxysp                   009B2D RLA    tmp1                      000010 RLZ    
-tmp2                      000011 RLZ    tmp3                      000012 RLZ    
-tmp4                      000013 RLZ    tosaddax                  0090A8 RLA    
-tosaddeax                 00934C RLA    tosanda0                  0090D9 RLA    
-tosdivax                  009223 RLA    tosicmp                   00924B RLA    
-tosicmp0                  009249 RLA    toslcmp                   00936A RLA    
-tosmula0                  009A06 RLA    tosneeax                  009414 RLA    
-tosor0ax                  009438 RLA    tossuba0                  009C8C RLA    
-tossubeax                 00947B RLA    tosudiv0ax                00952E RLA    
-tosudiva0                 009CD2 RLA    tosudiveax                009532 RLA    
-tosulong                  009CA0 RLA    tosumod0ax                0095A5 RLA    
-tosumoda0                 009D21 RLA    tosumodax                 009D23 RLA    
-tosumul0ax                0093BB RLA    tosumula0                 009A06 RLA    
-tosumulax                 0099C1 RLA    tosumuleax                0093BF RLA    
-udiv16                    009CE3 RLA    udiv32                    009560 RLA    
-zerobss                   009D32 RLA    
+_irq_int                  008068 RLA    _itoa                     009299 RLA    
+_key_init                 008812 RLA    _key_update               008859 RLA    
+_m6242_init               008466 RLA    _m6242_read_date_str      0084F1 RLA    
+_m6242_read_time_str      00847B RLA    _m6242_setdate            0087AC RLA    
+_m6242_settime            008746 RLA    _main                     008FB6 RLA    
+_mc6840_init              0080BE RLA    _millis                   008112 RLA    
+_milliseconds             000200 RLA    _mktime                   0095B1 RLA    
+_mos6551_handle_rx        0082C2 RLA    _mos6551_init             008277 RLA    
+_mos6551_puts             008299 RLA    _mos6551_rxrb             0002C1 RLA    
+_mos6551_rxrb_head        000206 RLA    _nmi_int                  008067 RLA    
+_parse_cmd                008929 RLA    _port_tgl                 008918 RLA    
+_port_write               0088E6 RLA    _strcasecmp               009B3E RLA    
+_strchr                   009B19 RLA    _strlen                   009B7D RLA    
+_strtok                   009B93 RLA    _ultoa                    0094BB RLA    
+_update_geiger_pulses     00822B RLA    _uptime                   008135 RLA    
+_uptime_value             000201 RLA    _utoa                     0092DB RLA    
+addysp                    009088 RLA    addysp1                   009087 RLA    
+aslax1                    0090B1 RLA    aulong                    00909B RLA    
+axulong                   009155 RLA    bnega                     009160 RLA    
+boolne                    009585 RLA    callax                    00916A RLA    
+copydata                  00917D RLA    decax1                    0091AA RLA    
+decaxy                    0091B1 RLA    decsp1                    0091BA RLA    
+decsp2                    0091C3 RLA    decsp3                    0091D0 RLA    
+decsp4                    0091DD RLA    donelib                   009171 RLA    
+getlop                    009506 RLA    incax4                    009240 RLA    
+incaxy                    009242 RLA    incsp1                    00924B RLA    
+incsp2                    009259 RLA    incsp3                    009267 RLA    
+incsp4                    00926C RLA    incsp5                    009271 RLA    
+incsp7                    009276 RLA    initlib                   00805B RLA    
+jmpvec                    00023A RLA    ldax0sp                   00937B RLA    
+ldaxi                     00936E RLA    ldaxidx                   009370 RLA    
+ldaxysp                   00937D RLA    mul8x16                   0099D1 RLA    
+mul8x16a                  0099DB RLA    mulax10                   009A09 RLA    
+negax                     009A26 RLA    negeax                    0093E3 RLA    
+popax                     009252 RLA    popptr1                   009A34 RLA    
+popsargsudiv16            009AB3 RLA    ptr1                      000008 RLZ    
+ptr2                      00000A RLZ    ptr3                      00000C RLZ    
+ptr4                      00000E RLZ    push0                     009A58 RLA    
+push0ax                   009425 RLA    pusha                     009A46 RLA    
+pusha0                    009A5A RLA    pushax                    009A5C RLA    
+pusheax                   009429 RLA    pushw                     009A72 RLA    
+pushw0sp                  009A81 RLA    pushwidx                  009A74 RLA    
+pushwysp                  009A83 RLA    regbank                   000014 RLZ    
+regswap2                  009A9D RLA    shrax2                    009AD3 RLA    
+sp                        000000 RLZ    sreg                      000002 RLZ    
+staspidx                  009ADE RLA    stax0sp                   009AF4 RLA    
+staxspidx                 009AFF RLA    staxysp                   009AF6 RLA    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tmp3                      000012 RLZ    tmp4                      000013 RLZ    
+tosaddax                  009071 RLA    tosaddeax                 009315 RLA    
+tosanda0                  0090A2 RLA    tosdivax                  0091EC RLA    
+tosicmp                   009214 RLA    tosicmp0                  009212 RLA    
+toslcmp                   009333 RLA    tosmula0                  0099CF RLA    
+tosneeax                  0093DD RLA    tosor0ax                  009401 RLA    
+tossuba0                  009C55 RLA    tossubeax                 009444 RLA    
+tosudiv0ax                0094F7 RLA    tosudiva0                 009C9B RLA    
+tosudiveax                0094FB RLA    tosulong                  009C69 RLA    
+tosumod0ax                00956E RLA    tosumoda0                 009CEA RLA    
+tosumodax                 009CEC RLA    tosumul0ax                009384 RLA    
+tosumula0                 0099CF RLA    tosumulax                 00998A RLA    
+tosumuleax                009388 RLA    udiv16                    009CAC RLA    
+udiv32                    009529 RLA    zerobss                   009CFB RLA    
+
 
 
 Exports list by value:
@@ -307,55 +308,56 @@ _hd44780_clrscr           0083FE RLA    _delay_16us               008453 RLA
 _delay_ms                 00845C RLA    _m6242_init               008466 RLA    
 _m6242_read_time_str      00847B RLA    _m6242_read_date_str      0084F1 RLA    
 _m6242_settime            008746 RLA    _m6242_setdate            0087AC RLA    
-_key_init                 008812 RLA    _port_write               0088E6 RLA    
-_port_tgl                 008918 RLA    _parse_cmd                008929 RLA    
-_main                     008F9D RLA    tosaddax                  0090A8 RLA    
-addysp1                   0090BE RLA    addysp                    0090BF RLA    
-aulong                    0090D2 RLA    tosanda0                  0090D9 RLA    
-aslax1                    0090E8 RLA    _atoi                     0090F0 RLA    
-axulong                   00918C RLA    bnega                     009197 RLA    
-callax                    0091A1 RLA    donelib                   0091A8 RLA    
-copydata                  0091B4 RLA    decax1                    0091E1 RLA    
-decaxy                    0091E8 RLA    decsp1                    0091F1 RLA    
-decsp2                    0091FA RLA    decsp3                    009207 RLA    
-decsp4                    009214 RLA    tosdivax                  009223 RLA    
-_div                      009236 RLA    tosicmp0                  009249 RLA    
-tosicmp                   00924B RLA    incax4                    009277 RLA    
-incaxy                    009279 RLA    incsp1                    009282 RLA    
-popax                     009289 RLA    incsp2                    009290 RLA    
-incsp3                    00929E RLA    incsp4                    0092A3 RLA    
-incsp5                    0092A8 RLA    incsp7                    0092AD RLA    
-_itoa                     0092D0 RLA    _utoa                     009312 RLA    
-tosaddeax                 00934C RLA    toslcmp                   00936A RLA    
-ldaxi                     0093A5 RLA    ldaxidx                   0093A7 RLA    
-ldax0sp                   0093B2 RLA    ldaxysp                   0093B4 RLA    
-tosumul0ax                0093BB RLA    tosumuleax                0093BF RLA    
-tosneeax                  009414 RLA    negeax                    00941A RLA    
-tosor0ax                  009438 RLA    push0ax                   00945C RLA    
-pusheax                   009460 RLA    tossubeax                 00947B RLA    
-_ultoa                    0094F2 RLA    tosudiv0ax                00952E RLA    
-tosudiveax                009532 RLA    getlop                    00953D RLA    
-udiv32                    009560 RLA    tosumod0ax                0095A5 RLA    
-boolne                    0095BC RLA    _mktime                   0095E8 RLA    
-tosumulax                 0099C1 RLA    tosmula0                  009A06 RLA    
-tosumula0                 009A06 RLA    mul8x16                   009A08 RLA    
-mul8x16a                  009A12 RLA    mulax10                   009A40 RLA    
-negax                     009A5D RLA    popptr1                   009A6B RLA    
-pusha                     009A7D RLA    push0                     009A8F RLA    
-pusha0                    009A91 RLA    pushax                    009A93 RLA    
-pushw                     009AA9 RLA    pushwidx                  009AAB RLA    
-pushw0sp                  009AB8 RLA    pushwysp                  009ABA RLA    
-regswap2                  009AD4 RLA    popsargsudiv16            009AEA RLA    
-shrax2                    009B0A RLA    staspidx                  009B15 RLA    
-stax0sp                   009B2B RLA    staxysp                   009B2D RLA    
-staxspidx                 009B36 RLA    _strchr                   009B50 RLA    
-_strcasecmp               009B75 RLA    _strlen                   009BB4 RLA    
-_strtok                   009BCA RLA    tossuba0                  009C8C RLA    
-tosulong                  009CA0 RLA    tosudiva0                 009CD2 RLA    
-udiv16                    009CE3 RLA    tosumoda0                 009D21 RLA    
-tosumodax                 009D23 RLA    zerobss                   009D32 RLA    
-__hextab                  009E35 RLA    __longminstr              009E45 RLA    
-__ctype                   009E51 RLA    
+_key_init                 008812 RLA    _key_update               008859 RLA    
+_port_write               0088E6 RLA    _port_tgl                 008918 RLA    
+_parse_cmd                008929 RLA    _main                     008FB6 RLA    
+tosaddax                  009071 RLA    addysp1                   009087 RLA    
+addysp                    009088 RLA    aulong                    00909B RLA    
+tosanda0                  0090A2 RLA    aslax1                    0090B1 RLA    
+_atoi                     0090B9 RLA    axulong                   009155 RLA    
+bnega                     009160 RLA    callax                    00916A RLA    
+donelib                   009171 RLA    copydata                  00917D RLA    
+decax1                    0091AA RLA    decaxy                    0091B1 RLA    
+decsp1                    0091BA RLA    decsp2                    0091C3 RLA    
+decsp3                    0091D0 RLA    decsp4                    0091DD RLA    
+tosdivax                  0091EC RLA    _div                      0091FF RLA    
+tosicmp0                  009212 RLA    tosicmp                   009214 RLA    
+incax4                    009240 RLA    incaxy                    009242 RLA    
+incsp1                    00924B RLA    popax                     009252 RLA    
+incsp2                    009259 RLA    incsp3                    009267 RLA    
+incsp4                    00926C RLA    incsp5                    009271 RLA    
+incsp7                    009276 RLA    _itoa                     009299 RLA    
+_utoa                     0092DB RLA    tosaddeax                 009315 RLA    
+toslcmp                   009333 RLA    ldaxi                     00936E RLA    
+ldaxidx                   009370 RLA    ldax0sp                   00937B RLA    
+ldaxysp                   00937D RLA    tosumul0ax                009384 RLA    
+tosumuleax                009388 RLA    tosneeax                  0093DD RLA    
+negeax                    0093E3 RLA    tosor0ax                  009401 RLA    
+push0ax                   009425 RLA    pusheax                   009429 RLA    
+tossubeax                 009444 RLA    _ultoa                    0094BB RLA    
+tosudiv0ax                0094F7 RLA    tosudiveax                0094FB RLA    
+getlop                    009506 RLA    udiv32                    009529 RLA    
+tosumod0ax                00956E RLA    boolne                    009585 RLA    
+_mktime                   0095B1 RLA    tosumulax                 00998A RLA    
+tosmula0                  0099CF RLA    tosumula0                 0099CF RLA    
+mul8x16                   0099D1 RLA    mul8x16a                  0099DB RLA    
+mulax10                   009A09 RLA    negax                     009A26 RLA    
+popptr1                   009A34 RLA    pusha                     009A46 RLA    
+push0                     009A58 RLA    pusha0                    009A5A RLA    
+pushax                    009A5C RLA    pushw                     009A72 RLA    
+pushwidx                  009A74 RLA    pushw0sp                  009A81 RLA    
+pushwysp                  009A83 RLA    regswap2                  009A9D RLA    
+popsargsudiv16            009AB3 RLA    shrax2                    009AD3 RLA    
+staspidx                  009ADE RLA    stax0sp                   009AF4 RLA    
+staxysp                   009AF6 RLA    staxspidx                 009AFF RLA    
+_strchr                   009B19 RLA    _strcasecmp               009B3E RLA    
+_strlen                   009B7D RLA    _strtok                   009B93 RLA    
+tossuba0                  009C55 RLA    tosulong                  009C69 RLA    
+tosudiva0                 009C9B RLA    udiv16                    009CAC RLA    
+tosumoda0                 009CEA RLA    tosumodax                 009CEC RLA    
+zerobss                   009CFB RLA    __hextab                  009DFE RLA    
+__longminstr              009E0E RLA    __ctype                   009E1A RLA    
+
 
 
 Imports list:
@@ -421,6 +423,8 @@ _itoa (itoa.o):
     main.o                    main.s(14)
 _key_init (io.o):
     main.o                    main.s(32)
+_key_update (io.o):
+    main.o                    main.s(33)
 _m6242_init (m6242.o):
     main.o                    main.s(29)
 _m6242_read_date_str (m6242.o):
@@ -459,9 +463,9 @@ _nmi_int (interrupt.o):
 _parse_cmd (parser.o):
     mos6551.o                 mos6551.s(17)
 _port_tgl (io.o):
-    main.o                    main.s(34)
+    main.o                    main.s(35)
 _port_write (io.o):
-    main.o                    main.s(33)
+    main.o                    main.s(34)
 _strcasecmp (stricmp.o):
     parser.o                  parser.s(17)
 _strchr (strchr.o):
@@ -682,9 +686,9 @@ push0 (pushax.o):
 push0ax (lpush.o):
     mc6840.o                  mc6840.s(354)
 pusha (pusha.o):
-    main.o                    main.s(600)
-    main.o                    main.s(600)
-    main.o                    main.s(600)
+    main.o                    main.s(577)
+    main.o                    main.s(577)
+    main.o                    main.s(577)
     parser.o                  parser.s(544)
     parser.o                  parser.s(544)
     io.o                      io.s(223)
@@ -700,7 +704,7 @@ pusha (pusha.o):
     hd44780.o                 hd44780.s(265)
     mos6551.o                 mos6551.s(154)
 pusha0 (pushax.o):
-    main.o                    main.s(600)
+    main.o                    main.s(577)
     parser.o                  parser.s(544)
     io.o                      io.s(223)
     m6242.o                   m6242.s(547)
@@ -710,9 +714,9 @@ pushax (pushax.o):
     pushw.o                   runtime/pushw.s(8)
     mktime.o                  ../libwrk/supervision/mktime.s(592)
     mktime.o                  ../libwrk/supervision/mktime.s(592)
-    main.o                    main.s(600)
-    main.o                    main.s(600)
-    main.o                    main.s(600)
+    main.o                    main.s(577)
+    main.o                    main.s(577)
+    main.o                    main.s(577)
     parser.o                  parser.s(544)
     parser.o                  parser.s(544)
     parser.o                  parser.s(544)
@@ -731,8 +735,8 @@ pushax (pushax.o):
     mc6840.o                  mc6840.s(354)
 pusheax (lpush.o):
     mktime.o                  ../libwrk/supervision/mktime.s(592)
-    main.o                    main.s(600)
-    main.o                    main.s(600)
+    main.o                    main.s(577)
+    main.o                    main.s(577)
     parser.o                  parser.s(544)
     mc6840.o                  mc6840.s(354)
 pushw (pushw.o):
@@ -882,16 +886,15 @@ toslcmp (lcmp.o):
 tosmula0 (mul8.o):
     parser.o                  parser.s(544)
 tosneeax (lne.o):
-    main.o                    main.s(600)
+    main.o                    main.s(577)
 tosor0ax (lor.o):
     mc6840.o                  mc6840.s(354)
 tossuba0 (sub.o):
     io.o                      io.s(223)
 tossubeax (lsub.o):
-    main.o                    main.s(600)
     mc6840.o                  mc6840.s(354)
 tosudiv0ax (ludiv.o):
-    main.o                    main.s(600)
+    main.o                    main.s(577)
 tosudiva0 (udiv.o):
     m6242.o                   m6242.s(547)
     m6242.o                   m6242.s(547)
@@ -900,7 +903,7 @@ tosudiveax (ludiv.o):
 tosulong (toslong.o):
     mc6840.o                  mc6840.s(354)
 tosumod0ax (lumod.o):
-    main.o                    main.s(600)
+    main.o                    main.s(577)
 tosumoda0 (umod.o):
     mktime.o                  ../libwrk/supervision/mktime.s(592)
     mktime.o                  ../libwrk/supervision/mktime.s(592)
