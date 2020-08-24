@@ -221,13 +221,7 @@ void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_write("U: ", 3);
 		ultoa(uptime(), buffer, 10);
-		hd44780_write(buffer, strlen(buffer));
-        hd44780_gotoxy(2, 0);
-		hd44780_write("                    ", 20);
-		hd44780_gotoxy(2, 0);
-        hd44780_write("B: ", 3);
-        utoa(BTNS, buffer, 10);
-        hd44780_write(buffer, strlen(buffer));		
+		hd44780_write(buffer, strlen(buffer));	
 		break;
 		
 	}
