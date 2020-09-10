@@ -1,5 +1,6 @@
 #include "mos6551.h"
 #include "parser.h"
+#include "io.h"
 
 #define ACIA_RXD (*(volatile uint8_t*)0x6500)  //ACIA receive data port
 #define ACIA_TXD (*(volatile uint8_t*)0x6500)  //ACIA transmit data port
@@ -17,10 +18,11 @@ uint8_t mos6551_line_ind = 0;
 
 void mos6551_init (void) {
 	//initialise 6551 ACIA
-    ACIA_RES = 0xFF;	//soft reset (value not important)
-    //ACIA_CMD = 0x0B;    //set specific modes and functions: no parity, no echo, no Tx interrupt, no Rx interrupt, enable Tx/Rx
-	ACIA_CMD = 0x09;     //set specific modes and functions: no parity, no echo, no Tx interrupt, Rx interrupt enabled, enable Tx/Rx  
-    ACIA_CTL = 0x1E;    //8-N-1, 9600 baud
+    ACIA_RES = 0xFF;		//soft reset (value not important)
+    //ACIA_CMD = 0x0B;    	/set specific modes and functions: no parity, no echo, no Tx interrupt, no Rx interrupt, enable Tx/Rx
+	ACIA_CMD = 0x09;     	//set specific modes and functions: no parity, no echo, no Tx interrupt, Rx interrupt enabled, enable Tx/Rx  
+    ACIA_CTL = 0x1E;    	//8-N-1, 9600 baud
+    port_clr(RS485_PIN);	//RS485 set to receive by default
 }
 
 
@@ -31,10 +33,12 @@ void mos6551_putc (char c) {
 
 
 void mos6551_puts (const char *str) {
+	port_set(RS485_PIN);	//Set RS485 to transmit
 	while (*str != '\0') {
 		mos6551_putc(*str);
 		str++;
 	}
+	port_clr(RS485_PIN);	//Set RS485 to receive again
 }
 
 void mos6551_handle_rx (void) {

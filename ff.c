@@ -3272,7 +3272,11 @@ static FRESULT find_volume (	/* FR_OK(0): successful, !=0: an error occurred */
 	/* Find an FAT partition on the drive. Supports only generic partitioning rules, FDISK (MBR) and SFD (w/o partition). */
 	bsect = 0;
 	fmt = check_fs(fs, bsect);			/* Load sector 0 and check if it is an FAT-VBR as SFD */
+#if FF_MULTI_PARTITION > 0
 	if (fmt == 2 || (fmt < 2 && LD2PT(vol) != 0)) {	/* Not an FAT-VBR or forced partition number */
+#else
+	if (fmt == 2 || (fmt < 2)) {	/* Not an FAT-VBR or forced partition number */
+#endif
 		for (i = 0; i < 4; i++) {		/* Get partition offset */
 			pt = fs->win + (MBR_Table + i * SZ_PTE);
 			br[i] = pt[PTE_System] ? ld_dword(pt + PTE_StLba) : 0;
@@ -3282,7 +3286,11 @@ static FRESULT find_volume (	/* FR_OK(0): successful, !=0: an error occurred */
 		do {							/* Find an FAT volume */
 			bsect = br[i];
 			fmt = bsect ? check_fs(fs, bsect) : 3;	/* Check the partition */
+#if FF_MULTI_PARTITION > 0			
 		} while (LD2PT(vol) == 0 && fmt >= 2 && ++i < 4);
+#else
+		} while (fmt >= 2 && ++i < 4);
+#endif		
 	}
 	if (fmt == 4) return FR_DISK_ERR;		/* An error occured in the disk I/O layer */
 	if (fmt >= 2) return FR_NO_FILESYSTEM;	/* No FAT volume is found */
@@ -6194,7 +6202,9 @@ TCHAR* f_gets (
 		f_read(fp, s, 1, &rc);
 		if (rc != 1) break;
 		dc = s[0];
-		if (FF_USE_STRFUNC == 2 && dc == '\r') continue;
+#if FF_USE_STRFUNC == 2
+		if (dc == '\r') continue;
+#endif		
 		*p++ = (TCHAR)dc; nc++;
 		if (dc == '\n') break;
 	}
@@ -6241,9 +6251,11 @@ static void putc_bfd (		/* Buffered write with code conversion */
 #endif
 #endif
 
-	if (FF_USE_STRFUNC == 2 && c == '\n') {	 /* LF -> CRLF conversion */
+#if FF_USE_STRFUNC == 2
+	if (c == '\n') {	 /* LF -> CRLF conversion */
 		putc_bfd(pb, '\r');
 	}
+#endif	
 
 	i = pb->idx;			/* Write index of pb->buf[] */
 	if (i < 0) return;

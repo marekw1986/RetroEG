@@ -17,6 +17,9 @@
 #include <inttypes.h>
 #include "cf.h"
 
+/* Definitions of physical drive number for each drive */
+#define COMPACT_FLASH		0	/* Example: Map CF memory to physical drive 0 */
+
 static DSTATUS diskStatus = STA_NOINIT;
 
 /*-----------------------------------------------------------------------*/
@@ -26,15 +29,17 @@ DSTATUS disk_initialize (
 	BYTE drv				/* Physical drive nmuber (0..) */
 )
 {
-	if(cfInit()==FR_OK)
-	{
-		diskStatus = 0;
+	switch (drv) {
+		case COMPACT_FLASH:
+			if(cfInit()==FR_OK) {
+				diskStatus = 0;
+			}
+			else {
+				diskStatus = STA_NOINIT;
+			}
+			return(diskStatus);
+		break;
 	}
-	else
-	{
-		diskStatus = STA_NOINIT;
-	}
-	return(diskStatus);
 }
 
 
@@ -46,7 +51,12 @@ DSTATUS disk_status (
 	BYTE drv		/* Physical drive nmuber (0..) */
 )
 {
-	return diskStatus;
+	switch (drv) {
+		case COMPACT_FLASH:
+			return diskStatus;
+		break;
+	}
+	return 0;
 }
 
 
@@ -61,8 +71,12 @@ DRESULT disk_read (
 	BYTE count		/* Number of sectors to read (1..255) */
 )
 {
-	cfReadBlocks(buff,sector,count);
-	return(0);
+	switch (drv) {
+		case COMPACT_FLASH:
+			cfReadBlocks(buff,sector,count);
+			return(0);
+		break;
+	}
 }
 
 
@@ -78,8 +92,12 @@ DRESULT disk_write (
 	BYTE count			/* Number of sectors to write (1..255) */
 )
 {
-	cfWriteBlocks((void*)buff,sector,count);
-	return(0);
+	switch (drv) {
+		case COMPACT_FLASH:
+			cfWriteBlocks((void*)buff,sector,count);
+			return(0);
+		break;
+	}
 }
 #endif /* _READONLY */
 
@@ -96,20 +114,24 @@ DRESULT disk_ioctl (
 {
 	static uint32_t maxLba;
 	static uint16_t blockSize;
-	switch(ctrl)
-	{
-		case GET_SECTOR_COUNT:
-			cfGetSizeInfo(&maxLba,&blockSize);
-			buff = (void*)&maxLba;
-			return 0;
-		case GET_BLOCK_SIZE:
-			cfGetSizeInfo(&maxLba,&blockSize);
-			buff = (void*)&blockSize;
-			return 0;
-		case CTRL_SYNC:
-			return 0;
-		default:
-			return STA_NOINIT;
+	
+	switch (drv) {
+		case COMPACT_FLASH:
+			switch(ctrl) {
+				case GET_SECTOR_COUNT:
+					cfGetSizeInfo(&maxLba,&blockSize);
+					buff = (void*)&maxLba;
+					return 0;
+				case GET_BLOCK_SIZE:
+					cfGetSizeInfo(&maxLba,&blockSize);
+					buff = (void*)&blockSize;
+					return 0;
+				case CTRL_SYNC:
+					return 0;
+				default:
+					return STA_NOINIT;
+			}
+		break;
 	}
 }
 

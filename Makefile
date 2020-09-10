@@ -4,8 +4,8 @@ all: ethergeiger.hex
 ethergeiger.hex: a.out
 	bin2hex.py a.out ethergeiger.hex
 
-a.out: interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o parser.o main.o 
-	ld65 -C ./lib/ethergeiger.cfg -m main.map interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o parser.o main.o ./lib/ethergeiger.lib	
+a.out: interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o parser.o cf.o diskio.o main.o 
+	ld65 -C ./lib/ethergeiger.cfg -m main.map interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o parser.o cf.o diskio.o main.o ./lib/ethergeiger.lib	
 
 main.s: main.c
 	cc65 -t none -O --cpu 65c02 main.c
@@ -13,17 +13,17 @@ main.s: main.c
 main.o: main.s
 	ca65 --cpu 65c02 main.s
 	
-#cf.s: cf.c
-#	cc65 -t none -O --cpu 65c02 cf.c	
+cf.s: cf.c
+	cc65 -t none -O --cpu 65c02 cf.c	
 
-#cf.o: cf.s
-#	ca65 --cpu 65c02 cf.s
+cf.o: cf.s
+	ca65 --cpu 65c02 cf.s
 	
-#diskio.s: diskio.c
-#	cc65 -t none -O --cpu 65c02 diskio.c	
+diskio.s: diskio.c
+	cc65 -t none -O --cpu 65c02 diskio.c	
 
-#diskio.o: diskio.s
-#	ca65 --cpu 65c02 diskio.s
+diskio.o: diskio.s
+	ca65 --cpu 65c02 diskio.s
 
 #ff.s: ff.c
 #	cc65 -t none -O --cpu 65c02 ff.c	

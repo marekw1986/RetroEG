@@ -20,6 +20,7 @@
 #define BTN4	0x40
 #define BTN5	0x80
 
+#define RS485_PIN	  0x20
 #define BACKLIGHT_PIN 0x10
 
 #define SHORT_WAIT 3    // 3 * 20ms = 60 ms.
