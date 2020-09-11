@@ -41,12 +41,10 @@
 #include "parser.h"
 #include "io.h"
 #include "cf.h"
-//#include "ff.h"
 
 typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
 static state_t state = SHOW_RAD;
 
-//FATFS CFFatFS;
 static char buffer[64];
 static uint32_t last_uptime = 0;
 static uint8_t  last_millis = 0;
@@ -58,6 +56,7 @@ static uint32_t siv;
 static uint8_t key_press;
 key_t key0, key1, key2, key3;	
 
+char* __fastcall__ itoa (int val, char* buf, int radix);
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
 size_t __fastcall__ strlen (const char* s);
@@ -72,9 +71,8 @@ void key3_func (void);
 
 int main (void) {
 	
-//	FRESULT res;
-	
 	port_write(0x90);
+	
 	//Initialize button structures
 	key0.last_state = 0; key0.timer = 0;
 	key1.last_state = 0; key1.timer = 0;
@@ -90,14 +88,6 @@ int main (void) {
 	prepare_disp();
 	
 	CLI();
-	
-//	res = f_mount(&CFFatFS, "0:", 1);
-//    if (res != FR_OK) {
-		//Dodać raportowanie przez UART
-//	}
-//    else {
-		//Dodać raportowanie przez UART
-//	}
 	
 	while(1) {
 		if (uptime() != last_uptime) {
@@ -156,26 +146,23 @@ void prepare_disp (void) {
 	switch (state) {
 		case SHOW_RAD:
 		hd44780_gotoxy(0, 0);
-		hd44780_write("Promieniowanie", 14);
+		hd44780_puts("Promieniowanie");
 		break;
 		
 		case SHOW_TIME:
 		hd44780_gotoxy(0, 0);
-		hd44780_write("Czas", 4);		
+		hd44780_puts("Czas");		
 		break;
 		
 		case SHOW_STATS:
 		hd44780_gotoxy(0, 0);
-		hd44780_write("Stats", 5);		
+		hd44780_puts("Stats");		
 		break;		
 	}
 }
 
 
 void update_disp (void) {
-	uint32_t tmp1;
-	uint16_t tmp2;
-	
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = get_geiger_pulses();
@@ -183,49 +170,49 @@ void update_disp (void) {
 		integer = siv/10000;
 		fraction = siv%10000;
 		hd44780_gotoxy(1, 0);
-		hd44780_write("                    ", 20);
+		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
 		itoa(integer, buffer, 10);
-		hd44780_write(buffer, strlen(buffer));
-		hd44780_write(".", 1);
+		hd44780_puts(buffer);
+		hd44780_putc('.');
 		if (fraction < 1000) {
-			hd44780_write("0", 1);
+			hd44780_putc('0');
 			if (fraction < 100) {
-				hd44780_write("0", 1);
+				hd44780_putc('0');
 				if (fraction < 10) {
-					hd44780_write("0", 1);
+					hd44780_putc('0');
 				}
 			}
 		}
 		utoa(fraction, buffer, 10);
-		hd44780_write(buffer, strlen(buffer));
-		hd44780_write(" uS/h", 5);
+		hd44780_puts(buffer);
+		hd44780_puts(" uS/h");
 		hd44780_gotoxy(2, 0);
-		hd44780_write("                    ", 20);
+		hd44780_puts("                    ");
 		hd44780_gotoxy(2, 0);
 		utoa(cpmin, buffer, 10);
-		hd44780_write(buffer, strlen(buffer));
-		hd44780_write(" CPM", 4);		
+		hd44780_puts(buffer);
+		hd44780_puts(" CPM");		
 		break;
 		
 		case SHOW_TIME:
 		hd44780_gotoxy(1, 0);
-		hd44780_write("                    ", 20);
+		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
-		hd44780_write(m6242_read_time_str(), 8);
+		hd44780_puts(m6242_read_time_str());
 		hd44780_gotoxy(2, 0);
-		hd44780_write("                    ", 20);
+		hd44780_puts("                    ");
 		hd44780_gotoxy(2, 0);
-		hd44780_write(m6242_read_date_str(), 8);		
+		hd44780_puts(m6242_read_date_str());		
 		break;
 		
 		case SHOW_STATS:
 		hd44780_gotoxy(1, 0);
-		hd44780_write("                    ", 20);
+		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
-		hd44780_write("U: ", 3);
+		hd44780_puts("U: ");
 		ultoa(uptime(), buffer, 10);
-		hd44780_write(buffer, strlen(buffer));					
+		hd44780_puts(buffer);					
 		break;
 		
 	}
@@ -263,54 +250,3 @@ void key3_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 }
-
-
-/*
-void handle_cf_log (void) {
-    
-    static uint32_t timer = 0;
-    static FRESULT res;
-    static FIL file;
-    time_t tm;
-    static int16_t integer;
-	static uint16_t fraction, siv, countspm;
-    static char temp[100];
-    
-    if (((uint32_t)(uptime()-timer)) >= 30 ) {
-        timer = uptime();
-
-		res = f_open(&file, "1:/geiger.csv", (FA_OPEN_ALWAYS | FA_WRITE));
-		if (res != FR_OK) {
-			//printf("f_open error code: %i\r\n", res);
-			return;
-		}
-		if (f_size(&file) == 0) {
-			f_puts("Time (UTC);CPM;uSv/h\r\n", &file);
-		}
-		else {
-			res = f_lseek(&file, f_size(&file));
-			if (res != FR_OK) {
-				//printf("f_lseek error code: %i\r\n", res); 
-				f_close(&file);
-				return;
-			}
-		}
-		
-		countspm = cpm();
-		siv = cpm2sievert(countspm);
-		integer = siv/10000;
-		fraction = abs(siv%10000); 
-		//tm = rtccGetTimestamp();
-		//strncpy(temp, asctime(gmtime(&tm)), sizeof(temp)-1);
-		//strtok(temp, "\n");
-		//f_puts(temp, &file);
-		//f_putc(';', &file);
-		sprintf(temp, "%d", countspm);
-		f_puts(temp, &file);
-		f_putc(';', &file);
-		sprintf(temp, "%i.%.4i\r\n", integer, fraction);
-		f_puts(temp, &file);
-		f_close(&file);            
-    }   
-}
-*/

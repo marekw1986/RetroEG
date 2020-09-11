@@ -30,9 +30,9 @@ typedef struct key {
 	uint8_t timer;
 } key_t;
 
-void port_write (uint8_t data);
-void port_set (uint8_t data);
-void port_clr (uint8_t data);
-void port_tgl (uint8_t data);
+void __fastcall__ port_write (uint8_t data);
+void __fastcall__ port_set (uint8_t data);
+void __fastcall__ port_clr (uint8_t data);
+void __fastcall__ port_tgl (uint8_t data);
 
 #endif

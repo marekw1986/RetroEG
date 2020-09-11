@@ -23,14 +23,14 @@
 #define RTCF_TEST_EN	0x08
 #define RTCF_TEST_DIS	0x00
 
-void m6242_init (void);
-char* m6242_read_time_str (void);
-char* m6242_read_date_str (void);
-void m6242_read_time_raw (uint8_t* data);
-void m6242_read_date_raw (uint8_t* data);
-void m6242_read_tm (void);
-time_t* m6242_read_timestamp (void);
-void m6242_settime (uint8_t h, uint8_t m, uint8_t s);
-void m6242_setdate (uint8_t d, uint8_t m, uint8_t y);
+void __fastcall__ m6242_init (void);
+char* __fastcall__ m6242_read_time_str (void);
+char* __fastcall__ m6242_read_date_str (void);
+void __fastcall__ m6242_read_time_raw (uint8_t* data);
+void __fastcall__ m6242_read_date_raw (uint8_t* data);
+void __fastcall__ m6242_read_tm (void);
+time_t* __fastcall__ m6242_read_timestamp (void);
+void __fastcall__ m6242_settime (uint8_t h, uint8_t m, uint8_t s);
+void __fastcall__ m6242_setdate (uint8_t d, uint8_t m, uint8_t y);
 
 #endif //_M6242_H_

@@ -27,7 +27,7 @@ uint8_t m6242_buf[10];
 struct tm current_time;
 time_t timestamp;
 
-void m6242_init (void) {                  
+void __fastcall__ m6242_init (void) {                  
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;								//0x04 (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)              
 	M6242_CTRLE_REG = (RTCE_INTRT | RTCE_STDP_EN | RTCE_TM_1S);		//0x06 (Innterrupt mode, STD.P enabled, 1 s.)
 	M6242_CTRLF_REG = RTCF_RESET;									//RESET needs to be 1 to set 24H mode.
@@ -35,7 +35,7 @@ void m6242_init (void) {
 }
 
 
-char* m6242_read_time_str (void) {
+char* __fastcall__ m6242_read_time_str (void) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
@@ -56,7 +56,7 @@ char* m6242_read_time_str (void) {
 }
 
 
-char* m6242_read_date_str (void) {
+char* __fastcall__ m6242_read_date_str (void) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
@@ -77,7 +77,7 @@ char* m6242_read_date_str (void) {
 }
 
 
-void m6242_read_time_raw (uint8_t* data) {	
+void __fastcall__ m6242_read_time_raw (uint8_t* data) {	
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
@@ -94,7 +94,7 @@ void m6242_read_time_raw (uint8_t* data) {
 }
 
 
-void m6242_read_date_raw (uint8_t* data) {
+void __fastcall__ m6242_read_date_raw (uint8_t* data) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
@@ -112,7 +112,7 @@ void m6242_read_date_raw (uint8_t* data) {
 }
 
 
-void m6242_read_tm (void) {
+void __fastcall__ m6242_read_tm (void) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
@@ -129,14 +129,14 @@ void m6242_read_tm (void) {
     M6242_CTRLD_REG = RTCD_IRQ_FLAG;					//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)            
 }
 
-time_t* m6242_read_timestamp (void) {
+time_t* __fastcall__ m6242_read_timestamp (void) {
     m6242_read_tm();
     timestamp = mktime(&current_time);
     return &timestamp;
 }
 
 
-void m6242_settime (uint8_t h, uint8_t m, uint8_t s) {
+void __fastcall__ m6242_settime (uint8_t h, uint8_t m, uint8_t s) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
@@ -153,7 +153,7 @@ void m6242_settime (uint8_t h, uint8_t m, uint8_t s) {
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;					//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
 }
 
-void m6242_setdate (uint8_t d, uint8_t m, uint8_t y) {
+void __fastcall__ m6242_setdate (uint8_t d, uint8_t m, uint8_t y) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
 		M6242_CTRLD_REG = RTCD_IRQ_FLAG;				//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)

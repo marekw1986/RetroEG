@@ -4,7 +4,7 @@
 #define HD_CMD		(*(uint8_t*)0x6380)
 #define HD_DATA		(*(uint8_t*)0x6381)
 
-void hd44780_init (void) {
+void __fastcall__ hd44780_init (void) {
 	//delay 100ms
 	delay_ms(100);
 	HD_CMD = 0x30;
@@ -21,19 +21,19 @@ void hd44780_init (void) {
 }
 
 
-void hd44780_putc (char c) {
+void __fastcall__ hd44780_putc (char c) {
 	while (HD_CMD & 0x80);
 	HD_DATA = c;
 }	
 
-void hd44780_write (uint8_t* buf, uint8_t len) {
+void __fastcall__ hd44780_write (uint8_t* buf, uint8_t len) {
 	uint8_t ind;
 	for (ind=0; ind<len; ind++) {
 		hd44780_putc(buf[ind]);
 	}
 }
 
-void hd44780_puts (const char *str) {
+void __fastcall__ hd44780_puts (const char *str) {
 	while (*str != '\0') {
 		hd44780_putc(*str);
 		str++;
@@ -41,13 +41,13 @@ void hd44780_puts (const char *str) {
 }
 
 
-void hd44780_cmd (uint8_t cmd) {
+void __fastcall__ hd44780_cmd (uint8_t cmd) {
 	while (HD_CMD & 0x80);
 	HD_CMD = cmd;
 }
 
 
-void hd44780_gotoxy (uint8_t x, uint8_t y) {
+void __fastcall__ hd44780_gotoxy (uint8_t x, uint8_t y) {
 	uint8_t address = 0;
 	if (x==0) {
 		address = 0x80;
@@ -67,14 +67,12 @@ void hd44780_gotoxy (uint8_t x, uint8_t y) {
 }
 
 
-void hd44780_clrscr (void) {
-	hd44780_gotoxy(0, 0);
-	hd44780_write("                    ", 20);
-	hd44780_gotoxy(1, 0);
-	hd44780_write("                    ", 20);
-	hd44780_gotoxy(2, 0);
-	hd44780_write("                    ", 20);
-	hd44780_gotoxy(3, 0);
-	hd44780_write("                    ", 20);
+void __fastcall__ hd44780_clrscr (void) {
+	uint8_t i;
+	
+	for (i=0; i<4; i++) {
+		hd44780_gotoxy(i, 0);
+		hd44780_puts("                    ");
+	}
 }
 

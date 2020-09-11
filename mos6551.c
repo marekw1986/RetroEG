@@ -16,7 +16,7 @@ volatile uint8_t mos6551_rxrb_tail = 0;
 char mos6551_line[256];					//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG! Oftherwise uncomment and adjust line in mos6551_handle_rx
 uint8_t mos6551_line_ind = 0;
 
-void mos6551_init (void) {
+void __fastcall__ mos6551_init (void) {
 	//initialise 6551 ACIA
     ACIA_RES = 0xFF;		//soft reset (value not important)
     //ACIA_CMD = 0x0B;    	/set specific modes and functions: no parity, no echo, no Tx interrupt, no Rx interrupt, enable Tx/Rx
@@ -26,13 +26,13 @@ void mos6551_init (void) {
 }
 
 
-void mos6551_putc (char c) {
+void __fastcall__ mos6551_putc (char c) {
 	while (!(ACIA_STS & 0x10));
 	ACIA_TXD = c;
 }
 
 
-void mos6551_puts (const char *str) {
+void __fastcall__ mos6551_puts (const char *str) {
 	port_set(RS485_PIN);	//Set RS485 to transmit
 	while (*str != '\0') {
 		mos6551_putc(*str);
@@ -41,7 +41,7 @@ void mos6551_puts (const char *str) {
 	port_clr(RS485_PIN);	//Set RS485 to receive again
 }
 
-void mos6551_handle_rx (void) {
+void __fastcall__ mos6551_handle_rx (void) {
 	while (mos6551_rxrb_head != mos6551_rxrb_tail) {			// There is a new data in ring buffer
 		mos6551_RxChar = mos6551_rxrb[mos6551_rxrb_tail];
 		mos6551_rxrb_tail++;
