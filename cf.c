@@ -32,11 +32,16 @@ uint8_t cfInit(void) {
 }
 
 uint8_t cfReadBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToRead) {
+	uint8_t tmp;
+	
 	//Set LBA
-	CFREG3 = (uint8_t)lba;
-	CFREG4 = (uint8_t)(lba >> 8);
-	CFREG5 = (uint8_t)(lba >> 16);
-	CFREG6 = ((uint8_t)(lba >> 24) & 0x0F) | 0xE0;
+	CFREG3 = (uint8_t)(lba & 0x000000FF);				// [7:0]
+	CFREG4 = (uint8_t)((lba >> 8) & 0x000000FF);		// [15:8]
+	CFREG5 = (uint8_t)((lba >> 16) & 0x000000FF);		// [23:16]
+	tmp = (uint8_t)((lba >> 24) & 0x000000FF); 			// [27:24]
+	tmp &= 0x0F; 										// Filter out LBA bits
+	tmp |= 0xE0;										// Mode LBA, Master Dev
+	CFREG6 = tmp;	
 	//Set amount of blocks to read
 	CFREG2 = blocksToRead;
 	cfWait();
@@ -52,11 +57,16 @@ uint8_t cfReadBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToRead) {
 }
 
 uint8_t cfWriteBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToWrite) {
+	uint8_t tmp;
+	
 	//Set LBA
-	CFREG3 = (uint8_t)lba;
-	CFREG4 = (uint8_t)(lba >> 8);
-	CFREG5 = (uint8_t)(lba >> 16);
-	CFREG6 = ((uint8_t)(lba >> 24) & 0x0F) | 0xE0;
+	CFREG3 = (uint8_t)(lba & 0x000000FF);				// [7:0]
+	CFREG4 = (uint8_t)((lba >> 8) & 0x000000FF);		// [15:8]
+	CFREG5 = (uint8_t)((lba >> 16) & 0x000000FF);		// [23:16]
+	tmp = (uint8_t)((lba >> 24) & 0x000000FF); 			// [27:24]
+	tmp &= 0x0F; 										// Filter out LBA bits
+	tmp |= 0xE0;										// Mode LBA, Master Dev
+	CFREG6 = tmp;		
 	//Set amount of blocks to read
 	CFREG2 = blocksToWrite;
 	cfWait();
