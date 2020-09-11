@@ -40,6 +40,7 @@
 #include "delay.h"
 #include "parser.h"
 #include "io.h"
+#include "cf.h"
 //#include "ff.h"
 
 typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
@@ -172,6 +173,9 @@ void prepare_disp (void) {
 
 
 void update_disp (void) {
+	uint32_t tmp1;
+	uint16_t tmp2;
+	
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = get_geiger_pulses();
@@ -221,7 +225,7 @@ void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_write("U: ", 3);
 		ultoa(uptime(), buffer, 10);
-		hd44780_write(buffer, strlen(buffer));	
+		hd44780_write(buffer, strlen(buffer));					
 		break;
 		
 	}
