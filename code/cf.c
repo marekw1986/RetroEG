@@ -68,13 +68,13 @@ uint8_t cfWriteBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToWrite) {
 	tmp &= 0x0F; 										// Filter out LBA bits
 	tmp |= 0xE0;										// Mode LBA, Master Dev
 	CFREG6 = tmp;		
-	//Set amount of blocks to read
+	//Set amount of blocks to write
 	CFREG2 = blocksToWrite;
 	cfWait();
 	CFREG7 = CMD_WRITE_SECTOR;
 	cfWait();
 	while (CFREG7 & MASK_DRQ) {
-		*buffer = CFREG0;
+		CFREG0 = *buffer;
 		buffer++;
 		cfWait();
 	}
