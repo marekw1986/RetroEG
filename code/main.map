@@ -1,0 +1,1028 @@
+Modules list:
+-------------
+interrupt.o:
+    CODE              Offs=000000  Size=000057  Align=00001  Fill=0000
+vectors.o:
+    VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
+mc6840.o:
+    CODE              Offs=000057  Size=0001B9  Align=00001  Fill=0000
+    BSS               Offs=000000  Size=000081  Align=00001  Fill=0000
+    DATA              Offs=000000  Size=000006  Align=00001  Fill=0000
+mos6551.o:
+    CODE              Offs=000210  Size=00009F  Align=00001  Fill=0000
+    BSS               Offs=000081  Size=000201  Align=00001  Fill=0000
+    DATA              Offs=000006  Size=000003  Align=00001  Fill=0000
+hd44780.o:
+    CODE              Offs=0002AF  Size=00011A  Align=00001  Fill=0000
+    RODATA            Offs=000000  Size=000015  Align=00001  Fill=0000
+delay.o:
+    CODE              Offs=0003C9  Size=000013  Align=00001  Fill=0000
+m6242.o:
+    CODE              Offs=0003DC  Size=0003AC  Align=00001  Fill=0000
+    BSS               Offs=000282  Size=000020  Align=00001  Fill=0000
+io.o:
+    CODE              Offs=000788  Size=000117  Align=00001  Fill=0000
+    BSS               Offs=0002A2  Size=000001  Align=00001  Fill=0000
+    DATA              Offs=000009  Size=000001  Align=00001  Fill=0000
+parser.o:
+    CODE              Offs=00089F  Size=00037F  Align=00001  Fill=0000
+    RODATA            Offs=000015  Size=000085  Align=00001  Fill=0000
+    BSS               Offs=0002A3  Size=000012  Align=00001  Fill=0000
+cf.o:
+    CODE              Offs=000C1E  Size=000247  Align=00001  Fill=0000
+diskio.o:
+    CODE              Offs=000E65  Size=0000D9  Align=00001  Fill=0000
+    BSS               Offs=0002B5  Size=000006  Align=00001  Fill=0000
+    DATA              Offs=00000A  Size=000001  Align=00001  Fill=0000
+main.o:
+    CODE              Offs=000F3E  Size=000356  Align=00001  Fill=0000
+    RODATA            Offs=00009A  Size=00003E  Align=00001  Fill=0000
+    BSS               Offs=0002BB  Size=00005F  Align=00001  Fill=0000
+    DATA              Offs=00000B  Size=000008  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_hextab.o):
+    RODATA            Offs=0000D8  Size=000010  Align=00001  Fill=0000
+./lib/ethergeiger.lib(_longminstr.o):
+    RODATA            Offs=0000E8  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(add.o):
+    CODE              Offs=001294  Size=000018  Align=00001  Fill=0000
+./lib/ethergeiger.lib(addysp.o):
+    CODE              Offs=0012AC  Size=00000E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(along.o):
+    CODE              Offs=0012BA  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(and.o):
+    CODE              Offs=0012C7  Size=00000F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(aslax1.o):
+    CODE              Offs=0012D6  Size=000008  Align=00001  Fill=0000
+./lib/ethergeiger.lib(atoi.o):
+    CODE              Offs=0012DE  Size=000096  Align=00001  Fill=0000
+./lib/ethergeiger.lib(axlong.o):
+    CODE              Offs=001374  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(bneg.o):
+    CODE              Offs=001381  Size=00000E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(call.o):
+    CODE              Offs=00138F  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(condes.o):
+    CODE              Offs=001396  Size=00000C  Align=00001  Fill=0000
+    DATA              Offs=000013  Size=000025  Align=00001  Fill=0000
+    ONCE              Offs=000000  Size=00000C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(copydata.o):
+    CODE              Offs=0013A2  Size=00002D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(crt0.o):
+    STARTUP           Offs=000000  Size=00001C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ctype.o):
+    RODATA            Offs=0000F4  Size=000100  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decax1.o):
+    CODE              Offs=0013CF  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decaxy.o):
+    CODE              Offs=0013D6  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp1.o):
+    CODE              Offs=0013DF  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp2.o):
+    CODE              Offs=0013E8  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp3.o):
+    CODE              Offs=0013F5  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(decsp4.o):
+    CODE              Offs=001402  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(div.o):
+    CODE              Offs=00140F  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(divt.o):
+    CODE              Offs=001424  Size=000013  Align=00001  Fill=0000
+./lib/ethergeiger.lib(icmp.o):
+    CODE              Offs=001437  Size=00002E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incaxy.o):
+    CODE              Offs=001465  Size=00000B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp1.o):
+    CODE              Offs=001470  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp2.o):
+    CODE              Offs=001477  Size=000015  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp3.o):
+    CODE              Offs=00148C  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp4.o):
+    CODE              Offs=001491  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp5.o):
+    CODE              Offs=001496  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp7.o):
+    CODE              Offs=00149B  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(incsp8.o):
+    CODE              Offs=0014A0  Size=000005  Align=00001  Fill=0000
+./lib/ethergeiger.lib(itoa.o):
+    CODE              Offs=0014A5  Size=000094  Align=00001  Fill=0000
+    RODATA            Offs=0001F4  Size=000007  Align=00001  Fill=0000
+./lib/ethergeiger.lib(jmpvec.o):
+    DATA              Offs=000038  Size=000003  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ladd.o):
+    CODE              Offs=001539  Size=000024  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lcmp.o):
+    CODE              Offs=00155D  Size=00003B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldaxi.o):
+    CODE              Offs=001598  Size=00000D  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldaxsp.o):
+    CODE              Offs=0015A5  Size=000009  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldeaxi.o):
+    CODE              Offs=0015AE  Size=000017  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ldeaxysp.o):
+    CODE              Offs=0015C5  Size=000013  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lmul.o):
+    CODE              Offs=0015D8  Size=000059  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lne.o):
+    CODE              Offs=001631  Size=000006  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lneg.o):
+    CODE              Offs=001637  Size=00001E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lor.o):
+    CODE              Offs=001655  Size=000021  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lpush.o):
+    CODE              Offs=001676  Size=00001E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lsub.o):
+    CODE              Offs=001694  Size=000024  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ltoa.o):
+    CODE              Offs=0016B8  Size=000093  Align=00001  Fill=0000
+./lib/ethergeiger.lib(ludiv.o):
+    CODE              Offs=00174B  Size=000077  Align=00001  Fill=0000
+./lib/ethergeiger.lib(lumod.o):
+    CODE              Offs=0017C2  Size=000017  Align=00001  Fill=0000
+./lib/ethergeiger.lib(makebool.o):
+    CODE              Offs=0017D9  Size=00002C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(mktime.o):
+    CODE              Offs=001805  Size=0003D9  Align=00001  Fill=0000
+    RODATA            Offs=0001FB  Size=000024  Align=00001  Fill=0000
+./lib/ethergeiger.lib(mul.o):
+    CODE              Offs=001BDE  Size=000045  Align=00001  Fill=0000
+./lib/ethergeiger.lib(mul8.o):
+    CODE              Offs=001C23  Size=00003A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(mulax10.o):
+    CODE              Offs=001C5D  Size=000019  Align=00001  Fill=0000
+./lib/ethergeiger.lib(negabs.o):
+    CODE              Offs=001C76  Size=000012  Align=00001  Fill=0000
+./lib/ethergeiger.lib(popptr1.o):
+    CODE              Offs=001C88  Size=00000E  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pusha.o):
+    CODE              Offs=001C96  Size=000016  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pushax.o):
+    CODE              Offs=001CAC  Size=00001A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pushw.o):
+    CODE              Offs=001CC6  Size=00000F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(pushwsp.o):
+    CODE              Offs=001CD5  Size=00001C  Align=00001  Fill=0000
+./lib/ethergeiger.lib(regswap2.o):
+    CODE              Offs=001CF1  Size=000016  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shelp.o):
+    CODE              Offs=001D07  Size=000020  Align=00001  Fill=0000
+./lib/ethergeiger.lib(shrax2.o):
+    CODE              Offs=001D27  Size=00000B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(staspidx.o):
+    CODE              Offs=001D32  Size=000016  Align=00001  Fill=0000
+./lib/ethergeiger.lib(staxsp.o):
+    CODE              Offs=001D48  Size=00000B  Align=00001  Fill=0000
+./lib/ethergeiger.lib(staxspi.o):
+    CODE              Offs=001D53  Size=00001A  Align=00001  Fill=0000
+./lib/ethergeiger.lib(steaxspi.o):
+    CODE              Offs=001D6D  Size=000022  Align=00001  Fill=0000
+./lib/ethergeiger.lib(strchr.o):
+    CODE              Offs=001D8F  Size=000025  Align=00001  Fill=0000
+./lib/ethergeiger.lib(stricmp.o):
+    CODE              Offs=001DB4  Size=00003F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(strtok.o):
+    CODE              Offs=001DF3  Size=0000C2  Align=00001  Fill=0000
+    DATA              Offs=00003B  Size=000002  Align=00001  Fill=0000
+./lib/ethergeiger.lib(sub.o):
+    CODE              Offs=001EB5  Size=000014  Align=00001  Fill=0000
+./lib/ethergeiger.lib(toslong.o):
+    CODE              Offs=001EC9  Size=000032  Align=00001  Fill=0000
+./lib/ethergeiger.lib(udiv.o):
+    CODE              Offs=001EFB  Size=00004F  Align=00001  Fill=0000
+./lib/ethergeiger.lib(umod.o):
+    CODE              Offs=001F4A  Size=000011  Align=00001  Fill=0000
+./lib/ethergeiger.lib(zerobss.o):
+    CODE              Offs=001F5B  Size=000023  Align=00001  Fill=0000
+./lib/ethergeiger.lib(zeropage.o):
+    ZEROPAGE          Offs=000000  Size=00001A  Align=00001  Fill=0000
+
+
+Segment list:
+-------------
+Name                   Start     End    Size  Align
+----------------------------------------------------
+ZEROPAGE              000000  000019  00001A  00001
+DATA                  000200  00023C  00003D  00001
+BSS                   00023D  000556  00031A  00001
+STARTUP               00803D  008058  00001C  00001
+ONCE                  008059  008064  00000C  00001
+CODE                  008065  009FE2  001F7E  00001
+RODATA                009FE3  00A201  00021F  00001
+VECTORS               00FFFA  00FFFF  000006  00001
+
+
+Exports list by name:
+---------------------
+__BSS_RUN__               00023D RLA    __BSS_SIZE__              00031A REA    
+__CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     008059 RLA    
+__DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA    
+__DATA_SIZE__             00003D REA    __DESTRUCTOR_COUNT__      000000 REA    
+__DESTRUCTOR_TABLE__      008059 RLA    __RAM_SIZE__              001E00 REA    
+__RAM_START__             000200 RLA    __STARTUP__               000001 REA    
+__ctype                   00A0D7 RLA    __hextab                  00A0BB RLA    
+__longminstr              00A0CB RLA    _atoi                     009343 RLA    
+_cfGetSizeInfo            008DA8 RLA    _cfInit                   008C83 RLA    
+_cfReadBlocks             008CAA RLA    _cfWriteBlocks            008D29 RLA    
+_delay_16us               00842E RLA    _delay_ms                 008437 RLA    
+_div                      009489 RLA    _get_geiger_pulses        008166 RLA    
+_get_geiger_usv           0081A5 RLA    _hd44780_clrscr           00840A RLA    
+_hd44780_gotoxy           0083C6 RLA    _hd44780_init             008314 RLA    
+_hd44780_putc             008350 RLA    _hd44780_puts             00838B RLA    
+_init                     00803D RLA    _irq_int                  008066 RLA    
+_itoa                     009528 RLA    _key_init                 0087ED RLA    
+_key_update               008834 RLA    _m6242_init               008441 RLA    
+_m6242_read_date_str      0084CC RLA    _m6242_read_time_str      008456 RLA    
+_m6242_setdate            008787 RLA    _m6242_settime            008721 RLA    
+_main                     009208 RLA    _mc6840_init              0080BC RLA    
+_millis                   008110 RLA    _milliseconds             000200 RLA    
+_mktime                   00986A RLA    _mos6551_handle_rx        0082CE RLA    
+_mos6551_init             008275 RLA    _mos6551_puts             00829B RLA    
+_mos6551_rxrb             0002BF RLA    _mos6551_rxrb_head        000206 RLA    
+_nmi_int                  008065 RLA    _parse_cmd                008904 RLA    
+_port_clr                 0088E0 RLA    _port_set                 0088CF RLA    
+_port_tgl                 0088F3 RLA    _port_write               0088C1 RLA    
+_strcasecmp               009E19 RLA    _strchr                   009DF4 RLA    
+_strtok                   009E58 RLA    _ultoa                    009774 RLA    
+_update_geiger_pulses     008229 RLA    _uptime                   008133 RLA    
+_uptime_value             000201 RLA    _utoa                     00956A RLA    
+addysp                    009312 RLA    addysp1                   009311 RLA    
+aslax1                    00933B RLA    aulong                    009325 RLA    
+axulong                   0093DF RLA    bnega                     0093EA RLA    
+boolne                    00983E RLA    callax                    0093F4 RLA    
+copydata                  009407 RLA    decax1                    009434 RLA    
+decaxy                    00943B RLA    decsp1                    009444 RLA    
+decsp2                    00944D RLA    decsp3                    00945A RLA    
+decsp4                    009467 RLA    donelib                   0093FB RLA    
+getlop                    0097BF RLA    incax4                    0094CA RLA    
+incaxy                    0094CC RLA    incsp1                    0094D5 RLA    
+incsp2                    0094E3 RLA    incsp3                    0094F1 RLA    
+incsp4                    0094F6 RLA    incsp5                    0094FB RLA    
+incsp7                    009500 RLA    incsp8                    009505 RLA    
+initlib                   008059 RLA    jmpvec                    000238 RLA    
+ldax0sp                   00960A RLA    ldaxi                     0095FD RLA    
+ldaxidx                   0095FF RLA    ldaxysp                   00960C RLA    
+ldeaxi                    009613 RLA    ldeaxysp                  00962C RLA    
+mul8x16                   009C8A RLA    mul8x16a                  009C94 RLA    
+mulax10                   009CC2 RLA    negax                     009CDF RLA    
+negeax                    00969C RLA    popax                     0094DC RLA    
+popptr1                   009CED RLA    popsargsudiv16            009D6C RLA    
+ptr1                      000008 RLZ    ptr2                      00000A RLZ    
+ptr3                      00000C RLZ    ptr4                      00000E RLZ    
+push0                     009D11 RLA    push0ax                   0096DE RLA    
+pusha                     009CFF RLA    pusha0                    009D13 RLA    
+pushax                    009D15 RLA    pusheax                   0096E2 RLA    
+pushw                     009D2B RLA    pushw0sp                  009D3A RLA    
+pushwidx                  009D2D RLA    pushwysp                  009D3C RLA    
+regbank                   000014 RLZ    regswap2                  009D56 RLA    
+shrax2                    009D8C RLA    sp                        000000 RLZ    
+sreg                      000002 RLZ    staspidx                  009D97 RLA    
+stax0sp                   009DAD RLA    staxspidx                 009DB8 RLA    
+staxysp                   009DAF RLA    steaxspidx                009DD2 RLA    
+tmp1                      000010 RLZ    tmp2                      000011 RLZ    
+tmp3                      000012 RLZ    tmp4                      000013 RLZ    
+tosaddax                  0092FB RLA    tosaddeax                 0095A4 RLA    
+tosanda0                  00932C RLA    tosdivax                  009476 RLA    
+tosicmp                   00949E RLA    tosicmp0                  00949C RLA    
+toslcmp                   0095C2 RLA    tosmula0                  009C88 RLA    
+tosneeax                  009696 RLA    tosor0ax                  0096BA RLA    
+tosoreax                  0096BE RLA    tossuba0                  009F1A RLA    
+tossubeax                 0096FD RLA    tosudiv0ax                0097B0 RLA    
+tosudiva0                 009F60 RLA    tosudiveax                0097B4 RLA    
+tosulong                  009F2E RLA    tosumod0ax                009827 RLA    
+tosumoda0                 009FAF RLA    tosumodax                 009FB1 RLA    
+tosumul0ax                00963D RLA    tosumula0                 009C88 RLA    
+tosumulax                 009C43 RLA    tosumuleax                009641 RLA    
+udiv16                    009F71 RLA    udiv32                    0097E2 RLA    
+zerobss                   009FC0 RLA    
+
+
+Exports list by value:
+----------------------
+__CONSTRUCTOR_COUNT__     000000 REA    __DESTRUCTOR_COUNT__      000000 REA    
+sp                        000000 RLZ    __STARTUP__               000001 REA    
+sreg                      000002 RLZ    ptr1                      000008 RLZ    
+ptr2                      00000A RLZ    ptr3                      00000C RLZ    
+ptr4                      00000E RLZ    tmp1                      000010 RLZ    
+tmp2                      000011 RLZ    tmp3                      000012 RLZ    
+tmp4                      000013 RLZ    regbank                   000014 RLZ    
+__DATA_SIZE__             00003D REA    __DATA_RUN__              000200 RLA    
+__RAM_START__             000200 RLA    _milliseconds             000200 RLA    
+_uptime_value             000201 RLA    _mos6551_rxrb_head        000206 RLA    
+jmpvec                    000238 RLA    __BSS_RUN__               00023D RLA    
+_mos6551_rxrb             0002BF RLA    __BSS_SIZE__              00031A REA    
+__RAM_SIZE__              001E00 REA    __DATA_LOAD__             008000 RLA    
+_init                     00803D RLA    __CONSTRUCTOR_TABLE__     008059 RLA    
+__DESTRUCTOR_TABLE__      008059 RLA    initlib                   008059 RLA    
+_nmi_int                  008065 RLA    _irq_int                  008066 RLA    
+_mc6840_init              0080BC RLA    _millis                   008110 RLA    
+_uptime                   008133 RLA    _get_geiger_pulses        008166 RLA    
+_get_geiger_usv           0081A5 RLA    _update_geiger_pulses     008229 RLA    
+_mos6551_init             008275 RLA    _mos6551_puts             00829B RLA    
+_mos6551_handle_rx        0082CE RLA    _hd44780_init             008314 RLA    
+_hd44780_putc             008350 RLA    _hd44780_puts             00838B RLA    
+_hd44780_gotoxy           0083C6 RLA    _hd44780_clrscr           00840A RLA    
+_delay_16us               00842E RLA    _delay_ms                 008437 RLA    
+_m6242_init               008441 RLA    _m6242_read_time_str      008456 RLA    
+_m6242_read_date_str      0084CC RLA    _m6242_settime            008721 RLA    
+_m6242_setdate            008787 RLA    _key_init                 0087ED RLA    
+_key_update               008834 RLA    _port_write               0088C1 RLA    
+_port_set                 0088CF RLA    _port_clr                 0088E0 RLA    
+_port_tgl                 0088F3 RLA    _parse_cmd                008904 RLA    
+_cfInit                   008C83 RLA    _cfReadBlocks             008CAA RLA    
+_cfWriteBlocks            008D29 RLA    _cfGetSizeInfo            008DA8 RLA    
+_main                     009208 RLA    tosaddax                  0092FB RLA    
+addysp1                   009311 RLA    addysp                    009312 RLA    
+aulong                    009325 RLA    tosanda0                  00932C RLA    
+aslax1                    00933B RLA    _atoi                     009343 RLA    
+axulong                   0093DF RLA    bnega                     0093EA RLA    
+callax                    0093F4 RLA    donelib                   0093FB RLA    
+copydata                  009407 RLA    decax1                    009434 RLA    
+decaxy                    00943B RLA    decsp1                    009444 RLA    
+decsp2                    00944D RLA    decsp3                    00945A RLA    
+decsp4                    009467 RLA    tosdivax                  009476 RLA    
+_div                      009489 RLA    tosicmp0                  00949C RLA    
+tosicmp                   00949E RLA    incax4                    0094CA RLA    
+incaxy                    0094CC RLA    incsp1                    0094D5 RLA    
+popax                     0094DC RLA    incsp2                    0094E3 RLA    
+incsp3                    0094F1 RLA    incsp4                    0094F6 RLA    
+incsp5                    0094FB RLA    incsp7                    009500 RLA    
+incsp8                    009505 RLA    _itoa                     009528 RLA    
+_utoa                     00956A RLA    tosaddeax                 0095A4 RLA    
+toslcmp                   0095C2 RLA    ldaxi                     0095FD RLA    
+ldaxidx                   0095FF RLA    ldax0sp                   00960A RLA    
+ldaxysp                   00960C RLA    ldeaxi                    009613 RLA    
+ldeaxysp                  00962C RLA    tosumul0ax                00963D RLA    
+tosumuleax                009641 RLA    tosneeax                  009696 RLA    
+negeax                    00969C RLA    tosor0ax                  0096BA RLA    
+tosoreax                  0096BE RLA    push0ax                   0096DE RLA    
+pusheax                   0096E2 RLA    tossubeax                 0096FD RLA    
+_ultoa                    009774 RLA    tosudiv0ax                0097B0 RLA    
+tosudiveax                0097B4 RLA    getlop                    0097BF RLA    
+udiv32                    0097E2 RLA    tosumod0ax                009827 RLA    
+boolne                    00983E RLA    _mktime                   00986A RLA    
+tosumulax                 009C43 RLA    tosmula0                  009C88 RLA    
+tosumula0                 009C88 RLA    mul8x16                   009C8A RLA    
+mul8x16a                  009C94 RLA    mulax10                   009CC2 RLA    
+negax                     009CDF RLA    popptr1                   009CED RLA    
+pusha                     009CFF RLA    push0                     009D11 RLA    
+pusha0                    009D13 RLA    pushax                    009D15 RLA    
+pushw                     009D2B RLA    pushwidx                  009D2D RLA    
+pushw0sp                  009D3A RLA    pushwysp                  009D3C RLA    
+regswap2                  009D56 RLA    popsargsudiv16            009D6C RLA    
+shrax2                    009D8C RLA    staspidx                  009D97 RLA    
+stax0sp                   009DAD RLA    staxysp                   009DAF RLA    
+staxspidx                 009DB8 RLA    steaxspidx                009DD2 RLA    
+_strchr                   009DF4 RLA    _strcasecmp               009E19 RLA    
+_strtok                   009E58 RLA    tossuba0                  009F1A RLA    
+tosulong                  009F2E RLA    tosudiva0                 009F60 RLA    
+udiv16                    009F71 RLA    tosumoda0                 009FAF RLA    
+tosumodax                 009FB1 RLA    zerobss                   009FC0 RLA    
+__hextab                  00A0BB RLA    __longminstr              00A0CB RLA    
+__ctype                   00A0D7 RLA    
+
+
+Imports list:
+-------------
+__BSS_RUN__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__BSS_SIZE__ ([linker generated]):
+    zerobss.o                 common/zerobss.s(8)
+__CONSTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__CONSTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(18)
+__DATA_LOAD__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DATA_RUN__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DATA_SIZE__ ([linker generated]):
+    copydata.o                common/copydata.s(8)
+__DESTRUCTOR_COUNT__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__DESTRUCTOR_TABLE__ ([linker generated]):
+    condes.o                  runtime/condes.s(19)
+__RAM_SIZE__ ([linker generated]):
+    crt0.o                    crt0.s(11)
+__RAM_START__ ([linker generated]):
+    crt0.o                    crt0.s(11)
+__STARTUP__ (crt0.o):
+    main.o                    main.s(13)
+__ctype (ctype.o):
+    stricmp.o                 common/stricmp.s(10)
+    atoi.o                    common/atoi.s(9)
+__hextab (_hextab.o):
+    ltoa.o                    common/ltoa.s(10)
+    itoa.o                    common/itoa.s(10)
+__longminstr (_longminstr.o):
+    ltoa.o                    common/ltoa.s(10)
+_atoi (atoi.o):
+    parser.o                  parser.s(13)
+_cfGetSizeInfo (cf.o):
+    diskio.o                  diskio.s(21)
+_cfInit (cf.o):
+    diskio.o                  diskio.s(18)
+_cfReadBlocks (cf.o):
+    diskio.o                  diskio.s(19)
+_cfWriteBlocks (cf.o):
+    diskio.o                  diskio.s(20)
+_delay_16us (delay.o):
+    hd44780.o                 hd44780.s(20)
+_delay_ms (delay.o):
+    hd44780.o                 hd44780.s(21)
+_div (divt.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(13)
+_get_geiger_pulses (mc6840.o):
+    main.o                    main.s(27)
+_get_geiger_usv (mc6840.o):
+    main.o                    main.s(28)
+_hd44780_clrscr (hd44780.o):
+    main.o                    main.s(21)
+_hd44780_gotoxy (hd44780.o):
+    main.o                    main.s(20)
+_hd44780_init (hd44780.o):
+    main.o                    main.s(17)
+_hd44780_putc (hd44780.o):
+    main.o                    main.s(18)
+_hd44780_puts (hd44780.o):
+    main.o                    main.s(19)
+_init (crt0.o):
+    vectors.o                 vectors.s(7)
+    interrupt.o               interrupt.s(9)
+_irq_int (interrupt.o):
+    vectors.o                 vectors.s(8)
+_itoa (itoa.o):
+    main.o                    main.s(14)
+_key_init (io.o):
+    main.o                    main.s(32)
+_key_update (io.o):
+    main.o                    main.s(33)
+_m6242_init (m6242.o):
+    main.o                    main.s(29)
+_m6242_read_date_str (m6242.o):
+    main.o                    main.s(31)
+    parser.o                  parser.s(22)
+_m6242_read_time_str (m6242.o):
+    main.o                    main.s(30)
+    parser.o                  parser.s(21)
+_m6242_setdate (m6242.o):
+    parser.o                  parser.s(24)
+_m6242_settime (m6242.o):
+    parser.o                  parser.s(23)
+_main (main.o):
+    crt0.o                    crt0.s(8)
+_mc6840_init (mc6840.o):
+    main.o                    main.s(24)
+_millis (mc6840.o):
+    main.o                    main.s(25)
+    io.o                      io.s(19)
+_milliseconds (mc6840.o):
+    interrupt.o               interrupt.s(9)
+_mktime (mktime.o):
+    m6242.o                   m6242.s(13)
+_mos6551_handle_rx (mos6551.o):
+    main.o                    main.s(23)
+_mos6551_init (mos6551.o):
+    main.o                    main.s(22)
+_mos6551_puts (mos6551.o):
+    parser.o                  parser.s(20)
+_mos6551_rxrb (mos6551.o):
+    interrupt.o               interrupt.s(9)
+_mos6551_rxrb_head (mos6551.o):
+    interrupt.o               interrupt.s(9)
+_nmi_int (interrupt.o):
+    vectors.o                 vectors.s(8)
+_parse_cmd (parser.o):
+    mos6551.o                 mos6551.s(17)
+_port_clr (io.o):
+    main.o                    main.s(36)
+    mos6551.o                 mos6551.s(19)
+_port_set (io.o):
+    main.o                    main.s(35)
+    mos6551.o                 mos6551.s(18)
+_port_tgl (io.o):
+    main.o                    main.s(37)
+_port_write (io.o):
+    main.o                    main.s(34)
+_strcasecmp (stricmp.o):
+    parser.o                  parser.s(17)
+_strchr (strchr.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(13)
+    parser.o                  parser.s(15)
+_strtok (strtok.o):
+    parser.o                  parser.s(16)
+_ultoa (ltoa.o):
+    main.o                    main.s(16)
+    parser.o                  parser.s(14)
+_update_geiger_pulses (mc6840.o):
+    interrupt.o               interrupt.s(10)
+_uptime (mc6840.o):
+    main.o                    main.s(26)
+    parser.o                  parser.s(19)
+_uptime_value (mc6840.o):
+    interrupt.o               interrupt.s(9)
+_utoa (itoa.o):
+    main.o                    main.s(15)
+addysp (addysp.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    incsp8.o                  runtime/incsp8.s(8)
+    incsp7.o                  runtime/incsp7.s(8)
+    incsp5.o                  runtime/incsp5.s(8)
+    incsp4.o                  runtime/incsp4.s(8)
+    incsp3.o                  runtime/incsp3.s(8)
+addysp1 (addysp.o):
+    lmul.o                    runtime/lmul.s(9)
+    ladd.o                    runtime/ladd.s(8)
+    sub.o                     runtime/sub.s(8)
+    ludiv.o                   runtime/ludiv.s(9)
+    lsub.o                    runtime/lsub.s(11)
+    lor.o                     runtime/lor.s(9)
+    itoa.o                    common/itoa.s(9)
+    and.o                     runtime/and.s(8)
+aslax1 (aslax1.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+aulong (along.o):
+    cf.o                      cf.s(338)
+    mc6840.o                  mc6840.s(354)
+axulong (axlong.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    cf.o                      cf.s(338)
+    mc6840.o                  mc6840.s(354)
+    mc6840.o                  mc6840.s(354)
+    mc6840.o                  mc6840.s(354)
+bnega (bneg.o):
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    io.o                      io.s(223)
+boolne (makebool.o):
+    lne.o                     runtime/lne.s(8)
+callax (call.o):
+    io.o                      io.s(223)
+copydata (copydata.o):
+    crt0.o                    crt0.s(13)
+decax1 (decax1.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    m6242.o                   m6242.s(547)
+decaxy (decaxy.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+decsp1 (decsp1.o):
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+decsp2 (decsp2.o):
+    toslong.o                 runtime/toslong.s(8)
+decsp3 (decsp3.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+decsp4 (decsp4.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    lpush.o                   runtime/lpush.s(12)
+donelib (condes.o):
+    crt0.o                    crt0.s(13)
+getlop (ludiv.o):
+    lumod.o                   runtime/lumod.s(9)
+incax4 (incaxy.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+incaxy (incaxy.o):
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+incsp1 (incsp1.o):
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+    mos6551.o                 mos6551.s(161)
+incsp2 (incsp2.o):
+    staxspi.o                 runtime/staxspi.s(9)
+    staspidx.o                runtime/staspidx.s(8)
+    popptr1.o                 runtime/popptr1.s(8)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    io.o                      io.s(223)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+    hd44780.o                 hd44780.s(243)
+    mos6551.o                 mos6551.s(161)
+    mc6840.o                  mc6840.s(354)
+incsp3 (incsp3.o):
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+    hd44780.o                 hd44780.s(243)
+incsp4 (incsp4.o):
+    lcmp.o                    runtime/lcmp.s(9)
+    diskio.o                  diskio.s(194)
+    hd44780.o                 hd44780.s(243)
+incsp5 (incsp5.o):
+    io.o                      io.s(223)
+incsp7 (incsp7.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+    cf.o                      cf.s(338)
+incsp8 (incsp8.o):
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+initlib (condes.o):
+    crt0.o                    crt0.s(13)
+jmpvec (jmpvec.o):
+    parser.o                  parser.s(544)
+ldax0sp (ldaxsp.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+    hd44780.o                 hd44780.s(243)
+    mos6551.o                 mos6551.s(161)
+ldaxi (ldaxi.o):
+    mc6840.o                  mc6840.s(354)
+ldaxidx (ldaxi.o):
+    io.o                      io.s(223)
+ldaxysp (ldaxsp.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    hd44780.o                 hd44780.s(243)
+    mc6840.o                  mc6840.s(354)
+ldeaxi (ldeaxi.o):
+    cf.o                      cf.s(338)
+ldeaxysp (ldeaxysp.o):
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+mul8x16 (mul8.o):
+    mul.o                     runtime/mul.s(8)
+mul8x16a (mul8.o):
+    mul.o                     runtime/mul.s(8)
+mulax10 (mulax10.o):
+    m6242.o                   m6242.s(547)
+negax (negabs.o):
+    shelp.o                   runtime/shelp.s(11)
+    div.o                     runtime/div.s(11)
+    divt.o                    common/divt.s(17)
+negeax (lneg.o):
+    ltoa.o                    common/ltoa.s(9)
+    atoi.o                    common/atoi.s(9)
+popax (incsp2.o):
+    shelp.o                   runtime/shelp.s(11)
+    strchr.o                  common/strchr.s(9)
+    ltoa.o                    common/ltoa.s(9)
+popptr1 (popptr1.o):
+    umod.o                    runtime/umod.s(8)
+    udiv.o                    runtime/udiv.s(9)
+    stricmp.o                 common/stricmp.s(9)
+    steaxspi.o                runtime/steaxspi.s(9)
+    mul8.o                    runtime/mul8.s(9)
+    mul.o                     runtime/mul.s(9)
+    ltoa.o                    common/ltoa.s(9)
+popsargsudiv16 (shelp.o):
+    div.o                     runtime/div.s(11)
+ptr1 (zeropage.o):
+    shelp.o                   runtime/shelp.s(12)
+    div.o                     runtime/div.s(12)
+    lmul.o                    runtime/lmul.s(10)
+    lcmp.o                    runtime/lcmp.s(10)
+    divt.o                    common/divt.s(18)
+    copydata.o                common/copydata.s(9)
+    zerobss.o                 common/zerobss.s(9)
+    udiv.o                    runtime/udiv.s(10)
+    stricmp.o                 common/stricmp.s(11)
+    strchr.o                  common/strchr.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staspidx.o                runtime/staspidx.s(9)
+    pushw.o                   runtime/pushw.s(9)
+    popptr1.o                 runtime/popptr1.s(9)
+    mulax10.o                 runtime/mulax10.s(9)
+    mul8.o                    runtime/mul8.s(10)
+    mul.o                     runtime/mul.s(10)
+    mktime.o                  ../libwrk/supervision/mktime.s(11)
+    ludiv.o                   runtime/ludiv.s(10)
+    ltoa.o                    common/ltoa.s(11)
+    ldeaxi.o                  runtime/ldeaxi.s(8)
+    ldaxi.o                   runtime/ldaxi.s(8)
+    call.o                    runtime/call.s(8)
+    atoi.o                    common/atoi.s(10)
+    cf.o                      cf.s(11)
+    io.o                      io.s(11)
+    m6242.o                   m6242.s(11)
+    hd44780.o                 hd44780.s(11)
+    mos6551.o                 mos6551.s(11)
+    mc6840.o                  mc6840.s(11)
+ptr2 (zeropage.o):
+    copydata.o                common/copydata.s(9)
+    stricmp.o                 common/stricmp.s(11)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    ltoa.o                    common/ltoa.s(11)
+    itoa.o                    common/itoa.s(11)
+    atoi.o                    common/atoi.s(10)
+ptr3 (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    ltoa.o                    common/ltoa.s(11)
+    itoa.o                    common/itoa.s(11)
+ptr4 (zeropage.o):
+    shelp.o                   runtime/shelp.s(12)
+    lmul.o                    runtime/lmul.s(10)
+    umod.o                    runtime/umod.s(9)
+    udiv.o                    runtime/udiv.s(10)
+    mul8.o                    runtime/mul8.s(10)
+    mul.o                     runtime/mul.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+push0 (pushax.o):
+    cf.o                      cf.s(338)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+push0ax (lpush.o):
+    mc6840.o                  mc6840.s(354)
+pusha (pusha.o):
+    main.o                    main.s(544)
+    main.o                    main.s(544)
+    main.o                    main.s(544)
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+    hd44780.o                 hd44780.s(243)
+    mos6551.o                 mos6551.s(161)
+pusha0 (pushax.o):
+    parser.o                  parser.s(544)
+    io.o                      io.s(223)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+pushax (pushax.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+    pushw.o                   runtime/pushw.s(8)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    main.o                    main.s(544)
+    main.o                    main.s(544)
+    diskio.o                  diskio.s(194)
+    cf.o                      cf.s(338)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    io.o                      io.s(223)
+    io.o                      io.s(223)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+    hd44780.o                 hd44780.s(243)
+    mos6551.o                 mos6551.s(161)
+    mc6840.o                  mc6840.s(354)
+    mc6840.o                  mc6840.s(354)
+    mc6840.o                  mc6840.s(354)
+pusheax (lpush.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    main.o                    main.s(544)
+    main.o                    main.s(544)
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    cf.o                      cf.s(338)
+    parser.o                  parser.s(544)
+    mc6840.o                  mc6840.s(354)
+pushw (pushw.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+pushw0sp (pushwsp.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    parser.o                  parser.s(544)
+    io.o                      io.s(223)
+pushwidx (pushw.o):
+    parser.o                  parser.s(544)
+pushwysp (pushwsp.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+    diskio.o                  diskio.s(194)
+    diskio.o                  diskio.s(194)
+    cf.o                      cf.s(338)
+    parser.o                  parser.s(544)
+regbank (zeropage.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(10)
+    regswap2.o                runtime/regswap2.s(8)
+    mktime.o                  ../libwrk/supervision/mktime.s(10)
+regswap2 (regswap2.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+shrax2 (shrax2.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+sp (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+    lcmp.o                    runtime/lcmp.s(10)
+    ladd.o                    runtime/ladd.s(9)
+    decsp4.o                  runtime/decsp4.s(8)
+    decsp3.o                  runtime/decsp3.s(8)
+    decsp2.o                  runtime/decsp2.s(8)
+    addysp.o                  runtime/addysp.s(8)
+    add.o                     runtime/add.s(12)
+    toslong.o                 runtime/toslong.s(9)
+    sub.o                     runtime/sub.s(9)
+    strtok.o                  ../libwrk/supervision/strtok.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staxsp.o                  runtime/staxsp.s(8)
+    staspidx.o                runtime/staspidx.s(9)
+    regswap2.o                runtime/regswap2.s(8)
+    pushwsp.o                 runtime/pushwsp.s(8)
+    pushax.o                  runtime/pushax.s(8)
+    pusha.o                   runtime/pusha.s(8)
+    popptr1.o                 runtime/popptr1.s(9)
+    mktime.o                  ../libwrk/supervision/mktime.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    lsub.o                    runtime/lsub.s(12)
+    lpush.o                   runtime/lpush.s(13)
+    lor.o                     runtime/lor.s(10)
+    ldeaxysp.o                runtime/ldeaxysp.s(12)
+    ldaxsp.o                  runtime/ldaxsp.s(8)
+    itoa.o                    common/itoa.s(11)
+    incsp2.o                  runtime/incsp2.s(8)
+    incsp1.o                  runtime/incsp1.s(8)
+    icmp.o                    runtime/icmp.s(9)
+    decsp1.o                  runtime/decsp1.s(8)
+    crt0.o                    /opt/cc65/asminc/zeropage.inc(11)
+    and.o                     runtime/and.s(9)
+    diskio.o                  diskio.s(10)
+    cf.o                      cf.s(10)
+    parser.o                  parser.s(10)
+    io.o                      io.s(10)
+    m6242.o                   m6242.s(10)
+    hd44780.o                 hd44780.s(10)
+    mos6551.o                 mos6551.s(10)
+    mc6840.o                  mc6840.s(10)
+sreg (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+    lcmp.o                    runtime/lcmp.s(10)
+    ladd.o                    runtime/ladd.s(9)
+    divt.o                    common/divt.s(18)
+    umod.o                    runtime/umod.s(9)
+    udiv.o                    runtime/udiv.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    mktime.o                  ../libwrk/supervision/mktime.s(10)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+    ltoa.o                    common/ltoa.s(11)
+    lsub.o                    runtime/lsub.s(12)
+    lpush.o                   runtime/lpush.s(13)
+    lor.o                     runtime/lor.s(10)
+    lneg.o                    runtime/lneg.s(11)
+    ldeaxysp.o                runtime/ldeaxysp.s(12)
+    ldeaxi.o                  runtime/ldeaxi.s(8)
+    itoa.o                    common/itoa.s(11)
+    icmp.o                    runtime/icmp.s(9)
+    axlong.o                  runtime/axlong.s(9)
+    atoi.o                    common/atoi.s(10)
+    along.o                   runtime/along.s(9)
+    main.o                    main.s(10)
+    cf.o                      cf.s(10)
+    m6242.o                   m6242.s(10)
+    mc6840.o                  mc6840.s(10)
+staspidx (staspidx.o):
+    io.o                      io.s(223)
+stax0sp (staxsp.o):
+    strtok.o                  ../libwrk/supervision/strtok.s(125)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    diskio.o                  diskio.s(194)
+    hd44780.o                 hd44780.s(243)
+    mos6551.o                 mos6551.s(161)
+staxspidx (staxspi.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    mc6840.o                  mc6840.s(354)
+staxysp (staxsp.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+    cf.o                      cf.s(338)
+steaxspidx (steaxspi.o):
+    cf.o                      cf.s(338)
+tmp1 (zeropage.o):
+    shelp.o                   runtime/shelp.s(12)
+    div.o                     runtime/div.s(12)
+    ladd.o                    runtime/ladd.s(9)
+    divt.o                    common/divt.s(18)
+    decaxy.o                  runtime/decaxy.s(8)
+    copydata.o                common/copydata.s(9)
+    aslax1.o                  runtime/aslax1.s(8)
+    stricmp.o                 common/stricmp.s(11)
+    strchr.o                  common/strchr.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    staxspi.o                 runtime/staxspi.s(10)
+    staspidx.o                runtime/staspidx.s(9)
+    shrax2.o                  runtime/shrax2.s(8)
+    mul.o                     runtime/mul.s(10)
+    mktime.o                  ../libwrk/supervision/mktime.s(11)
+    ltoa.o                    common/ltoa.s(11)
+    lor.o                     runtime/lor.s(10)
+    itoa.o                    common/itoa.s(11)
+    incaxy.o                  runtime/incaxy.s(8)
+    atoi.o                    common/atoi.s(10)
+    parser.o                  parser.s(11)
+tmp2 (zeropage.o):
+    shelp.o                   runtime/shelp.s(12)
+    div.o                     runtime/div.s(12)
+    lmul.o                    runtime/lmul.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+tmp3 (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+    steaxspi.o                runtime/steaxspi.s(10)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+tmp4 (zeropage.o):
+    lmul.o                    runtime/lmul.s(10)
+    lumod.o                   runtime/lumod.s(10)
+    ludiv.o                   runtime/ludiv.s(10)
+tosaddax (add.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+tosaddeax (ladd.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+tosanda0 (and.o):
+    io.o                      io.s(223)
+tosdivax (div.o):
+    divt.o                    common/divt.s(17)
+tosicmp (icmp.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    parser.o                  parser.s(544)
+tosicmp0 (icmp.o):
+    io.o                      io.s(223)
+toslcmp (lcmp.o):
+    lne.o                     runtime/lne.s(8)
+tosmula0 (mul8.o):
+    parser.o                  parser.s(544)
+tosneeax (lne.o):
+    main.o                    main.s(544)
+tosor0ax (lor.o):
+    mc6840.o                  mc6840.s(354)
+tosoreax (lor.o):
+    cf.o                      cf.s(338)
+tossuba0 (sub.o):
+    io.o                      io.s(223)
+tossubeax (lsub.o):
+    mc6840.o                  mc6840.s(354)
+tosudiv0ax (ludiv.o):
+    main.o                    main.s(544)
+tosudiva0 (udiv.o):
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+tosudiveax (ludiv.o):
+    mc6840.o                  mc6840.s(354)
+tosulong (toslong.o):
+    mc6840.o                  mc6840.s(354)
+tosumod0ax (lumod.o):
+    main.o                    main.s(544)
+tosumoda0 (umod.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    m6242.o                   m6242.s(547)
+    m6242.o                   m6242.s(547)
+tosumodax (umod.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+tosumul0ax (lmul.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+tosumula0 (mul8.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+    mc6840.o                  mc6840.s(354)
+tosumulax (mul.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+tosumuleax (lmul.o):
+    mktime.o                  ../libwrk/supervision/mktime.s(592)
+udiv16 (udiv.o):
+    shelp.o                   runtime/shelp.s(11)
+    umod.o                    runtime/umod.s(8)
+udiv32 (ludiv.o):
+    lumod.o                   runtime/lumod.s(9)
+zerobss (zerobss.o):
+    crt0.o                    crt0.s(13)
+
