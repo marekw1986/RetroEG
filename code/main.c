@@ -74,10 +74,10 @@ int main (void) {
 	port_write(0x90);
 	
 	//Initialize button structures
-	key0.last_state = 0; key0.timer = 0;
-	key1.last_state = 0; key1.timer = 0;
-	key2.last_state = 0; key2.timer = 0;
-	key3.last_state = 0; key3.timer = 0;
+	key_init(&key0, BTN0, key0_func);
+	key_init(&key1, BTN1, key1_func);
+	key_init(&key2, BTN2, key2_func);
+	key_init(&key3, BTN3, key3_func);
 	
 	CONF_8255 = 0x82;
     mc6840_init();
@@ -105,34 +105,10 @@ int main (void) {
 			backlight_timer = 0;
 		}	
 
-		//Check and debounce BTN0
-		key_press = !(BTNS & BTN0);	
-		if (key_press != (key0.last_state)) {
-			if (key_press) { key0.timer = millis(); }
-			else { if ( (uint8_t)(millis()-(key0.timer)) > SHORT_WAIT ) key0_func(); }
-			key0.last_state = key_press;
-		}
-		//Check and debounce BTN1
-		key_press = !(BTNS & BTN1);	
-		if (key_press != (key1.last_state)) {
-			if (key_press) { key1.timer = millis(); }
-			else { if ( (uint8_t)(millis()-(key1.timer)) > SHORT_WAIT ) key1_func(); }
-			key1.last_state = key_press;
-		}
-		//Check and debounce BTN2
-		key_press = !(BTNS & BTN2);	
-		if (key_press != (key2.last_state)) {
-			if (key_press) { key2.timer = millis(); }
-			else { if ( (uint8_t)(millis()-(key2.timer)) > SHORT_WAIT ) key2_func(); }
-			key2.last_state = key_press;
-		}
-		//Check and debounce BTN3
-		key_press = !(BTNS & BTN3);	
-		if (key_press != (key3.last_state)) {
-			if (key_press) { key3.timer = millis(); }
-			else { if ( (uint8_t)(millis()-(key3.timer)) > SHORT_WAIT ) key3_func(); }
-			key3.last_state = key_press;
-		}
+		key_update(&key0);
+		key_update(&key1);
+		key_update(&key2);
+		key_update(&key3);
 							
 		mos6551_handle_rx();
 	}
