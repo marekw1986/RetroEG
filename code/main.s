@@ -35,16 +35,6 @@
 	.import		_port_set
 	.import		_port_clr
 	.import		_port_tgl
-	.export		_key0
-	.export		_key1
-	.export		_key2
-	.export		_key3
-	.export		_prepare_disp
-	.export		_update_disp
-	.export		_key0_func
-	.export		_key1_func
-	.export		_key2_func
-	.export		_key3_func
 	.export		_main
 
 .segment	"DATA"
@@ -82,6 +72,14 @@ L00D4:
 
 .segment	"BSS"
 
+_key0:
+	.res	5,$00
+_key1:
+	.res	5,$00
+_key2:
+	.res	5,$00
+_key3:
+	.res	5,$00
 _buffer:
 	.res	64,$00
 _integer:
@@ -92,16 +90,6 @@ _cpmin:
 	.res	2,$00
 _siv:
 	.res	4,$00
-_key_press:
-	.res	1,$00
-_key0:
-	.res	5,$00
-_key1:
-	.res	5,$00
-_key2:
-	.res	5,$00
-_key3:
-	.res	5,$00
 
 ; ---------------------------------------------------------------
 ; void __near__ prepare_disp (void)

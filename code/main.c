@@ -45,6 +45,8 @@
 typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
 static state_t state = SHOW_RAD;
 
+static key_t key0, key1, key2, key3;	
+
 static char buffer[64];
 static uint32_t last_uptime = 0;
 static uint8_t  last_millis = 0;
@@ -53,21 +55,20 @@ static int16_t integer;
 static uint16_t fraction, cpmin;
 static uint32_t siv;
 
-static uint8_t key_press;
-key_t key0, key1, key2, key3;	
+
 
 char* __fastcall__ itoa (int val, char* buf, int radix);
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
 size_t __fastcall__ strlen (const char* s);
 
-void prepare_disp (void);
-void update_disp (void);
+static void prepare_disp (void);
+static void update_disp (void);
 
-void key0_func (void);
-void key1_func (void);
-void key2_func (void);
-void key3_func (void);
+static void key0_func (void);
+static void key1_func (void);
+static void key2_func (void);
+static void key3_func (void);
 
 int main (void) {
 	
@@ -117,7 +118,7 @@ int main (void) {
 }
 
 
-void prepare_disp (void) {
+static void prepare_disp (void) {
 	hd44780_clrscr();
 	switch (state) {
 		case SHOW_RAD:
@@ -138,7 +139,7 @@ void prepare_disp (void) {
 }
 
 
-void update_disp (void) {
+static void update_disp (void) {
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = get_geiger_pulses();
@@ -195,7 +196,7 @@ void update_disp (void) {
 }
 
 
-void key0_func (void) {
+static void key0_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 	state = SHOW_RAD;
@@ -204,7 +205,7 @@ void key0_func (void) {
 }
 
 
-void key1_func (void) {
+static void key1_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 	state = SHOW_TIME;
@@ -213,7 +214,7 @@ void key1_func (void) {
 }
 
 
-void key2_func (void) {
+static void key2_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 	state = SHOW_STATS;
@@ -222,7 +223,7 @@ void key2_func (void) {
 }
 
 
-void key3_func (void) {
+static void key3_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
 }

@@ -37,7 +37,7 @@ diskio.o:
 main.o:
     CODE              Offs=000F3E  Size=000356  Align=00001  Fill=0000
     RODATA            Offs=00009A  Size=00003E  Align=00001  Fill=0000
-    BSS               Offs=0002BB  Size=00005F  Align=00001  Fill=0000
+    BSS               Offs=0002BB  Size=00005E  Align=00001  Fill=0000
     DATA              Offs=00000B  Size=000008  Align=00001  Fill=0000
 ./lib/ethergeiger.lib(_hextab.o):
     RODATA            Offs=0000D8  Size=000010  Align=00001  Fill=0000
@@ -204,7 +204,7 @@ Name                   Start     End    Size  Align
 ----------------------------------------------------
 ZEROPAGE              000000  000019  00001A  00001
 DATA                  000200  00023C  00003D  00001
-BSS                   00023D  000556  00031A  00001
+BSS                   00023D  000555  000319  00001
 STARTUP               00803D  008058  00001C  00001
 ONCE                  008059  008064  00000C  00001
 CODE                  008065  009FE2  001F7E  00001
@@ -214,7 +214,7 @@ VECTORS               00FFFA  00FFFF  000006  00001
 
 Exports list by name:
 ---------------------
-__BSS_RUN__               00023D RLA    __BSS_SIZE__              00031A REA    
+__BSS_RUN__               00023D RLA    __BSS_SIZE__              000319 REA    
 __CONSTRUCTOR_COUNT__     000000 REA    __CONSTRUCTOR_TABLE__     008059 RLA    
 __DATA_LOAD__             008000 RLA    __DATA_RUN__              000200 RLA    
 __DATA_SIZE__             00003D REA    __DESTRUCTOR_COUNT__      000000 REA    
@@ -310,7 +310,7 @@ __DATA_SIZE__             00003D REA    __DATA_RUN__              000200 RLA
 __RAM_START__             000200 RLA    _milliseconds             000200 RLA    
 _uptime_value             000201 RLA    _mos6551_rxrb_head        000206 RLA    
 jmpvec                    000238 RLA    __BSS_RUN__               00023D RLA    
-_mos6551_rxrb             0002BF RLA    __BSS_SIZE__              00031A REA    
+_mos6551_rxrb             0002BF RLA    __BSS_SIZE__              000319 REA    
 __RAM_SIZE__              001E00 REA    __DATA_LOAD__             008000 RLA    
 _init                     00803D RLA    __CONSTRUCTOR_TABLE__     008059 RLA    
 __DESTRUCTOR_TABLE__      008059 RLA    initlib                   008059 RLA    
@@ -755,9 +755,9 @@ push0 (pushax.o):
 push0ax (lpush.o):
     mc6840.o                  mc6840.s(354)
 pusha (pusha.o):
-    main.o                    main.s(544)
-    main.o                    main.s(544)
-    main.o                    main.s(544)
+    main.o                    main.s(532)
+    main.o                    main.s(532)
+    main.o                    main.s(532)
     diskio.o                  diskio.s(194)
     diskio.o                  diskio.s(194)
     diskio.o                  diskio.s(194)
@@ -788,8 +788,8 @@ pushax (pushax.o):
     pushw.o                   runtime/pushw.s(8)
     mktime.o                  ../libwrk/supervision/mktime.s(592)
     mktime.o                  ../libwrk/supervision/mktime.s(592)
-    main.o                    main.s(544)
-    main.o                    main.s(544)
+    main.o                    main.s(532)
+    main.o                    main.s(532)
     diskio.o                  diskio.s(194)
     cf.o                      cf.s(338)
     parser.o                  parser.s(544)
@@ -809,8 +809,8 @@ pushax (pushax.o):
     mc6840.o                  mc6840.s(354)
 pusheax (lpush.o):
     mktime.o                  ../libwrk/supervision/mktime.s(592)
-    main.o                    main.s(544)
-    main.o                    main.s(544)
+    main.o                    main.s(532)
+    main.o                    main.s(532)
     diskio.o                  diskio.s(194)
     diskio.o                  diskio.s(194)
     cf.o                      cf.s(338)
@@ -982,7 +982,7 @@ toslcmp (lcmp.o):
 tosmula0 (mul8.o):
     parser.o                  parser.s(544)
 tosneeax (lne.o):
-    main.o                    main.s(544)
+    main.o                    main.s(532)
 tosor0ax (lor.o):
     mc6840.o                  mc6840.s(354)
 tosoreax (lor.o):
@@ -992,7 +992,7 @@ tossuba0 (sub.o):
 tossubeax (lsub.o):
     mc6840.o                  mc6840.s(354)
 tosudiv0ax (ludiv.o):
-    main.o                    main.s(544)
+    main.o                    main.s(532)
 tosudiva0 (udiv.o):
     m6242.o                   m6242.s(547)
     m6242.o                   m6242.s(547)
@@ -1001,7 +1001,7 @@ tosudiveax (ludiv.o):
 tosulong (toslong.o):
     mc6840.o                  mc6840.s(354)
 tosumod0ax (lumod.o):
-    main.o                    main.s(544)
+    main.o                    main.s(532)
 tosumoda0 (umod.o):
     mktime.o                  ../libwrk/supervision/mktime.s(592)
     mktime.o                  ../libwrk/supervision/mktime.s(592)
