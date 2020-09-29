@@ -13,16 +13,16 @@ void __fastcall__ key_init (key_t *key, uint8_t pin, void (*push_proc)(void)) {
 
 
 void __fastcall__ key_update (key_t *key) {
-	static uint8_t key_press;
+	uint8_t key_press = !(BTNS & key->pin);
 	
-    key_press = !(BTNS & key->pin);
     if (key_press != (key->last_state)) {
 		if (key_press) {
 			key->timer = millis();
 		}
 		else {
-			if ( (uint8_t)(millis()-(key->timer)) > SHORT_WAIT ) {
+			if ( key->timer && (uint8_t)(millis()-(key->timer)) > SHORT_WAIT ) {
 				if (key->push_proc) (key->push_proc)();
+				key->timer = 0;
 			}
 		}
 		key->last_state = key_press;

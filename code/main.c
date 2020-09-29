@@ -47,17 +47,10 @@ static state_t state = SHOW_RAD;
 
 static key_t key0, key1, key2, key3;	
 
-static char buffer[64];
 static uint32_t last_uptime = 0;
 static uint8_t  last_millis = 0;
 static uint8_t backlight_timer = 0;
-static int16_t integer;
-static uint16_t fraction, cpmin;
-static uint32_t siv;
 
-
-
-char* __fastcall__ itoa (int val, char* buf, int radix);
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
 size_t __fastcall__ strlen (const char* s);
@@ -140,6 +133,10 @@ static void prepare_disp (void) {
 
 
 static void update_disp (void) {
+	uint32_t siv;
+	uint16_t integer, fraction, cpmin;
+	char buffer[32];
+	
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = get_geiger_pulses();
@@ -149,7 +146,7 @@ static void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
-		itoa(integer, buffer, 10);
+		utoa(integer, buffer, 10);
 		hd44780_puts(buffer);
 		hd44780_putc('.');
 		if (fraction < 1000) {

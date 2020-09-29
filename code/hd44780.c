@@ -1,8 +1,8 @@
 #include "hd44780.h"
 #include "delay.h"
 
-#define HD_CMD		(*(uint8_t*)0x6380)
-#define HD_DATA		(*(uint8_t*)0x6381)
+#define HD_CMD		(*(volatile uint8_t*)0x6380)
+#define HD_DATA		(*(volatile uint8_t*)0x6381)
 
 void __fastcall__ hd44780_init (void) {
 	//delay 100ms

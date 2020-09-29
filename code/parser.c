@@ -31,12 +31,10 @@ const TCMD komendy[CMD_CNT] = {
 };
 
 
-int8_t supbuf[15];
-uint8_t i;
-char* tok;
-
-
 void parse_cmd(char * pBuf) {
+	char* tok;
+	uint8_t i;
+	
 	if ( strchr(pBuf, ' ') ) {			// Polecenia z paarametrami
 		tok = strtok(pBuf, " \0");
 		for(i=0;i<CMD_CNT;i++) {
@@ -63,6 +61,9 @@ void parse_cmd(char * pBuf) {
 
 
 static uint8_t settime_service(char * params) {
+	char* tok;
+	int8_t supbuf[4];
+	
 	if (!params) return 0;
 	
 	tok = strtok(params, ":");
@@ -93,6 +94,9 @@ static uint8_t gettime_service(char * params) {
 
 
 static uint8_t setdate_service(char * params) {
+	char* tok;
+	int8_t supbuf[4];
+	
 	if (!params) return 0;	
 	
 	tok = strtok(params, "-");
@@ -123,8 +127,10 @@ static uint8_t getdate_service(char * params) {
 
 
 static uint8_t uptime_service(char * params) {
-	ultoa(uptime(), (char*)supbuf, 10);
-	mos6551_puts((char*)supbuf);
+	char supbuf[15];
+	
+	ultoa(uptime(), supbuf, 10);
+	mos6551_puts(supbuf);
 	mos6551_puts("\r\n");
 	return 1;	
 }
