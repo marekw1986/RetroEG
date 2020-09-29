@@ -26,10 +26,14 @@
 #define SHORT_WAIT 3    // 3 * 20ms = 60 ms.
 
 typedef struct key {
+    uint8_t pin;
     uint8_t last_state;
 	uint8_t timer;
+	void (*push_proc)(void);
 } key_t;
 
+void __fastcall__ key_init (key_t *key, uint8_t pin, void (*push_proc)(void));
+void __fastcall__ key_update (key_t *key);
 void __fastcall__ port_write (uint8_t data);
 void __fastcall__ port_set (uint8_t data);
 void __fastcall__ port_clr (uint8_t data);
