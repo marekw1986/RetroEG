@@ -140,7 +140,7 @@ static void update_disp (void) {
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = get_geiger_pulses();
-		siv = get_geiger_usv();
+		siv = get_geiger_usv(cpmin);
 		integer = siv/10000;
 		fraction = siv%10000;
 		hd44780_gotoxy(1, 0);

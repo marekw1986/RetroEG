@@ -10,10 +10,10 @@
 #define ACIA_CTL (*(volatile uint8_t*)0x6503)  //ACIA control port
 
 volatile char mos6551_RxChar;
-volatile char mos6551_rxrb[256];		//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG!
+volatile char mos6551_rxrb[256];				//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG!
 volatile uint8_t mos6551_rxrb_head = 0;
 volatile uint8_t mos6551_rxrb_tail = 0;
-char mos6551_line[256];					//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG! Oftherwise uncomment and adjust line in mos6551_handle_rx
+char mos6551_line[256];		//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG! Oftherwise uncomment and adjust line in mos6551_handle_rx
 uint8_t mos6551_line_ind = 0;
 
 void __fastcall__ mos6551_init (void) {
@@ -58,7 +58,7 @@ void __fastcall__ mos6551_handle_rx (void) {
 			default:
 			mos6551_line[mos6551_line_ind] = mos6551_RxChar;
 			mos6551_line_ind++;
-			//if (mos6551_line_ind > 255) mos6551_line_ind = 0;		//Not needed if buffer size is 256
+			//if (mos6551_line_ind >= MOS6551_LINE_BUF_LEN) mos6551_line_ind = 0;		//Not needed if buffer size is 256
 			break;
 		}	
 	}

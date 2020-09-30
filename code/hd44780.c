@@ -4,6 +4,8 @@
 #define HD_CMD		(*(volatile uint8_t*)0x6380)
 #define HD_DATA		(*(volatile uint8_t*)0x6381)
 
+#define hd44780_cmd(cmd)	while (HD_CMD & 0x80); HD_CMD = cmd
+
 void __fastcall__ hd44780_init (void) {
 	//delay 100ms
 	delay_ms(100);
@@ -29,23 +31,25 @@ void __fastcall__ hd44780_putc (char c) {
 void __fastcall__ hd44780_write (uint8_t* buf, uint8_t len) {
 	uint8_t ind;
 	for (ind=0; ind<len; ind++) {
-		hd44780_putc(buf[ind]);
+		while (HD_CMD & 0x80);
+		HD_DATA = buf[ind];		
 	}
 }
 
 void __fastcall__ hd44780_puts (const char *str) {
 	while (*str != '\0') {
-		hd44780_putc(*str);
+		while (HD_CMD & 0x80);
+		HD_DATA = *str;
 		str++;
 	}
 }
 
-
+/*
 void __fastcall__ hd44780_cmd (uint8_t cmd) {
 	while (HD_CMD & 0x80);
 	HD_CMD = cmd;
 }
-
+*/
 
 void __fastcall__ hd44780_gotoxy (uint8_t x, uint8_t y) {
 	uint8_t address = 0;

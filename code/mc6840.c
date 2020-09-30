@@ -68,8 +68,8 @@ uint16_t get_geiger_pulses (void) {
 }
 
 
-uint32_t get_geiger_usv (void) {
-	return (PRESCALER * get_geiger_pulses());
+uint32_t get_geiger_usv (uint16_t cpm) {
+	return (PRESCALER * cpm);
 }
 
 

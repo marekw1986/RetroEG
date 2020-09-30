@@ -23,7 +23,7 @@
 #define RS485_PIN	  0x20
 #define BACKLIGHT_PIN 0x10
 
-#define SHORT_WAIT 5    // 5 * 20ms = 100 ms.
+#define SHORT_WAIT 4    // 4 * 20ms = 80 ms.
 
 typedef struct key {
     uint8_t pin;
