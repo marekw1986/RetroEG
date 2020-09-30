@@ -43,12 +43,15 @@
 #define TMCR3_T3_CLK_NO_PRESCALER		0x00
 #define TMCR3_T3_CLK_DIV8_PRESCALER		0x01
 
+#define STS20_PRESCALER 57		//For STS-5/SBM-20/BOI-33 sensor tube 0.0057 * 10000 to avoid float
+#define GEIGER_USV(cpm)		STS20_PRESCALER * cpm;
+
 
 void mc6840_init (void);
 uint8_t millis(void);
 uint32_t uptime(void);
 uint16_t get_geiger_pulses (void);
-uint32_t get_geiger_usv (uint16_t cpm);
+//uint32_t get_geiger_usv (uint16_t cpm);
 void set_sound_frequency (uint16_t freq);
 
 #endif //_MC6840_H_

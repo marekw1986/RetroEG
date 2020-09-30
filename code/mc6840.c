@@ -2,8 +2,6 @@
 #include "mc6840.h"
 #include "ff.h"
 
-#define PRESCALER 57		//For STS-5/SBM-20/BOI-33 sensor tube 0.0057 * 10000 to avoid float
-
 volatile uint8_t milliseconds = 0;
 volatile uint32_t uptime_value = 0;
 volatile uint8_t  geiger_ind = 0;
@@ -63,15 +61,17 @@ uint16_t get_geiger_pulses (void) {
 	uint8_t i;
 	uint16_t cpm = 0;
 	
+	SEI();
 	for (i=0; i<60; i++) cpm += geiger_pulses[i];
+	CLI();
     return cpm;
 }
 
-
+/*
 uint32_t get_geiger_usv (uint16_t cpm) {
-	return (PRESCALER * cpm);
+	return (STS20_PRESCALER * cpm);
 }
-
+*/
 
 
 void set_sound_frequency (uint16_t freq) {
