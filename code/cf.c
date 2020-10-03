@@ -18,7 +18,7 @@
 #define MASK_BUSY 			0x80
 #define MASK_DRQ			0x08
 
-void cfWait(void);
+#define cfWait()	while(CFREG7 & MASK_BUSY) {}
 
 uint8_t cfInit(void) {
 	CFREG7 = CMD_RST;
@@ -28,7 +28,7 @@ uint8_t cfInit(void) {
 	CFREG7 = 0xEF;				// SET FEATURE COMMAND
 	cfWait();
 	// check for error now and return
-	if (CFREG7 && MASK_ERROR) return 1;
+	if (CFREG7 & MASK_ERROR) return 1;
 	return 0;
 }
 
@@ -103,6 +103,3 @@ uint8_t cfGetSizeInfo(uint32_t *availableBlocks, uint16_t *sizeOfBlock) {
 	return 1;
 }
 
-void cfWait(void) {
-	while(CFREG7 && MASK_BUSY) {}
-}

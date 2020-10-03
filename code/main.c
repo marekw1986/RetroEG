@@ -78,6 +78,7 @@ int main (void) {
     m6242_init();
     mos6551_init();
 	hd44780_init();
+	cfInit();
 
 	prepare_disp();
 	
@@ -186,7 +187,14 @@ static void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("U: ");
 		ultoa(uptime(), buffer, 10);
-		hd44780_puts(buffer);					
+		hd44780_puts(buffer);
+		hd44780_gotoxy(2, 0);
+		hd44780_puts("                    ");
+		hd44780_gotoxy(2, 0);
+		hd44780_puts("CS: ");
+		cfGetSizeInfo(&siv, &integer);
+		utoa(siv, buffer, 10);
+		hd44780_puts(buffer);									
 		break;
 		
 	}
