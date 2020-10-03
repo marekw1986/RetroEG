@@ -6,7 +6,6 @@ volatile uint8_t milliseconds = 0;
 volatile uint32_t uptime_value = 0;
 volatile uint8_t  geiger_ind = 0;
 volatile uint16_t geiger_pulses[60];
-volatile uint16_t tmp16;
 
 
 void mc6840_init (void) {
@@ -43,19 +42,6 @@ uint32_t uptime (void) {
 	return tmp;
 }
 
-void update_geiger_pulses (void) {
-	SEI();
-	asm("lda $6482");
-	asm("sta _tmp16+1");
-	asm("lda $6483");
-	asm("sta _tmp16");
-	MC6840_TIMER1 = 0xFFFF;
-	CLI();
-    //cpm = 0xFFFF - tmp;
-    geiger_pulses[geiger_ind] = 0xFFFF - tmp16;
-    geiger_ind++;
-    if (geiger_ind > 59) geiger_ind = 0;
-}
 
 uint16_t get_geiger_pulses (void) {
 	uint8_t i;
@@ -66,12 +52,6 @@ uint16_t get_geiger_pulses (void) {
 	CLI();
     return cpm;
 }
-
-/*
-uint32_t get_geiger_usv (uint16_t cpm) {
-	return (STS20_PRESCALER * cpm);
-}
-*/
 
 
 void set_sound_frequency (uint16_t freq) {

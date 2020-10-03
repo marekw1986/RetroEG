@@ -7,7 +7,7 @@
 ; Checks for a BRK instruction and returns from all valid interrupts.
 
 .import   _init, _mos6551_rxrb, _mos6551_rxrb_head, _milliseconds, _uptime_value
-.import   _update_geiger_pulses, _geiger_pulses, _tmp16, _geiger_ind
+.import   _geiger_pulses, _geiger_ind
 .export   _irq_int, _nmi_int
 
 MC6840_STA	  = $6481
@@ -57,32 +57,31 @@ irq_chk_t3:
            LDA MC6840_TIMER3+1
            INC _milliseconds      ; Increment milliseconds variable
 irq_chk_rtc:
-           LDA M6242_STA	      ; Load RTC status register
-           AND #04                ; Check if IRQ flag is set
-           BEQ irq_ret            ; If not, this is not RTC interrupt, co continue
-           LDA #$00               ; Otherwise clear flag
-           STA M6242_STA		  ; We can do it here. We are still a second ahead next RTC int
-           
-           LDA MC6840_TIMER1	  ; Load value from TIMER1
-		   STA _tmp16+1			  ; Then save it to tmp16
+           LDA M6242_STA	       ; Load RTC status register
+           AND #04                 ; Check if IRQ flag is set
+           BEQ irq_ret             ; If not, this is not RTC interrupt, co continue
+           LDA #$00                ; Otherwise clear flag
+           STA M6242_STA		   ; We can do it here. We are still a second ahead next RTC int
+           LDX _geiger_ind		   ; Load the value of index to the X
+           LDA MC6840_TIMER1	   ; Load value from TIMER1
+		   STA _geiger_pulses+1, X ; Then save it to tmp16
 		   LDA MC6840_TIMER1+1
-		   STA _tmp16
-		   LDA #$FF				  ; Write 0xFFFF to the TIMER1
+		   STA _geiger_pulses, X
+		   LDA #$FF				    ; Write 0xFFFF to the TIMER1
 		   STA MC6840_TIMER1
 		   STA MC6840_TIMER1+1
-		   LDX _geiger_ind		  ; Load the value of index to the X
-           SEC					  ; Set carry out for borrow puropose
+           SEC					   ; Set carry out for borrow puropose
 		   ; We need to subtract tmp from 0xFFFF to get real anount of pulses, A is still loaded with 0xFF
-           SBC _tmp16			  ; We subtract LSB first
-           STA _geiger_pulses, X  ; Then we store the result, LSB first using X value as an index
+           SBC _geiger_pulses, X   ; We subtract LSB first
+           STA _geiger_pulses, X   ; Then we store the result, LSB first using X value as an index
            LDA #$FF
-           SBC _tmp16+1
+           SBC _geiger_pulses+1, X
            STA _geiger_pulses+1, X
-           INX					  ; Increment X
-           INX					  ; Increment X
-           CMP #$3C*2			  ; Check if A<=60*2
-           BCC irq_chk_rtc_svind  ; If not, just save current, incremented value from X
-           LDX #$00				  ; If yes, zero it out
+           INX					   ; Increment X
+           INX					   ; Increment X
+           CMP #$3C*2			   ; Check if A<=60*2
+           BCC irq_chk_rtc_svind   ; If not, just save current, incremented value from X
+           LDX #$00				   ; If yes, zero it out
 irq_chk_rtc_svind:
            STX _geiger_ind
 irq_chk_rtc_inc_uptime:           
