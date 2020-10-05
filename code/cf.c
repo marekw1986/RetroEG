@@ -28,8 +28,8 @@ uint8_t cfInit(void) {
 	CFREG7 = 0xEF;				// SET FEATURE COMMAND
 	cfWait();
 	// check for error now and return
-	if (CFREG7 & MASK_ERROR) return 1;
-	return 0;
+	if (CFREG7 & MASK_ERROR) return 0;
+	return 1;
 }
 
 uint8_t cfReadBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToRead) {
@@ -53,8 +53,8 @@ uint8_t cfReadBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToRead) {
 		buffer++;
 		cfWait();
 	}
-	if (!CFREG7 & MASK_ERROR) return 1;
-	return 0;
+	if (CFREG7 & MASK_ERROR) return 0;
+	return 1;
 }
 
 uint8_t cfWriteBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToWrite) {
@@ -78,8 +78,8 @@ uint8_t cfWriteBlocks(uint8_t *buffer, uint32_t lba, uint8_t blocksToWrite) {
 		buffer++;
 		cfWait();
 	}
-	if (!CFREG7 & MASK_ERROR) return 1;
-	return 0;
+	if (CFREG7 & MASK_ERROR) return 0;
+	return 1;
 }
 
 uint8_t cfGetSizeInfo(uint32_t *availableBlocks, uint16_t *sizeOfBlock) {
@@ -100,6 +100,6 @@ uint8_t cfGetSizeInfo(uint32_t *availableBlocks, uint16_t *sizeOfBlock) {
 		cfWait();
 	}
 	*sizeOfBlock = 512;
-	return 0;
+	return 1;
 }
 
