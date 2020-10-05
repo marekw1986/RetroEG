@@ -1,6 +1,5 @@
 #include <6502.h>
 #include "mc6840.h"
-#include "ff.h"
 
 volatile uint8_t milliseconds = 0;
 volatile uint32_t uptime_value = 0;
@@ -21,10 +20,6 @@ void mc6840_init (void) {
     for (i=0; i<60; i++) geiger_pulses[i] = 0x00;
 }
 
-DWORD get_fattime (void)
-{
-	return(0);
-}
 
 uint8_t millis(void) {
 	uint8_t tmp;

@@ -1,6 +1,7 @@
 #include "m6242.h"
 #include "delay.h"
 #include "io.h"
+#include "ff.h"
 
 #define M6242_1_SEC_REG   (*(volatile uint8_t*)0x6400)
 #define M6242_10_SEC_REG  (*(volatile uint8_t*)0x6401)
@@ -168,4 +169,10 @@ void __fastcall__ m6242_setdate (uint8_t d, uint8_t m, uint8_t y) {
 	M6242_1_YEAR_REG = (y % 10);
 	M6242_10_YEAR_REG = (y / 10);		
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;					//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
+}
+
+
+DWORD get_fattime (void)
+{
+	return(0);
 }
