@@ -41,6 +41,11 @@
 #include "parser.h"
 #include "io.h"
 #include "cf.h"
+#include "ff.h"
+
+FATFS cffs;
+FRESULT res;
+FIL file;
 
 typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
 static state_t state = SHOW_RAD;
@@ -53,10 +58,12 @@ static uint8_t backlight_timer = 0;
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
+char* __fastcall__ strcpy (char* s1, const char* s2);
 size_t __fastcall__ strlen (const char* s);
 
 static void prepare_disp (void);
 static void update_disp (void);
+static void log_data (void);
 
 static void key0_func (void);
 static void key1_func (void);
@@ -64,8 +71,9 @@ static void key2_func (void);
 static void key3_func (void);
 
 int main (void) {
+	char buf[32];
 	
-	port_write(0x90);
+	port_write(0x91);
 	
 	//Initialize button structures
 	key_init(&key0, BTN0, key0_func);
@@ -78,7 +86,15 @@ int main (void) {
     m6242_init();
     mos6551_init();
 	hd44780_init();
-	cfInit();
+	//cfInit();
+	
+	feed_hungry_watchdog();
+	res = f_mount(&cffs, "", 1);
+	mos6551_puts("CF init: ");
+	utoa(res, buf, 10);
+	mos6551_puts(buf);
+	mos6551_puts("\r\n");
+	feed_hungry_watchdog();
 
 	prepare_disp();
 	
@@ -92,7 +108,8 @@ int main (void) {
 		
 		if ( (uint8_t)(millis() - last_millis) > 12 ) {			//12x20ms
 			last_millis = millis();
-			port_tgl(0x85);										//Toggle both LEDs and watchgod line
+			port_tgl(0x84);										//Toggle both LEDs
+			feed_hungry_watchdog();								// Reset watchdog
 		}
 		
 		if (backlight_timer && ( (uint8_t)(millis()-backlight_timer) > 200 ) ) {
@@ -106,6 +123,7 @@ int main (void) {
 		key_update(&key3);
 							
 		mos6551_handle_rx();
+		log_data();
 	}
 	
 	return 0;
@@ -137,6 +155,7 @@ static void update_disp (void) {
 	uint32_t siv;
 	uint16_t integer, fraction, cpmin;
 	char buffer[32];
+	char buf1[11];
 	
 	switch (state) {
 		case SHOW_RAD:
@@ -187,18 +206,43 @@ static void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("U: ");
 		ultoa(uptime(), buffer, 10);
-		hd44780_puts(buffer);
-		
-		cfGetSizeInfo(&siv, &integer);
-		ultoa(siv, buffer, 10);
-		hd44780_gotoxy(2, 0);
-		hd44780_puts("                    ");
-		hd44780_gotoxy(2, 0);
-		hd44780_puts("CS: ");
-		hd44780_puts(buffer);									
+		hd44780_puts(buffer);					
 		break;
 		
 	}
+}
+
+
+static void log_data (void) {
+    
+    static uint32_t timer = 0;
+	uint32_t siv;
+	uint16_t integer, fraction, cpmin;
+	uint16_t bytes_written;
+    char buffer[32];
+    
+    //Not enpugh samples
+    if (uptime() < 60) return;
+    
+    if ( (uint32_t)(uptime()-timer) >= 120 ) {
+        timer = uptime();
+        
+		res = f_open(&file, "GEIGER.TXT", (FA_OPEN_APPEND | FA_WRITE));
+		if (res != FR_OK) {
+			return;
+		}
+		strcpy(buffer, m6242_read_time_str()); 
+		f_write(&file, buffer, strlen(buffer), &bytes_written);
+		f_write(&file, " ", 1, &bytes_written);
+		strcpy(buffer, m6242_read_date_str()); 
+		f_write(&file, buffer, strlen(buffer), &bytes_written);			
+		f_write(&file, " - ", 3, &bytes_written);
+		utoa(get_geiger_pulses(), buffer, 10);
+		f_write(&file, buffer, strlen(buffer), &bytes_written);
+		f_write(&file, " CPM\r\n", 6, &bytes_written);
+		
+		f_close(&file);            
+    }   
 }
 
 

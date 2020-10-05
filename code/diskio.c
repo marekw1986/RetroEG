@@ -31,15 +31,12 @@ DSTATUS disk_initialize (
 {
 	switch (drv) {
 		case COMPACT_FLASH:
-			if(cfInit()==FR_OK) {
-				diskStatus = 0;
-			}
-			else {
-				diskStatus = STA_NOINIT;
-			}
+			if( cfInit() ) { diskStatus = 0; }
+			else { diskStatus = STA_NOINIT; }
 			return(diskStatus);
 		break;
 	}
+	return STA_NOINIT;
 }
 
 
@@ -56,7 +53,7 @@ DSTATUS disk_status (
 			return diskStatus;
 		break;
 	}
-	return 0;
+	return STA_NOINIT;
 }
 
 
@@ -73,10 +70,11 @@ DRESULT disk_read (
 {
 	switch (drv) {
 		case COMPACT_FLASH:
-			cfReadBlocks(buff,sector,count);
-			return(0);
+			if ( cfReadBlocks(buff,sector,count) ) { return RES_OK; }
+			else { return RES_ERROR; }
 		break;
 	}
+	return RES_PARERR;
 }
 
 
@@ -94,10 +92,11 @@ DRESULT disk_write (
 {
 	switch (drv) {
 		case COMPACT_FLASH:
-			cfWriteBlocks((void*)buff,sector,count);
-			return(0);
+			if ( cfWriteBlocks((void*)buff,sector,count) ) { return RES_OK; }
+			else { return RES_ERROR; }
 		break;
 	}
+	return RES_PARERR;
 }
 #endif /* _READONLY */
 
@@ -121,13 +120,13 @@ DRESULT disk_ioctl (
 				case GET_SECTOR_COUNT:
 					cfGetSizeInfo(&maxLba,&blockSize);
 					buff = (void*)&maxLba;
-					return 0;
+					return RES_OK;
 				case GET_BLOCK_SIZE:
 					cfGetSizeInfo(&maxLba,&blockSize);
 					buff = (void*)&blockSize;
-					return 0;
+					return RES_OK;
 				case CTRL_SYNC:
-					return 0;
+					return RES_OK;
 				default:
 					return STA_NOINIT;
 			}
