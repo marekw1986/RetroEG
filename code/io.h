@@ -38,5 +38,6 @@ void __fastcall__ port_write (uint8_t data);
 void __fastcall__ port_set (uint8_t data);
 void __fastcall__ port_clr (uint8_t data);
 void __fastcall__ port_tgl (uint8_t data);
+void __fastcall__ feed_hungry_watchdog (void);
 
 #endif

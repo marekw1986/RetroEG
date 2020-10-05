@@ -41,6 +41,11 @@
 #include "parser.h"
 #include "io.h"
 #include "cf.h"
+#include "ff.h"
+
+FATFS cffs;
+FRESULT res;
+FIL file;
 
 typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
 static state_t state = SHOW_RAD;
@@ -64,8 +69,9 @@ static void key2_func (void);
 static void key3_func (void);
 
 int main (void) {
+	char buf[32];
 	
-	port_write(0x90);
+	port_write(0x91);
 	
 	//Initialize button structures
 	key_init(&key0, BTN0, key0_func);
@@ -78,7 +84,29 @@ int main (void) {
     m6242_init();
     mos6551_init();
 	hd44780_init();
-	cfInit();
+	//cfInit();
+	
+	feed_hungry_watchdog();
+	res = f_mount(&cffs, "", 1);
+	mos6551_puts("CF init: ");
+	utoa(res, buf, 10);
+	mos6551_puts(buf);
+	mos6551_puts("\r\n");
+	feed_hungry_watchdog();
+	res = f_open(&file, "geiger.txt", (FA_OPEN_ALWAYS | FA_WRITE));
+	mos6551_puts("File open: ");
+	utoa(res, buf, 10);
+	mos6551_puts(buf);
+	mos6551_puts("\r\n");
+	feed_hungry_watchdog();
+//	res = f_write(&file, "Test\r\n", 6, NULL);
+//	feed_hungry_watchdog();
+//	mos6551_puts("File write: ");
+//	utoa(res, buf, 10);
+//	mos6551_puts(buf);
+//	mos6551_puts("\r\n");
+//	feed_hungry_watchdog();
+	f_close(&file);	
 
 	prepare_disp();
 	
@@ -92,7 +120,8 @@ int main (void) {
 		
 		if ( (uint8_t)(millis() - last_millis) > 12 ) {			//12x20ms
 			last_millis = millis();
-			port_tgl(0x85);										//Toggle both LEDs and watchgod line
+			port_tgl(0x84);										//Toggle both LEDs
+			feed_hungry_watchdog();								// Reset watchdog
 		}
 		
 		if (backlight_timer && ( (uint8_t)(millis()-backlight_timer) > 200 ) ) {
