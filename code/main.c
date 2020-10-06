@@ -207,7 +207,7 @@ static void log_data (void) {
     //Not enpugh samples
     if (uptime() < 60) return;
     
-    if ( (uint32_t)(uptime()-timer) >= 120 ) {
+    if ( (uint32_t)(uptime()-timer) >= 1800 ) {		// Once every 30 minutes
         timer = uptime();
         
 		res = f_open(&file, "GEIGER.TXT", (FA_OPEN_APPEND | FA_WRITE));
@@ -223,7 +223,7 @@ static void log_data (void) {
 		cpmin = get_geiger_pulses();
 		get_usiv_str(cpmin, buffer);
 		f_write(&file, buffer, strlen(buffer), &bytes_written);
-		f_write(&file, " uS/h (", 6, &bytes_written);
+		f_write(&file, " uS/h (", 7, &bytes_written);
 		utoa(cpmin, buffer, 10);
 		f_write(&file, buffer, strlen(buffer), &bytes_written);
 		f_write(&file, " CPM)\r\n", 7, &bytes_written);
