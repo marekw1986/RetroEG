@@ -51,6 +51,7 @@ void mc6840_init (void);
 uint8_t millis(void);
 uint32_t uptime(void);
 uint16_t get_geiger_pulses (void);
+char* get_usiv_str (uint16_t cpmin, char * des);
 void set_sound_frequency (uint16_t freq);
 
 #endif //_MC6840_H_

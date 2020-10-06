@@ -1,10 +1,16 @@
 #include <6502.h>
+#include <stdlib.h>
+#include <string.h>
 #include "mc6840.h"
 
 volatile uint8_t milliseconds = 0;
 volatile uint32_t uptime_value = 0;
 volatile uint8_t  geiger_ind = 0;
 volatile uint16_t geiger_pulses[60];
+
+
+char* __fastcall__ utoa (unsigned val, char* buf, int radix);
+char* __fastcall__ strcat (char* s1, const char* s2);
 
 
 void mc6840_init (void) {
@@ -46,6 +52,33 @@ uint16_t get_geiger_pulses (void) {
 	for (i=0; i<60; i++) cpm += geiger_pulses[i];
 	CLI();
     return cpm;
+}
+
+
+char* get_usiv_str (uint16_t cpmin, char * des) {
+	uint32_t siv;
+	uint16_t integer, fraction;
+	char buffer[16];
+	
+	des[0] = '\0';
+	siv = GEIGER_USV(cpmin);
+	integer = siv/10000;
+	fraction = siv%10000;
+	utoa(integer, buffer, 10);
+	strcat(des, buffer);
+	strcat(des, ".");
+	if (fraction < 1000) {
+		strcat(des, "0");
+		if (fraction < 100) {
+			strcat(des, "0");
+			if (fraction < 10) {
+				strcat(des, "0");
+			}
+		}
+	}
+	utoa(fraction, buffer, 10);
+	strcat(des, buffer);
+	return des;	
 }
 
 
