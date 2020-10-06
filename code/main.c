@@ -59,6 +59,7 @@ static uint8_t backlight_timer = 0;
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
 char* __fastcall__ strcpy (char* s1, const char* s2);
+char* __fastcall__ strcat (char* s1, const char* s2);
 size_t __fastcall__ strlen (const char* s);
 
 static void prepare_disp (void);
@@ -152,39 +153,22 @@ static void prepare_disp (void) {
 
 
 static void update_disp (void) {
-	uint32_t siv;
-	uint16_t integer, fraction, cpmin;
+	uint16_t cpmin;
 	char buffer[32];
-	char buf1[11];
 	
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = get_geiger_pulses();
-		siv = GEIGER_USV(cpmin);
-		integer = siv/10000;
-		fraction = siv%10000;
+		get_usiv_str(cpmin, buffer);
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
-		utoa(integer, buffer, 10);
-		hd44780_puts(buffer);
-		hd44780_putc('.');
-		if (fraction < 1000) {
-			hd44780_putc('0');
-			if (fraction < 100) {
-				hd44780_putc('0');
-				if (fraction < 10) {
-					hd44780_putc('0');
-				}
-			}
-		}
-		utoa(fraction, buffer, 10);
 		hd44780_puts(buffer);
 		hd44780_puts(" uS/h");
+		utoa(cpmin, buffer, 10);
 		hd44780_gotoxy(2, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(2, 0);
-		utoa(cpmin, buffer, 10);
 		hd44780_puts(buffer);
 		hd44780_puts(" CPM");		
 		break;
@@ -216,8 +200,7 @@ static void update_disp (void) {
 static void log_data (void) {
     
     static uint32_t timer = 0;
-	uint32_t siv;
-	uint16_t integer, fraction, cpmin;
+    uint16_t cpmin;
 	uint16_t bytes_written;
     char buffer[32];
     
@@ -237,10 +220,13 @@ static void log_data (void) {
 		strcpy(buffer, m6242_read_date_str()); 
 		f_write(&file, buffer, strlen(buffer), &bytes_written);			
 		f_write(&file, " - ", 3, &bytes_written);
-		utoa(get_geiger_pulses(), buffer, 10);
+		cpmin = get_geiger_pulses();
+		get_usiv_str(cpmin, buffer);
 		f_write(&file, buffer, strlen(buffer), &bytes_written);
-		f_write(&file, " CPM\r\n", 6, &bytes_written);
-		
+		f_write(&file, " uS/h (", 6, &bytes_written);
+		utoa(cpmin, buffer, 10);
+		f_write(&file, buffer, strlen(buffer), &bytes_written);
+		f_write(&file, " CPM)\r\n", 7, &bytes_written);
 		f_close(&file);            
     }   
 }
