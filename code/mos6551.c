@@ -33,12 +33,14 @@ void __fastcall__ mos6551_putc (char c) {
 
 
 void __fastcall__ mos6551_puts (const char *str) {
-	port_set(RS485_PIN);	//Set RS485 to transmit
+	port_set(RS485_PIN);			//Set RS485 to transmit
 	while (*str != '\0') {
-		mos6551_putc(*str);
+		while (!(ACIA_STS & 0x10));
+		ACIA_TXD = *str;
 		str++;
 	}
-	port_clr(RS485_PIN);	//Set RS485 to receive again
+	while (!(ACIA_STS & 0x10));		//Be it is not transmitting before switching back to receceive
+	port_clr(RS485_PIN);			//Set RS485 to receive again
 }
 
 void __fastcall__ mos6551_handle_rx (void) {
