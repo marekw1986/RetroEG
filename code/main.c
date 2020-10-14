@@ -83,9 +83,9 @@ int main (void) {
 	key_init(&key3, BTN3, key3_func);
 	
 	CONF_8255 = 0x82;
-    mc6840_init();
-    m6242_init();
-    mos6551_init();
+	mc6840_init();
+	m6242_init();
+	mos6551_init();
 	hd44780_init();
 	//cfInit();
 	
@@ -199,10 +199,10 @@ static void update_disp (void) {
 
 static void log_data (void) {
     
-    static uint32_t timer = 0;
-    uint16_t cpmin;
+	static uint32_t timer = 0;
+	uint16_t cpmin;
 	uint16_t bytes_written;
-    char buffer[32];
+	char buffer[32];
     
     //Not enpugh samples
     if (uptime() < 60) return;
