@@ -1,6 +1,5 @@
 *.o
 a.out
-logobot.hex
 *.s
 !crt0.s
 !delay.s
