@@ -103,7 +103,7 @@ int main (void) {
 	
 	CLI();
 	
-	port_clr(0x40);
+	SND_START;
 	set_sound_frequency(1000);
 	
 	while(1) {

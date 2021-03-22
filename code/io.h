@@ -23,6 +23,9 @@
 #define RS485_PIN	  0x20
 #define BACKLIGHT_PIN 0x10
 
+#define SND_START	port_clr(0x40)
+#define SND_STOP	port_set(0x40)
+
 #define SHORT_WAIT 3    // 3 * 20ms = 60 ms.
 
 typedef struct key {
