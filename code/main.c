@@ -71,6 +71,8 @@ static void key1_func (void);
 static void key2_func (void);
 static void key3_func (void);
 
+void handle_radiation_alarm (void);
+
 int main (void) {
 	char buf[32];
 	
@@ -101,6 +103,9 @@ int main (void) {
 	
 	CLI();
 	
+	port_clr(0x40);
+	set_sound_frequency(1000);
+	
 	while(1) {
 		if (uptime() != last_uptime) {
 			last_uptime = uptime();
@@ -125,6 +130,7 @@ int main (void) {
 							
 		mos6551_handle_rx();
 		log_data();
+		handle_radiation_alarm();
 	}
 	
 	return 0;
@@ -262,4 +268,22 @@ static void key2_func (void) {
 static void key3_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
+}
+
+
+void handle_radiation_alarm (void) {
+	static uint8_t timer = 0;
+	static uint8_t rise = 1;
+	
+	if ( (uint8_t)(millis() - timer) > 20 )  {
+		timer = millis();
+		if (rise) {
+			set_sound_frequency(1000);
+		}
+		else {
+			set_sound_frequency(500);
+		}
+		rise = !rise;	
+	}
+	
 }
