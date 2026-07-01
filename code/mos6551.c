@@ -13,8 +13,8 @@ volatile char mos6551_RxChar;
 volatile char mos6551_rxrb[256];				//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG!
 volatile uint8_t mos6551_rxrb_head = 0;
 volatile uint8_t mos6551_rxrb_tail = 0;
-char mos6551_line[256];		//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG! Oftherwise uncomment and adjust line in mos6551_handle_rx
-uint8_t mos6551_line_ind = 0;
+uint8_t mb_rx[256];
+uint8_t mb_len;
 
 void __fastcall__ mos6551_init (void) {
 	//initialise 6551 ACIA
