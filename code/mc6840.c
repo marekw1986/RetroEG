@@ -21,7 +21,7 @@ void mc6840_init (void) {
     MC6840_CON13 = TM_COUNTER_OUTPUT_DISABLE | TM_INTERUPT_DISABLE | TM_CONT_OP_MODE1 | TM_NORMAL_16BIT | TM_EXT_CLK | TMCR1_ALL_TIMERS_ALLOWED;	//CON1. TIMER1 counts Geiger pulses, so external source
     MC6840_TIMER1 = Swap2Bytes(0xFFFF);       //Remember about endianess - MC6800 family is big endian, 6502 is little endian. Remember that timer is decremented.
     MC6840_TIMER2 = Swap2Bytes(0xF82F);       //500 Hz signal on audio output
-    MC6840_TIMER3 = Swap2Bytes(0xB1DF);       //20ms interrupt (0xFFFF - 10000) - it is decremented!
+    MC6840_TIMER3 = Swap2Bytes(0x03E7);       //1ms interrupt (0xFFFF - 10000) - it is decremented!
     
     for (i=0; i<60; i++) geiger_pulses[i] = 0x00;
 }

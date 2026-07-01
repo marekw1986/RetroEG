@@ -53,7 +53,7 @@ static state_t state = SHOW_RAD;
 static key_t key0, key1, key2, key3;	
 
 static uint32_t last_uptime = 0;
-static uint8_t  last_millis = 0;
+static uint16_t  last_millis = 0;
 static uint8_t backlight_timer = 0;
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
@@ -103,13 +103,13 @@ int main (void) {
 			update_disp();	
 		}
 		
-		if ( (uint8_t)(millis() - last_millis) > 12 ) {			//12x20ms
+		if ( (uint16_t)(millis() - last_millis) > 240 ) {			//12x20ms
 			last_millis = millis();
 			port_tgl(0x84);										//Toggle both LEDs
 			feed_hungry_watchdog();								// Reset watchdog
 		}
 		
-		if (backlight_timer && ( (uint8_t)(millis()-backlight_timer) > 200 ) ) {
+		if (backlight_timer && ( (uint16_t)(millis()-backlight_timer) > 4000 ) ) {
 			port_set(BACKLIGHT_PIN);							//Turn the backlight off
 			backlight_timer = 0;
 		}	
