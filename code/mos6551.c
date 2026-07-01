@@ -43,6 +43,17 @@ void __fastcall__ mos6551_puts (const char *str) {
 	port_clr(RS485_PIN);			//Set RS485 to receive again
 }
 
+void __fastcall__ mos6551_send(const uint8_t *buf, uint16_t len) {
+    port_set(RS485_PIN);			//Set RS485 to transmit
+    while(len--)
+    {
+        while(!(ACIA_STS & 0x10));
+        ACIA_TXD = *buf++;
+    }
+    while(!(ACIA_STS & 0x10));
+    port_clr(RS485_PIN);			//Set RS485 to receive again
+}
+
 void __fastcall__ mos6551_handle_rx (void) {
 	while (mos6551_rxrb_head != mos6551_rxrb_tail) {			// There is a new data in ring buffer
 		mos6551_RxChar = mos6551_rxrb[mos6551_rxrb_tail];
