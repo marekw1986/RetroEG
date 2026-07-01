@@ -3,7 +3,7 @@
 #include <string.h>
 #include "mc6840.h"
 
-volatile uint8_t milliseconds = 0;
+volatile uint32_t milliseconds = 0;
 volatile uint32_t uptime_value = 0;
 volatile uint8_t  geiger_ind = 0;
 volatile uint16_t geiger_pulses[60];
@@ -27,8 +27,8 @@ void mc6840_init (void) {
 }
 
 
-uint8_t millis(void) {
-	uint8_t tmp;
+uint16_t millis(void) {
+	uint16_t tmp;
     SEI();
     tmp = milliseconds;
     CLI();

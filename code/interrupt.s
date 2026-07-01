@@ -55,7 +55,9 @@ irq_chk_t3:
            BEQ irq_chk_rtc        ; If flag is cleared, go to the next stage
            LDA MC6840_TIMER3      ; You must read T3 to clear interrupt flag
            LDA MC6840_TIMER3+1
-           INC _milliseconds      ; Increment milliseconds variable
+           INC _milliseconds
+           BNE irq_chk_rtc
+           INC _milliseconds+1
 irq_chk_rtc:
            LDA M6242_STA	       ; Load RTC status register
            AND #04                 ; Check if IRQ flag is set
