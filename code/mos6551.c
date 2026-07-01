@@ -18,9 +18,9 @@ volatile uint8_t mos6551_rxrb_head = 0;
 volatile uint8_t mos6551_rxrb_tail = 0;
 uint8_t mb_rx[256];
 uint8_t mb_len;
-uint8_t mb_last_rx_time = 0;
+uint16_t mb_last_rx_time = 0;
 
-void __fastcall__ modbus_process_frame(uint8_t* buf, uint8_t buf_len);
+void __fastcall__ modbus_process_frame(void);
 
 void __fastcall__ mos6551_init (void) {
 	//initialise 6551 ACIA
@@ -65,15 +65,15 @@ void __fastcall__ mos6551_handle_rx(void) {
     // process it.
     if (mb_len)
     {
-        if ((uint8_t)(millis() - mb_last_rx_time) > MODBUS_FRAME_TIMEOUT)
+        if ((uint16_t)(millis() - mb_last_rx_time) > MODBUS_FRAME_TIMEOUT)
         {
-            modbus_process_frame((uint8_t *)mb_rx, mb_len);
+            modbus_process_frame();
 
             mb_len = 0;
         }
     }
 }
 
-void __fastcall__ modbus_process_frame(uint8_t* buf, uint8_t buf_len) {
+void __fastcall__ modbus_process_frame(void) {
 	
 }

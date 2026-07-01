@@ -54,7 +54,7 @@ static key_t key0, key1, key2, key3;
 
 static uint32_t last_uptime = 0;
 static uint16_t  last_millis = 0;
-static uint8_t backlight_timer = 0;
+static uint16_t backlight_timer = 0;
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
