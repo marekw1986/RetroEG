@@ -1,4 +1,5 @@
 #include "mos6551.h"
+#include "mc6840.h"
 #include "parser.h"
 #include "io.h"
 
@@ -9,12 +10,17 @@
 #define ACIA_CMD (*(volatile uint8_t*)0x6502)  //ACIA command port
 #define ACIA_CTL (*(volatile uint8_t*)0x6503)  //ACIA control port
 
+#define MODBUS_FRAME_TIMEOUT 4
+
 volatile char mos6551_RxChar;
 volatile char mos6551_rxrb[256];				//DO NOT CHAGE! IT NEEDS TO BE 256 BYTES LONG!
 volatile uint8_t mos6551_rxrb_head = 0;
 volatile uint8_t mos6551_rxrb_tail = 0;
 uint8_t mb_rx[256];
 uint8_t mb_len;
+uint8_t mb_last_rx_time = 0;
+
+void __fastcall__ modbus_process_frame(uint8_t* buf, uint8_t buf_len);
 
 void __fastcall__ mos6551_init (void) {
 	//initialise 6551 ACIA
@@ -31,18 +37,6 @@ void __fastcall__ mos6551_putc (char c) {
 	ACIA_TXD = c;
 }
 
-
-void __fastcall__ mos6551_puts (const char *str) {
-	port_set(RS485_PIN);			//Set RS485 to transmit
-	while (*str != '\0') {
-		while (!(ACIA_STS & 0x10));
-		ACIA_TXD = *str;
-		str++;
-	}
-	while (!(ACIA_STS & 0x10));		//Be it is not transmitting before switching back to receceive
-	port_clr(RS485_PIN);			//Set RS485 to receive again
-}
-
 void __fastcall__ mos6551_send(const uint8_t *buf, uint16_t len) {
     port_set(RS485_PIN);			//Set RS485 to transmit
     while(len--)
@@ -54,25 +48,32 @@ void __fastcall__ mos6551_send(const uint8_t *buf, uint16_t len) {
     port_clr(RS485_PIN);			//Set RS485 to receive again
 }
 
-void __fastcall__ mos6551_handle_rx (void) {
-	while (mos6551_rxrb_head != mos6551_rxrb_tail) {			// There is a new data in ring buffer
-		mos6551_RxChar = mos6551_rxrb[mos6551_rxrb_tail];
-		mos6551_rxrb_tail++;
-		switch(mos6551_RxChar) {
-			case 0:  break;			// ignorujemy znak \0
-			case 13: break;			// ignorujemy znak CR
-			
-			case 10:
-			mos6551_line[mos6551_line_ind] = '\0';
-			mos6551_line_ind = 0;
-			parse_cmd(mos6551_line);
-			break;
-			
-			default:
-			mos6551_line[mos6551_line_ind] = mos6551_RxChar;
-			mos6551_line_ind++;
-			//if (mos6551_line_ind >= MOS6551_LINE_BUF_LEN) mos6551_line_ind = 0;		//Not needed if buffer size is 256
-			break;
-		}	
-	}
+void __fastcall__ mos6551_handle_rx(void) {
+    while (mos6551_rxrb_head != mos6551_rxrb_tail) {
+        mb_rx[mb_len++] = mos6551_rxrb[mos6551_rxrb_tail];
+        mos6551_rxrb_tail++;
+
+        mb_last_rx_time = millis();
+
+        // Prevent overflow if something goes wrong
+        if (mb_len == 255)
+            mb_len = 0;
+    }
+
+    // No bytes pending.
+    // If we have a frame and the bus has been idle long enough,
+    // process it.
+    if (mb_len)
+    {
+        if ((uint8_t)(millis() - mb_last_rx_time) > MODBUS_FRAME_TIMEOUT)
+        {
+            modbus_process_frame((uint8_t *)mb_rx, mb_len);
+
+            mb_len = 0;
+        }
+    }
+}
+
+void __fastcall__ modbus_process_frame(uint8_t* buf, uint8_t buf_len) {
+	
 }

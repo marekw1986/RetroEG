@@ -7,7 +7,6 @@
 
 void __fastcall__ mos6551_init (void);
 void __fastcall__ mos6551_putc (char c);
-void __fastcall__ mos6551_puts (const char *str);
 void __fastcall__ mos6551_send(const uint8_t *buf, uint16_t len);
 void __fastcall__ mos6551_handle_rx (void);
 

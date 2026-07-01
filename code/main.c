@@ -91,10 +91,6 @@ int main (void) {
 	
 	feed_hungry_watchdog();
 	res = f_mount(&cffs, "", 1);
-	mos6551_puts("CF init: ");
-	utoa(res, buf, 10);
-	mos6551_puts(buf);
-	mos6551_puts("\r\n");
 	feed_hungry_watchdog();
 
 	prepare_disp();

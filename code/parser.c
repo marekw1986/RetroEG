@@ -56,50 +56,20 @@ static uint8_t settime_service(char * params) {
 
 
 static uint8_t gettime_service(char * params) {
-	mos6551_puts(m6242_read_time_str());
-	mos6551_puts("\r\n");
 	return 1;	
 }
 
 
 static uint8_t setdate_service(char * params) {
-	char* tok;
-	int8_t supbuf[4];
-	
-	if (!params) return 0;	
-	
-	tok = strtok(params, "-");
-	if (!tok) return 0;
-	supbuf[0] = atoi(tok);
-	if ( (supbuf[0] < 1) || (supbuf[0] > 31) ) return 0;
-	tok = strtok(NULL, "-");
-	if (!tok) return 0;
-	supbuf[1] = atoi(tok);
-	if ( (supbuf[1] < 1) || (supbuf[1] > 12) ) return 0;
-	tok = strtok(NULL, "-");
-	if (!tok) return 0;
-	supbuf[2] = atoi(tok);
-	if ( (supbuf[2] < 0) || (supbuf[2] > 99) ) return 0;
-	
-	m6242_setdate(supbuf[0], supbuf[1], supbuf[2]);
-	//mos6551_puts("Dzien: %d, Miesiac: %d, Rok: %d\r\n", supbuf[0], supbuf[1], supbuf[2]);
-	
 	return 1;	
 }
 
 
 static uint8_t getdate_service(char * params) {
-	mos6551_puts(m6242_read_date_str());
-	mos6551_puts("\r\n");
 	return 1;
 }
 
 
 static uint8_t uptime_service(char * params) {
-	char supbuf[15];
-	
-	ultoa(uptime(), supbuf, 10);
-	mos6551_puts(supbuf);
-	mos6551_puts("\r\n");
 	return 1;	
 }
