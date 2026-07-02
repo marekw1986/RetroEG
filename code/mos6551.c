@@ -121,6 +121,7 @@ void __fastcall__ modbus_process_frame(void) {
             resp[idx++] = crc & 0xFF;
             resp[idx++] = crc >> 8;
 
+			if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
             mos6551_send(resp, idx);
             break;
         }
@@ -138,6 +139,7 @@ void __fastcall__ modbus_process_frame(void) {
             }
 
             // echo request as response (Modbus standard)
+            if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
             mos6551_send(mb_rx, mb_len);
             break;
         }
@@ -173,6 +175,7 @@ void __fastcall__ modbus_process_frame(void) {
             resp[6] = crc & 0xFF;
             resp[7] = crc >> 8;
 
+			if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
             mos6551_send(resp, 8);
             break;
         }
@@ -190,6 +193,7 @@ void __fastcall__ modbus_process_frame(void) {
             resp[3] = crc & 0xFF;
             resp[4] = crc >> 8;
 
+			if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
             mos6551_send(resp, 5);
             break;
         }
