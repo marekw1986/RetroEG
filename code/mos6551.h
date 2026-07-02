@@ -3,10 +3,9 @@
 
 #include <inttypes.h>
 
-#define MOS6551_RX_BUF_SIZE 256
+#define SLAVE_ADDR 0xAB
 
 void __fastcall__ mos6551_init (void);
-void __fastcall__ mos6551_putc (char c);
 void __fastcall__ mos6551_send(const uint8_t *buf, uint16_t len);
 void __fastcall__ mos6551_handle_rx (void);
 

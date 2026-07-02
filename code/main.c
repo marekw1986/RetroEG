@@ -38,7 +38,7 @@
 #include "mc6840.h"
 #include "m6242.h"
 #include "delay.h"
-#include "parser.h"
+#include "modbus.h"
 #include "io.h"
 #include "cf.h"
 #include "ff.h"
