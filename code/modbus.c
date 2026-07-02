@@ -9,6 +9,7 @@ extern uint8_t mb_len;
 
 #define MB_MAX_REGS  16
 volatile uint16_t holding[MB_MAX_REGS];
+volatile uint16_t input[MB_MAX_REGS];
 
 void __fastcall__ modbus_process_frame(void) {
     uint16_t crc_calc, crc_recv;
@@ -56,6 +57,36 @@ void __fastcall__ modbus_process_frame(void) {
             mos6551_send(resp, idx);
             break;
         }
+        case 0x04: // Read Input Registers
+        {
+            uint16_t start = (mb_rx[2] << 8) | mb_rx[3];
+            uint16_t qty   = (mb_rx[4] << 8) | mb_rx[5];
+            uint8_t resp[64];
+            uint8_t idx = 0;
+            uint16_t i, reg, crc;
+
+            if (qty == 0 || qty > MB_MAX_REGS) break;
+
+            resp[idx++] = SLAVE_ADDR;
+            resp[idx++] = 0x04;
+            resp[idx++] = qty * 2;
+
+            for (i = 0; i < qty; i++)
+            {
+                reg = input[start + i];
+
+                resp[idx++] = reg >> 8;
+                resp[idx++] = reg & 0xFF;
+            }
+
+            crc = modbus_crc(resp, idx);
+            resp[idx++] = crc & 0xFF;
+            resp[idx++] = crc >> 8;
+
+            if (mb_rx[0] != 0) mos6551_send(resp, idx);
+
+            break;
+        }
         case 0x06:
         {
             uint16_t reg = (mb_rx[2] << 8) | mb_rx[3];
@@ -70,8 +101,8 @@ void __fastcall__ modbus_process_frame(void) {
             }
 
             // echo request as response (Modbus standard)
-            if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
-            mos6551_send(mb_rx, mb_len);
+            if (mb_rx[0] != 0) mos6551_send(mb_rx, mb_len); // Do not respond to broadcast messages
+            
             break;
         }
         case 0x10:
@@ -106,8 +137,8 @@ void __fastcall__ modbus_process_frame(void) {
             resp[6] = crc & 0xFF;
             resp[7] = crc >> 8;
 
-			if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
-            mos6551_send(resp, 8);
+			if (mb_rx[0] != 0)  mos6551_send(resp, 8); // Do not respond to broadcast messages
+           
             break;
         }
         default:
@@ -124,8 +155,7 @@ void __fastcall__ modbus_process_frame(void) {
             resp[3] = crc & 0xFF;
             resp[4] = crc >> 8;
 
-			if (mb_rx[0] == 0) break; // Do not respond to broadcast messages
-            mos6551_send(resp, 5);
+			if (mb_rx[0] != 0) mos6551_send(resp, 5); // Do not respond to broadcast messages
             break;
         }
     }
