@@ -1,6 +1,7 @@
 #include "mos6551.h"
 #include "mc6840.h"
 #include "m6242.h"
+#include "delay.h"
 #include "parser.h"
 #include "io.h"
 
@@ -51,6 +52,7 @@ void __fastcall__ mos6551_send(const uint8_t *buf, uint16_t len) {
         ACIA_TXD = *buf++;
     }
     while(!(ACIA_STS & 0x10));
+    delay_ms(2);
     port_clr(RS485_PIN);			//Set RS485 to receive again
 }
 
