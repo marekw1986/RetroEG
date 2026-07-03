@@ -184,13 +184,47 @@ uint16_t __fastcall__ modbus_crc(const uint8_t *buf, uint16_t len) {
 
 void __fastcall__ modbus_apply_if_needed(uint16_t reg)
 {
-    if (reg == 5) // example: "commit register"
+    if (reg == MODBUS_HOLDING_CMD) // example: "commit register"
     {
-        m6242_settime(
-            holding[0],
-            holding[1],
-            holding[2]
-        );
+        switch(holding[reg]) {
+			case MODBUS_CMD_SET_TIME:
+			{
+				uint8_t hours = (uint8_t)(holding[MODBUS_H1] >> 8);
+				uint8_t minutes = (uint8_t)holding[MODBUS_H1];
+				uint8_t seconds = (uint8_t)holding[MODBUS_H2];
+				if ((hours < 24) && (minutes < 60) && (seconds < 60)) {
+					m6242_settime(hours, minutes, seconds);
+				}
+				break;
+			}
+			case MODBUS_CMD_SET_DATE:
+			{
+				uint8_t day = (uint8_t)(holding[MODBUS_H1] >> 8);
+				uint8_t month = (uint8_t)holding[MODBUS_H1];
+				uint8_t year = (uint8_t)holding[MODBUS_H2];
+				if ((day > 0) && (day <= 31) && (month > 0) && (month <= 12) && (year < 100)) {
+					m6242_setdate(day, month, year);
+				}
+				break;
+			}
+			case MODBUS_CMD_SET_DATETIME:
+			{
+				uint8_t hours = (uint8_t)(holding[MODBUS_H1] >> 8);
+				uint8_t minutes = (uint8_t)holding[MODBUS_H1];
+				uint8_t seconds = (uint8_t)(holding[MODBUS_H2] >> 8);
+				uint8_t day = (uint8_t)holding[MODBUS_H2];
+				uint8_t month = (uint8_t)(holding[MODBUS_H3] >> 8);
+				uint8_t year = (uint8_t)holding[MODBUS_H3];
+				if ((hours < 24) && (minutes < 60) && (seconds < 60) && (day > 0) && (day <= 31) &&
+					(month > 0) && (month <= 12) && (year < 100)) {
+					m6242_settime(hours, minutes, seconds);
+					m6242_setdate(day, month, year);
+				}
+				break;
+			}
+			default:
+				break;
+		}
     }
 }
 
