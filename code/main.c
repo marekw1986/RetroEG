@@ -102,6 +102,8 @@ int main (void) {
 			last_uptime = uptime();
 			modbus_set_cpm();
 			modbus_set_sivert();
+			modbus_set_time();
+			modbus_set_uptime();
 			update_disp();	
 		}
 		

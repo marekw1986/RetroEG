@@ -212,3 +212,15 @@ void modbus_set_sivert(void) {
 volatile uint16_t* modbus_get_sivert(void) {
 	return &input[MODBUS_INPUT_SIVERT_INT];
 }
+
+void modbus_set_time(void) {
+	time_t* timestamp = m6242_read_timestamp();
+	input[MODBUS_INPUT_TIMEH] = (uint16_t)(*timestamp >> 16);
+	input[MODBUS_INPUT_TIMEL] = (uint16_t)(*timestamp & 0xFFFF);
+}
+
+void modbus_set_uptime(void) {
+	uint32_t upt = uptime();
+	input[MODBUS_INPUT_UPTIMEH] = (uint16_t)(upt >> 16);
+	input[MODBUS_INPUT_UPTIMEL] = (uint16_t)(upt & 0xFFFF);
+}

@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-enum modbus_input_idx {MODBUS_INPUT_CPM=0, MODBUS_INPUT_SIVERT_INT, MODBUS_INPUT_SIVERT_FRACT};
+enum modbus_input_idx {MODBUS_INPUT_CPM=0, MODBUS_INPUT_SIVERT_INT, MODBUS_INPUT_SIVERT_FRACT, MODBUS_INPUT_TIMEH, MODBUS_INPUT_TIMEL, MODBUS_INPUT_UPTIMEH, MODBUS_INPUT_UPTIMEL};
 enum modbus_holding_idx {MODBUS_HOLDING_CMD};
 
 #define MODBUS_CMD_SET_TIME 	0x01
@@ -18,5 +18,7 @@ void modbus_set_cpm(void);
 uint16_t modbus_get_cpm(void);
 void modbus_set_sivert(void);
 volatile uint16_t* modbus_get_sivert(void);
+void modbus_set_time(void);
+void modbus_set_uptime(void);
 
 #endif
