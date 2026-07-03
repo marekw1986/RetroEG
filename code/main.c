@@ -55,6 +55,7 @@ static key_t key0, key1, key2, key3;
 static uint32_t last_uptime = 0;
 static uint16_t  last_millis = 0;
 static uint16_t backlight_timer = 0;
+static uint8_t use_utc = 0x00;
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
@@ -141,7 +142,7 @@ static void prepare_disp (void) {
 		
 		case SHOW_TIME:
 		hd44780_gotoxy(0, 0);
-		hd44780_puts("Czas");		
+		hd44780_puts(use_utc ? "Czas (UTC)" : "Czas");		
 		break;
 		
 		case SHOW_STATS:
@@ -177,11 +178,11 @@ static void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
-		hd44780_puts(m6242_read_time_str());
+		hd44780_puts(use_utc ? m6242_read_time_str() : m6242_read_time_str_tz());
 		hd44780_gotoxy(2, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(2, 0);
-		hd44780_puts(m6242_read_date_str());		
+		hd44780_puts(use_utc ? m6242_read_time_str() : m6242_read_date_str_tz());		
 		break;
 		
 		case SHOW_STATS:
@@ -244,7 +245,13 @@ static void key0_func (void) {
 static void key1_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
-	state = SHOW_TIME;
+	if (state == SHOW_TIME) {
+		use_utc ^= 1;
+	}
+	else {
+		state = SHOW_TIME;
+		use_utc = 0x00;
+	}
 	prepare_disp();
 	update_disp();
 }
