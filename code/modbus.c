@@ -9,7 +9,7 @@ extern uint8_t mb_len;
 
 #define MB_MAX_REGS  16
 volatile uint16_t holding[MB_MAX_REGS];
-volatile uint16_t input[MB_MAX_REGS];
+volatile uint16_t input[MB_MAX_REGS] = {0x1234, 0x5678, 0xFFFF, 0xFAFA};
 
 void __fastcall__ modbus_process_frame(void) {
     uint16_t crc_calc, crc_recv;
@@ -97,8 +97,10 @@ void __fastcall__ modbus_process_frame(void) {
                 holding[reg] = val;
 
                 // Example: commit hook
-                modbus_apply_if_needed(reg);
+                //modbus_apply_if_needed(reg);
             }
+
+            modbus_apply_if_needed(MODBUS_HOLDING_CMD);
 
             // echo request as response (Modbus standard)
             if (mb_rx[0] != 0) mos6551_send(mb_rx, mb_len); // Do not respond to broadcast messages
@@ -123,8 +125,10 @@ void __fastcall__ modbus_process_frame(void) {
                 val = (data[i*2] << 8) | data[i*2 + 1];
                 holding[start + i] = val;
 
-                modbus_apply_if_needed(start + i);
+                //modbus_apply_if_needed(start + i);
             }
+            
+            modbus_apply_if_needed(MODBUS_HOLDING_CMD);
 
             resp[0] = SLAVE_ADDR;
             resp[1] = 0x10;
