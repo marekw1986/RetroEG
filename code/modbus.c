@@ -217,8 +217,8 @@ void __fastcall__ modbus_apply_if_needed(uint16_t reg)
 				uint8_t year = (uint8_t)holding[MODBUS_H3];
 				if ((hours < 24) && (minutes < 60) && (seconds < 60) && (day > 0) && (day <= 31) &&
 					(month > 0) && (month <= 12) && (year < 100)) {
-					m6242_settime(hours, minutes, seconds);
 					m6242_setdate(day, month, year);
+					m6242_settime(hours, minutes, seconds);
 				}
 				break;
 			}
