@@ -31,6 +31,8 @@ uint8_t m6242_buf[10];
 struct tm current_time;
 time_t timestamp;
 
+struct tm* rtc_local_tm(time_t utc);
+
 void __fastcall__ m6242_init (void) {                  
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;								//0x04 (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)              
 	M6242_CTRLE_REG = (RTCE_INTRT | RTCE_STDP_EN | RTCE_TM_1S);		//0x06 (Innterrupt mode, STD.P enabled, 1 s.)
@@ -174,6 +176,66 @@ void __fastcall__ m6242_setdate (uint8_t d, uint8_t m, uint8_t y) {
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;					//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
 }
 
+struct tm* rtc_local_tm(time_t utc) {
+    utc += (time_t)(TZ_OFFSET * 3600);
+    return gmtime(&utc);
+}
+
+char* __fastcall__ m6242_read_time_str_tz(void)
+{
+    time_t utc;
+    struct tm *t;
+    unsigned char *p;
+
+    m6242_read_tm();
+
+    utc = mktime(&current_time);
+    utc += (time_t)(TZ_OFFSET * 3600);
+
+    t = gmtime(&utc);
+
+    p = (unsigned char*)m6242_buf;
+
+    p[0] = (t->tm_hour / 10) + '0';
+    p[1] = (t->tm_hour % 10) + '0';
+    p[2] = ':';
+    p[3] = (t->tm_min / 10) + '0';
+    p[4] = (t->tm_min % 10) + '0';
+    p[5] = ':';
+    p[6] = (t->tm_sec / 10) + '0';
+    p[7] = (t->tm_sec % 10) + '0';
+    p[8] = '\0';
+
+    return (char*)p;
+}
+
+char* __fastcall__ m6242_read_date_str_tz(void)
+{
+    time_t utc;
+    struct tm *t;
+    unsigned char *p;
+
+    m6242_read_tm();
+
+    utc = mktime(&current_time);
+    utc += (time_t)(TZ_OFFSET * 3600);
+
+    t = gmtime(&utc);
+
+    p = (unsigned char*)m6242_buf;
+
+    p[0] = (t->tm_mday / 10) + '0';
+    p[1] = (t->tm_mday % 10) + '0';
+    p[2] = '-';
+    p[3] = ((t->tm_mon + 1) / 10) + '0';
+    p[4] = ((t->tm_mon + 1) % 10) + '0';
+    p[5] = '-';
+    p[6] = ((t->tm_year % 100) / 10) + '0';
+    p[7] = ((t->tm_year % 100) % 10) + '0';
+    p[8] = '\0';
+
+    return (char*)p;
+}
 
 DWORD get_fattime (void)
 {

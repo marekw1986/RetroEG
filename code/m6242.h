@@ -32,5 +32,7 @@ void __fastcall__ m6242_read_tm (void);
 time_t* __fastcall__ m6242_read_timestamp (void);
 void __fastcall__ m6242_settime (uint8_t h, uint8_t m, uint8_t s);
 void __fastcall__ m6242_setdate (uint8_t d, uint8_t m, uint8_t y);
+char* __fastcall__ m6242_read_time_str_tz(void);
+char* __fastcall__ m6242_read_date_str_tz(void);
 
 #endif //_M6242_H_
