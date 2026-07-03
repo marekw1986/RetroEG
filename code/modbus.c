@@ -193,3 +193,16 @@ void __fastcall__ modbus_apply_if_needed(uint16_t reg)
         );
     }
 }
+
+void modbus_set_cpm(void) {
+	uint16_t cpm = get_geiger_pulses();
+	input[MODBUS_INPUT_CPM] = cpm;
+}
+
+uint16_t modbus_get_cpm(void) {
+	return input[MODBUS_INPUT_CPM];
+}
+
+void modbus_update_sivert(uint16_t siv) {
+	
+}

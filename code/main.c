@@ -100,6 +100,7 @@ int main (void) {
 	while(1) {
 		if (uptime() != last_uptime) {
 			last_uptime = uptime();
+			modbus_set_cpm();
 			update_disp();	
 		}
 		
@@ -154,7 +155,7 @@ static void update_disp (void) {
 	
 	switch (state) {
 		case SHOW_RAD:
-		cpmin = get_geiger_pulses();
+		cpmin = modbus_get_cpm();
 		get_usiv_str(cpmin, buffer);
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("                    ");
@@ -216,7 +217,7 @@ static void log_data (void) {
 		strcpy(buffer, m6242_read_date_str()); 
 		f_write(&file, buffer, strlen(buffer), &bytes_written);			
 		f_write(&file, " - ", 3, &bytes_written);
-		cpmin = get_geiger_pulses();
+		cpmin = modbus_get_cpm();
 		get_usiv_str(cpmin, buffer);
 		f_write(&file, buffer, strlen(buffer), &bytes_written);
 		f_write(&file, " uS/h (", 7, &bytes_written);
