@@ -274,3 +274,7 @@ void modbus_set_uptime(void) {
 	input[MODBUS_INPUT_UPTIMEH] = (uint16_t)(upt >> 16);
 	input[MODBUS_INPUT_UPTIMEL] = (uint16_t)(upt & 0xFFFF);
 }
+
+void modbus_set_cf_result(uint8_t res) {
+	input[MODBUS_INPUT_CFRES] = res;
+}

@@ -92,6 +92,7 @@ int main (void) {
 	
 	feed_hungry_watchdog();
 	res = f_mount(&cffs, "", 1);
+	modbus_set_cf_result(res);
 	feed_hungry_watchdog();
 
 	prepare_disp();
@@ -213,6 +214,7 @@ static void log_data (void) {
         
 		res = f_open(&file, "GEIGER.TXT", (FA_OPEN_APPEND | FA_WRITE));
 		if (res != FR_OK) {
+			modbus_set_cf_result(res);
 			return;
 		}
 		strcpy(buffer, m6242_read_time_str()); 

@@ -37,5 +37,6 @@ void modbus_set_sivert(void);
 volatile uint16_t* modbus_get_sivert(void);
 void modbus_set_time(void);
 void modbus_set_uptime(void);
+void modbus_set_cf_result(uint8_t res);
 
 #endif
