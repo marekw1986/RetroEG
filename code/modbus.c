@@ -225,6 +225,7 @@ void __fastcall__ modbus_apply_if_needed(uint16_t reg)
 			default:
 				break;
 		}
+		holding[reg] = 0x00;
     }
 }
 
