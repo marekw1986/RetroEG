@@ -7,8 +7,10 @@
 #define EEConfig (*(volatile cfg_t*)EEPROM_ADDRESS)
 
 typedef struct cfg_t {
+	int8_t	timezone;
 	uint8_t element1;
 	uint8_t element2;
+	uint8_t element3;
 } cfg_t;
 
 #endif

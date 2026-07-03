@@ -1,4 +1,5 @@
 #include "m6242.h"
+#include "config.h"
 #include "delay.h"
 #include "io.h"
 #include "ff.h"
@@ -19,6 +20,8 @@
 #define M6242_CTRLD_REG   (*(volatile uint8_t*)0x640D)
 #define M6242_CTRLE_REG   (*(volatile uint8_t*)0x640E)
 #define M6242_CTRLF_REG   (*(volatile uint8_t*)0x640F)
+
+#define TZ_OFFSET	EEConfig.timezone
 
 extern const uint8_t digits[16];			// USUN TO POTEM
 

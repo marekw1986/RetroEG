@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "config.h"
 #include "modbus.h"
 #include "mc6840.h"
 #include "mos6551.h"
@@ -10,6 +11,10 @@ extern uint8_t mb_len;
 #define MB_MAX_REGS  16
 volatile uint16_t holding[MB_MAX_REGS];
 volatile uint16_t input[MB_MAX_REGS] = {0x1234, 0x5678, 0xFFFF, 0xFAFA};
+
+uint16_t __fastcall__ modbus_crc(const uint8_t *buf, uint16_t len);
+void __fastcall__ modbus_apply_if_needed(uint16_t reg);
+void __fastcall__ modbus_apply_command(void);
 
 void __fastcall__ modbus_process_frame(void) {
     uint16_t crc_calc, crc_recv;
@@ -97,10 +102,10 @@ void __fastcall__ modbus_process_frame(void) {
                 holding[reg] = val;
 
                 // Example: commit hook
-                //modbus_apply_if_needed(reg);
+                modbus_apply_if_needed(reg);
             }
 
-            modbus_apply_if_needed(MODBUS_HOLDING_CMD);
+            modbus_apply_command();
 
             // echo request as response (Modbus standard)
             if (mb_rx[0] != 0) mos6551_send(mb_rx, mb_len); // Do not respond to broadcast messages
@@ -125,10 +130,10 @@ void __fastcall__ modbus_process_frame(void) {
                 val = (data[i*2] << 8) | data[i*2 + 1];
                 holding[start + i] = val;
 
-                //modbus_apply_if_needed(start + i);
+                modbus_apply_if_needed(start + i);
             }
             
-            modbus_apply_if_needed(MODBUS_HOLDING_CMD);
+            modbus_apply_command();
 
             resp[0] = SLAVE_ADDR;
             resp[1] = 0x10;
@@ -186,51 +191,57 @@ uint16_t __fastcall__ modbus_crc(const uint8_t *buf, uint16_t len) {
     return crc;
 }
 
-void __fastcall__ modbus_apply_if_needed(uint16_t reg)
+void __fastcall__ modbus_apply_if_needed(uint16_t reg) {
+	
+}
+
+void __fastcall__ modbus_apply_command(void)
 {
-    if (reg == MODBUS_HOLDING_CMD) // example: "commit register"
-    {
-        switch(holding[reg]) {
-			case MODBUS_CMD_SET_TIME:
-			{
-				uint8_t hours = (uint8_t)(holding[MODBUS_H1] >> 8);
-				uint8_t minutes = (uint8_t)holding[MODBUS_H1];
-				uint8_t seconds = (uint8_t)holding[MODBUS_H2];
-				if ((hours < 24) && (minutes < 60) && (seconds < 60)) {
-					m6242_settime(hours, minutes, seconds);
-				}
-				break;
+	switch(holding[MODBUS_HOLDING_CMD]) {
+		case MODBUS_CMD_SET_TIME:
+		{
+			uint8_t hours = (uint8_t)(holding[MODBUS_H1] >> 8);
+			uint8_t minutes = (uint8_t)holding[MODBUS_H1];
+			uint8_t seconds = (uint8_t)holding[MODBUS_H2];
+			if ((hours < 24) && (minutes < 60) && (seconds < 60)) {
+				m6242_settime(hours, minutes, seconds);
 			}
-			case MODBUS_CMD_SET_DATE:
-			{
-				uint8_t day = (uint8_t)(holding[MODBUS_H1] >> 8);
-				uint8_t month = (uint8_t)holding[MODBUS_H1];
-				uint8_t year = (uint8_t)holding[MODBUS_H2];
-				if ((day > 0) && (day <= 31) && (month > 0) && (month <= 12) && (year < 100)) {
-					m6242_setdate(day, month, year);
-				}
-				break;
-			}
-			case MODBUS_CMD_SET_DATETIME:
-			{
-				uint8_t hours = (uint8_t)(holding[MODBUS_H1] >> 8);
-				uint8_t minutes = (uint8_t)holding[MODBUS_H1];
-				uint8_t seconds = (uint8_t)(holding[MODBUS_H2] >> 8);
-				uint8_t day = (uint8_t)holding[MODBUS_H2];
-				uint8_t month = (uint8_t)(holding[MODBUS_H3] >> 8);
-				uint8_t year = (uint8_t)holding[MODBUS_H3];
-				if ((hours < 24) && (minutes < 60) && (seconds < 60) && (day > 0) && (day <= 31) &&
-					(month > 0) && (month <= 12) && (year < 100)) {
-					m6242_setdate(day, month, year);
-					m6242_settime(hours, minutes, seconds);
-				}
-				break;
-			}
-			default:
-				break;
+			break;
 		}
-		holding[reg] = 0x00;
-    }
+		case MODBUS_CMD_SET_DATE:
+		{
+			uint8_t day = (uint8_t)(holding[MODBUS_H1] >> 8);
+			uint8_t month = (uint8_t)holding[MODBUS_H1];
+			uint8_t year = (uint8_t)holding[MODBUS_H2];
+			if ((day > 0) && (day <= 31) && (month > 0) && (month <= 12) && (year < 100)) {
+				m6242_setdate(day, month, year);
+			}
+			break;
+		}
+		case MODBUS_CMD_SET_DATETIME:
+		{
+			uint8_t hours = (uint8_t)(holding[MODBUS_H1] >> 8);
+			uint8_t minutes = (uint8_t)holding[MODBUS_H1];
+			uint8_t seconds = (uint8_t)(holding[MODBUS_H2] >> 8);
+			uint8_t day = (uint8_t)holding[MODBUS_H2];
+			uint8_t month = (uint8_t)(holding[MODBUS_H3] >> 8);
+			uint8_t year = (uint8_t)holding[MODBUS_H3];
+			if ((hours < 24) && (minutes < 60) && (seconds < 60) && (day > 0) && (day <= 31) &&
+				(month > 0) && (month <= 12) && (year < 100)) {
+				m6242_setdate(day, month, year);
+				m6242_settime(hours, minutes, seconds);
+			}
+			break;
+		}
+		case MODBUS_CMD_SET_TIMEZONE:
+		{
+			EEConfig.timezone = (int8_t)holding[MODBUS_H1];
+			break;
+		}
+		default:
+			break;
+	}
+	holding[MODBUS_HOLDING_CMD] = 0x00;
 }
 
 void modbus_set_cpm(void) {
