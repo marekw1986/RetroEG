@@ -203,6 +203,12 @@ uint16_t modbus_get_cpm(void) {
 	return input[MODBUS_INPUT_CPM];
 }
 
-void modbus_update_sivert(uint16_t siv) {
-	
+void modbus_set_sivert(void) {
+	uint32_t siv = GEIGER_USV(input[MODBUS_INPUT_CPM]);
+	input[MODBUS_INPUT_SIVERT_INT] = siv/10000;
+	input[MODBUS_INPUT_SIVERT_FRACT] = siv%10000;	
+}
+
+volatile uint16_t* modbus_get_sivert(void) {
+	return &input[MODBUS_INPUT_SIVERT_INT];
 }

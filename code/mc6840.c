@@ -1,6 +1,7 @@
 #include <6502.h>
 #include <stdlib.h>
 #include <string.h>
+#include "modbus.h"
 #include "mc6840.h"
 
 volatile uint32_t milliseconds = 0;
@@ -55,28 +56,28 @@ uint16_t get_geiger_pulses (void) {
 }
 
 
-char* get_usiv_str (uint16_t cpmin, char * des) {
-	uint32_t siv;
-	uint16_t integer, fraction;
+char* get_usiv_str (char * des) {
+	volatile uint16_t* siv;
 	char buffer[16];
 	
 	des[0] = '\0';
-	siv = GEIGER_USV(cpmin);
-	integer = siv/10000;
-	fraction = siv%10000;
-	utoa(integer, buffer, 10);
+	//siv = GEIGER_USV(cpmin);
+	//integer = siv/10000;
+	//fraction = siv%10000;
+	siv = modbus_get_sivert();
+	utoa(siv[0], buffer, 10);
 	strcat(des, buffer);
 	strcat(des, ".");
-	if (fraction < 1000) {
+	if (siv[1] < 1000) {
 		strcat(des, "0");
-		if (fraction < 100) {
+		if (siv[1] < 100) {
 			strcat(des, "0");
-			if (fraction < 10) {
+			if (siv[1] < 10) {
 				strcat(des, "0");
 			}
 		}
 	}
-	utoa(fraction, buffer, 10);
+	utoa(siv[1], buffer, 10);
 	strcat(des, buffer);
 	return des;	
 }

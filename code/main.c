@@ -72,7 +72,7 @@ static void key2_func (void);
 static void key3_func (void);
 
 int main (void) {
-	char buf[32];
+	//char buf[32];
 	
 	port_write(0x91);
 	
@@ -101,6 +101,7 @@ int main (void) {
 		if (uptime() != last_uptime) {
 			last_uptime = uptime();
 			modbus_set_cpm();
+			modbus_set_sivert();
 			update_disp();	
 		}
 		
@@ -156,7 +157,7 @@ static void update_disp (void) {
 	switch (state) {
 		case SHOW_RAD:
 		cpmin = modbus_get_cpm();
-		get_usiv_str(cpmin, buffer);
+		get_usiv_str(buffer);
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
@@ -218,7 +219,7 @@ static void log_data (void) {
 		f_write(&file, buffer, strlen(buffer), &bytes_written);			
 		f_write(&file, " - ", 3, &bytes_written);
 		cpmin = modbus_get_cpm();
-		get_usiv_str(cpmin, buffer);
+		get_usiv_str(buffer);
 		f_write(&file, buffer, strlen(buffer), &bytes_written);
 		f_write(&file, " uS/h (", 7, &bytes_written);
 		utoa(cpmin, buffer, 10);
