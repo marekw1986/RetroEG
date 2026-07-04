@@ -12,11 +12,11 @@ extern uint8_t mb_len;
 volatile uint16_t holding[MB_MAX_REGS];
 volatile uint16_t input[MB_MAX_REGS] = {0x1234, 0x5678, 0xFFFF, 0xFAFA};
 
-uint16_t __fastcall__ modbus_crc(const uint8_t *buf, uint16_t len);
-void __fastcall__ modbus_apply_if_needed(uint16_t reg);
-void __fastcall__ modbus_apply_command(void);
+uint16_t modbus_crc(const uint8_t *buf, uint16_t len);
+void modbus_apply_if_needed(uint16_t reg);
+void modbus_apply_command(void);
 
-void __fastcall__ modbus_process_frame(void) {
+void modbus_process_frame(void) {
     uint16_t crc_calc, crc_recv;
     uint8_t addr = mb_rx[0];
     uint8_t func = mb_rx[1];
@@ -171,7 +171,7 @@ void __fastcall__ modbus_process_frame(void) {
     mb_len = 0;
 }
 
-uint16_t __fastcall__ modbus_crc(const uint8_t *buf, uint16_t len) {
+uint16_t modbus_crc(const uint8_t *buf, uint16_t len) {
     uint16_t crc = 0xFFFF;
     uint16_t i;
     uint8_t j;
@@ -191,11 +191,11 @@ uint16_t __fastcall__ modbus_crc(const uint8_t *buf, uint16_t len) {
     return crc;
 }
 
-void __fastcall__ modbus_apply_if_needed(uint16_t reg) {
+void modbus_apply_if_needed(uint16_t reg) {
 	
 }
 
-void __fastcall__ modbus_apply_command(void)
+void modbus_apply_command(void)
 {
 	switch(holding[MODBUS_HOLDING_CMD]) {
 		case MODBUS_CMD_SET_TIME:

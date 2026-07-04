@@ -29,7 +29,7 @@ enum modbus_holding_idx {
 #define MODBUS_CMD_SET_DATETIME 	0x03
 #define MODBUS_CMD_SET_TIMEZONE		0x04
 
-void __fastcall__ modbus_process_frame(void);
+void modbus_process_frame(void);
 
 void modbus_set_cpm(void);
 uint16_t modbus_get_cpm(void);
