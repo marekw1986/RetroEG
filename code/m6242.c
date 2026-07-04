@@ -43,7 +43,7 @@ void __fastcall__ m6242_init (void) {
 	M6242_CTRLF_REG = (RTCF_TEST_DIS | RTCF_24H);					//0x04 (TEST = 0, 24h mode, STOP = 0, RESET = 0) 
 }
 
-
+/*
 char* __fastcall__ m6242_read_time_str (void) {
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
 	while(M6242_CTRLD_REG & RTCD_BUSY) {
@@ -84,7 +84,7 @@ char* __fastcall__ m6242_read_date_str (void) {
     M6242_CTRLD_REG = RTCD_IRQ_FLAG;					//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
     return m6242_buf;
 }
-
+*/
 
 void __fastcall__ m6242_read_time_raw (uint8_t* data) {	
 	M6242_CTRLD_REG = RTCD_HOLD | RTCD_IRQ_FLAG;		//Set HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 1)
@@ -179,9 +179,33 @@ void __fastcall__ m6242_setdate (uint8_t d, uint8_t m, uint8_t y) {
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;					//Clear HOLD bit (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)
 }
 
-struct tm* rtc_local_tm(time_t utc) {
-    utc += (time_t)(TZ_OFFSET * 3600);
-    return gmtime(&utc);
+char* __fastcall__ m6242_read_time_str (void) {  	
+    m6242_buf[0] = (current_time.tm_hour / 10) + '0';
+    m6242_buf[1] = (current_time.tm_hour % 10) + '0';
+    m6242_buf[2] = ':';
+    m6242_buf[3] = (current_time.tm_min / 10) + '0';
+    m6242_buf[4] = (current_time.tm_min % 10) + '0';
+    m6242_buf[5] = ':';
+    m6242_buf[6] = (current_time.tm_sec / 10) + '0';
+    m6242_buf[7] = (current_time.tm_sec % 10) + '0';
+    m6242_buf[8] = '\0';
+
+    return m6242_buf;
+}
+
+
+char* __fastcall__ m6242_read_date_str (void) {
+    m6242_buf[0] = (current_time.tm_mday / 10) + '0';
+    m6242_buf[1] = (current_time.tm_mday % 10) + '0';
+    m6242_buf[2] = '-';
+    m6242_buf[3] = ((current_time.tm_mon + 1) / 10) + '0';
+    m6242_buf[4] = ((current_time.tm_mon + 1) % 10) + '0';
+    m6242_buf[5] = '-';
+    m6242_buf[6] = ((current_time.tm_year % 100) / 10) + '0';
+    m6242_buf[7] = ((current_time.tm_year % 100) % 10) + '0';
+    m6242_buf[8] = '\0';
+
+    return m6242_buf;
 }
 
 char* __fastcall__ m6242_read_time_str_tz(void)
