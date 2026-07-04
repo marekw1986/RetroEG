@@ -186,12 +186,12 @@ struct tm* rtc_local_tm(time_t utc) {
 
 char* __fastcall__ m6242_read_time_str_tz(void)
 {
-    time_t utc;
+    time_t local;
     struct tm *t;
 
-    utc = timestamp + (time_t)(TZ_OFFSET * 3600);
+    local = timestamp + (time_t)(TZ_OFFSET * 3600);
 
-    t = gmtime(&utc);
+    t = gmtime(&local);
 
     m6242_buf[0] = (t->tm_hour / 10) + '0';
     m6242_buf[1] = (t->tm_hour % 10) + '0';
@@ -208,12 +208,12 @@ char* __fastcall__ m6242_read_time_str_tz(void)
 
 char* __fastcall__ m6242_read_date_str_tz(void)
 {
-    time_t utc;
+    time_t local;
     struct tm *t;
 
-    utc = timestamp + (time_t)(TZ_OFFSET * 3600);
+    local = timestamp + (time_t)(TZ_OFFSET * 3600);
 
-    t = gmtime(&utc);
+    t = gmtime(&local);
 
     m6242_buf[0] = (t->tm_mday / 10) + '0';
     m6242_buf[1] = (t->tm_mday % 10) + '0';
