@@ -185,7 +185,6 @@ char* __fastcall__ m6242_read_time_str_tz(void)
 {
     time_t utc;
     struct tm *t;
-    unsigned char *p;
 
     m6242_read_tm();
 
@@ -194,26 +193,23 @@ char* __fastcall__ m6242_read_time_str_tz(void)
 
     t = gmtime(&utc);
 
-    p = (unsigned char*)m6242_buf;
+    m6242_buf[0] = (t->tm_hour / 10) + '0';
+    m6242_buf[1] = (t->tm_hour % 10) + '0';
+    m6242_buf[2] = ':';
+    m6242_buf[3] = (t->tm_min / 10) + '0';
+    m6242_buf[4] = (t->tm_min % 10) + '0';
+    m6242_buf[5] = ':';
+    m6242_buf[6] = (t->tm_sec / 10) + '0';
+    m6242_buf[7] = (t->tm_sec % 10) + '0';
+    m6242_buf[8] = '\0';
 
-    p[0] = (t->tm_hour / 10) + '0';
-    p[1] = (t->tm_hour % 10) + '0';
-    p[2] = ':';
-    p[3] = (t->tm_min / 10) + '0';
-    p[4] = (t->tm_min % 10) + '0';
-    p[5] = ':';
-    p[6] = (t->tm_sec / 10) + '0';
-    p[7] = (t->tm_sec % 10) + '0';
-    p[8] = '\0';
-
-    return (char*)p;
+    return m6242_buf;
 }
 
 char* __fastcall__ m6242_read_date_str_tz(void)
 {
     time_t utc;
     struct tm *t;
-    unsigned char *p;
 
     m6242_read_tm();
 
@@ -222,19 +218,17 @@ char* __fastcall__ m6242_read_date_str_tz(void)
 
     t = gmtime(&utc);
 
-    p = (unsigned char*)m6242_buf;
+    m6242_buf[0] = (t->tm_mday / 10) + '0';
+    m6242_buf[1] = (t->tm_mday % 10) + '0';
+    m6242_buf[2] = '-';
+    m6242_buf[3] = ((t->tm_mon + 1) / 10) + '0';
+    m6242_buf[4] = ((t->tm_mon + 1) % 10) + '0';
+    m6242_buf[5] = '-';
+    m6242_buf[6] = ((t->tm_year % 100) / 10) + '0';
+    m6242_buf[7] = ((t->tm_year % 100) % 10) + '0';
+    m6242_buf[8] = '\0';
 
-    p[0] = (t->tm_mday / 10) + '0';
-    p[1] = (t->tm_mday % 10) + '0';
-    p[2] = '-';
-    p[3] = ((t->tm_mon + 1) / 10) + '0';
-    p[4] = ((t->tm_mon + 1) % 10) + '0';
-    p[5] = '-';
-    p[6] = ((t->tm_year % 100) / 10) + '0';
-    p[7] = ((t->tm_year % 100) % 10) + '0';
-    p[8] = '\0';
-
-    return (char*)p;
+    return m6242_buf;
 }
 
 DWORD get_fattime (void)
