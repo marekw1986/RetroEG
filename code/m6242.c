@@ -254,12 +254,10 @@ char* __fastcall__ m6242_read_date_str_tz(void)
 
 DWORD get_fattime (void)
 {
-    struct tm* current_time;
-    current_time = mktime(&timestamp);
-    return ((DWORD)(current_time->tm_year - 80) << 25)
-         | ((DWORD)(current_time->tm_mon + 1) << 21)
-         | ((DWORD)current_time->tm_mday << 16)
-         | ((DWORD)current_time->tm_hour << 11)
-         | ((DWORD)current_time->tm_min << 5)
-         | ((DWORD)current_time->tm_sec >> 1);
+    return ((DWORD)(current_time.tm_year - 80) << 25)
+         | ((DWORD)(current_time.tm_mon + 1) << 21)
+         | ((DWORD)current_time.tm_mday << 16)
+         | ((DWORD)current_time.tm_hour << 11)
+         | ((DWORD)current_time.tm_min << 5)
+         | ((DWORD)current_time.tm_sec >> 1);
 }
