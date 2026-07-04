@@ -33,6 +33,9 @@ time_t timestamp;
 
 struct tm* rtc_local_tm(time_t utc);
 
+struct tm* __fastcall__ gmtime (const time_t* timep);
+time_t __fastcall__ mktime (struct tm* timep);
+
 void __fastcall__ m6242_init (void) {                  
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;								//0x04 (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)              
 	M6242_CTRLE_REG = (RTCE_INTRT | RTCE_STDP_EN | RTCE_TM_1S);		//0x06 (Innterrupt mode, STD.P enabled, 1 s.)
@@ -186,10 +189,7 @@ char* __fastcall__ m6242_read_time_str_tz(void)
     time_t utc;
     struct tm *t;
 
-    m6242_read_tm();
-
-    utc = mktime(&current_time);
-    utc += (time_t)(TZ_OFFSET * 3600);
+    utc = timestamp + (time_t)(TZ_OFFSET * 3600);
 
     t = gmtime(&utc);
 
@@ -211,10 +211,7 @@ char* __fastcall__ m6242_read_date_str_tz(void)
     time_t utc;
     struct tm *t;
 
-    m6242_read_tm();
-
-    utc = mktime(&current_time);
-    utc += (time_t)(TZ_OFFSET * 3600);
+    utc = timestamp + (time_t)(TZ_OFFSET * 3600);
 
     t = gmtime(&utc);
 
@@ -233,5 +230,12 @@ char* __fastcall__ m6242_read_date_str_tz(void)
 
 DWORD get_fattime (void)
 {
-	return(0);
+    struct tm* current_time;
+    current_time = mktime(&timestamp);
+    return ((DWORD)(current_time->tm_year - 80) << 25)
+         | ((DWORD)(current_time->tm_mon + 1) << 21)
+         | ((DWORD)current_time->tm_mday << 16)
+         | ((DWORD)current_time->tm_hour << 11)
+         | ((DWORD)current_time->tm_min << 5)
+         | ((DWORD)current_time->tm_sec >> 1);
 }
