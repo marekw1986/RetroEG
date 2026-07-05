@@ -8,7 +8,8 @@ PORT = "/dev/ttyUSB0"
 SLAVE = "0xAB"
 BAUD = "9600"
 
-now = datetime.datetime.now()
+#now = datetime.datetime.now()
+now = datetime.datetime.utcnow()
 
 # Pack two 8-bit values into one Modbus holding register
 H1 = (now.hour << 8) | now.minute

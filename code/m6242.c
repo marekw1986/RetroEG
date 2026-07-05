@@ -21,7 +21,8 @@
 #define M6242_CTRLE_REG   (*(volatile uint8_t*)0x640E)
 #define M6242_CTRLF_REG   (*(volatile uint8_t*)0x640F)
 
-#define TZ_OFFSET	EEConfig.timezone
+#define TZ_OFFSET	        EEConfig.timezone
+#define DAYLIGHT_SAVING     EEConfig.dst
 //#define TZ_OFFSET	1
 
 extern const uint8_t digits[16];			// USUN TO POTEM
@@ -39,6 +40,9 @@ struct tm* __fastcall__ gmtime (const time_t* timep);
 time_t __fastcall__ mktime (struct tm* timep);
 
 static void epoch_to_tm_tz(time_t t, struct tm *tm);
+#if defined(DAYLIGHT_SAVING)
+static unsigned char is_dst_now(void);
+#endif;
 
 void __fastcall__ m6242_init (void) {                  
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;								//0x04 (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)              
@@ -253,6 +257,60 @@ void m6242_update_tz_time(void) {
     epoch_to_tm_tz(timestamp, &tz_time);
 }
 
+static unsigned char day_of_week(unsigned int year, unsigned char month, unsigned char day)
+{
+    /* Zeller's congruence (Gregorian). Returns 0=Sunday .. 6=Saturday. */
+    unsigned int y = year;
+    unsigned char m = month;   /* 1=Jan .. 12=Dec */
+    unsigned int K, J;
+    long h;
+
+    if (m < 3) {
+        m = (unsigned char)(m + 12);
+        y -= 1;
+    }
+    K = y % 100;
+    J = y / 100;
+    h = (day + (13L * (m + 1)) / 5 + K + K / 4 + J / 4 + 5 * J) % 7;
+    /* h: 0=Saturday, 1=Sunday, ... 6=Friday -> convert to 0=Sunday..6=Saturday */
+    return (unsigned char)((h + 6) % 7);
+}
+
+#if defined(DAYLIGHT_SAVING)
+static unsigned char is_dst_now(void)
+{
+    unsigned int year;
+    unsigned char last_sun_mar;
+    unsigned char last_sun_oct;
+
+    if (!DAYLIGHT_SAVING) {
+        return 0;
+    }
+
+    year = current_time.tm_year + 1900;
+
+    if (current_time.tm_mon < 2 || current_time.tm_mon > 9) {
+        return 0;   /* Jan, Feb, Nov, Dec: never DST */
+    }
+    if (current_time.tm_mon > 2 && current_time.tm_mon < 9) {
+        return 1;   /* Apr..Sep: always DST */
+    }
+
+    if (current_time.tm_mon == 2) {   /* March */
+        last_sun_mar = (unsigned char)(31 - day_of_week(year, 3, 31));
+        if (current_time.tm_mday > last_sun_mar) return 1;
+        if (current_time.tm_mday == last_sun_mar && current_time.tm_hour >= 1) return 1;
+        return 0;
+    }
+
+    /* current_time.tm_mon == 9, October */
+    last_sun_oct = (unsigned char)(31 - day_of_week(year, 10, 31));
+    if (current_time.tm_mday < last_sun_oct) return 1;
+    if (current_time.tm_mday == last_sun_oct && current_time.tm_hour < 1) return 1;
+    return 0;
+}
+#endif
+
 static void epoch_to_tm_tz(time_t t, struct tm *tm) {
     unsigned long days;
     unsigned long secs_of_day;
@@ -264,6 +322,12 @@ static void epoch_to_tm_tz(time_t t, struct tm *tm) {
     static const unsigned char mdays[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     t += (time_t)(TZ_OFFSET) * 3600L;
+    
+#if defined(DAYLIGHT_SAVING)
+    if (is_dst_now()) {
+        t += (time_t)3600L;
+    }
+#endif
 
     days = (unsigned long)t / 86400UL;
     secs_of_day = (unsigned long)t % 86400UL;
