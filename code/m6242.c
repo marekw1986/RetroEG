@@ -22,6 +22,7 @@
 #define M6242_CTRLF_REG   (*(volatile uint8_t*)0x640F)
 
 #define TZ_OFFSET	EEConfig.timezone
+//#define TZ_OFFSET	1
 
 extern const uint8_t digits[16];			// USUN TO POTEM
 
@@ -29,12 +30,15 @@ extern const uint8_t digits[16];			// USUN TO POTEM
 
 uint8_t m6242_buf[10];
 struct tm current_time;
+struct tm tz_time;
 time_t timestamp;
 
 struct tm* rtc_local_tm(time_t utc);
 
 struct tm* __fastcall__ gmtime (const time_t* timep);
 time_t __fastcall__ mktime (struct tm* timep);
+
+static void epoch_to_tm_tz(time_t t, struct tm *tm);
 
 void __fastcall__ m6242_init (void) {                  
 	M6242_CTRLD_REG = RTCD_IRQ_FLAG;								//0x04 (30 AJD = 0, IRQ FLAG = 1 (required), BUSY = 0(?), HOLD = 0)              
@@ -141,6 +145,7 @@ void __fastcall__ m6242_read_tm (void) {
 time_t* __fastcall__ m6242_read_timestamp (void) {
     m6242_read_tm();
     timestamp = mktime(&current_time);
+    m6242_update_tz_time();
     return &timestamp;
 }
 
@@ -208,47 +213,29 @@ char* __fastcall__ m6242_read_date_str (void) {
     return m6242_buf;
 }
 
-char* __fastcall__ m6242_read_time_str_tz(void)
-{
-    time_t local;
-    struct tm *t;
-
-    local = timestamp + (time_t)(TZ_OFFSET * 3600);
-
-    t = gmtime(&local);
-
-    m6242_buf[0] = (t->tm_hour / 10) + '0';
-    m6242_buf[1] = (t->tm_hour % 10) + '0';
+char* __fastcall__ m6242_read_time_str_tz(void) {
+    m6242_buf[0] = (tz_time.tm_hour / 10) + '0';
+    m6242_buf[1] = (tz_time.tm_hour % 10) + '0';
     m6242_buf[2] = ':';
-    m6242_buf[3] = (t->tm_min / 10) + '0';
-    m6242_buf[4] = (t->tm_min % 10) + '0';
+    m6242_buf[3] = (tz_time.tm_min / 10) + '0';
+    m6242_buf[4] = (tz_time.tm_min % 10) + '0';
     m6242_buf[5] = ':';
-    m6242_buf[6] = (t->tm_sec / 10) + '0';
-    m6242_buf[7] = (t->tm_sec % 10) + '0';
+    m6242_buf[6] = (tz_time.tm_sec / 10) + '0';
+    m6242_buf[7] = (tz_time.tm_sec % 10) + '0';
     m6242_buf[8] = '\0';
-
     return m6242_buf;
 }
 
-char* __fastcall__ m6242_read_date_str_tz(void)
-{
-    time_t local;
-    struct tm *t;
-
-    local = timestamp + (time_t)(TZ_OFFSET * 3600);
-
-    t = gmtime(&local);
-
-    m6242_buf[0] = (t->tm_mday / 10) + '0';
-    m6242_buf[1] = (t->tm_mday % 10) + '0';
+char* __fastcall__ m6242_read_date_str_tz(void) {
+    m6242_buf[0] = (tz_time.tm_mday / 10) + '0';
+    m6242_buf[1] = (tz_time.tm_mday % 10) + '0';
     m6242_buf[2] = '-';
-    m6242_buf[3] = ((t->tm_mon + 1) / 10) + '0';
-    m6242_buf[4] = ((t->tm_mon + 1) % 10) + '0';
+    m6242_buf[3] = ((tz_time.tm_mon + 1) / 10) + '0';
+    m6242_buf[4] = ((tz_time.tm_mon + 1) % 10) + '0';
     m6242_buf[5] = '-';
-    m6242_buf[6] = ((t->tm_year % 100) / 10) + '0';
-    m6242_buf[7] = ((t->tm_year % 100) % 10) + '0';
+    m6242_buf[6] = ((tz_time.tm_year % 100) / 10) + '0';
+    m6242_buf[7] = ((tz_time.tm_year % 100) % 10) + '0';
     m6242_buf[8] = '\0';
-
     return m6242_buf;
 }
 
@@ -260,4 +247,50 @@ DWORD get_fattime (void)
          | ((DWORD)current_time.tm_hour << 11)
          | ((DWORD)current_time.tm_min << 5)
          | ((DWORD)current_time.tm_sec >> 1);
+}
+
+void m6242_update_tz_time(void) {
+    epoch_to_tm_tz(timestamp, &tz_time);
+}
+
+static void epoch_to_tm_tz(time_t t, struct tm *tm) {
+    unsigned long days;
+    unsigned long secs_of_day;
+    unsigned int y;
+    unsigned int ylen;
+    unsigned char mo;
+    unsigned char dim;
+    unsigned char leap;
+    static const unsigned char mdays[] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    t += (time_t)(TZ_OFFSET) * 3600L;
+
+    days = (unsigned long)t / 86400UL;
+    secs_of_day = (unsigned long)t % 86400UL;
+
+    tm->tm_hour = (unsigned char)(secs_of_day / 3600UL);
+    tm->tm_min  = (unsigned char)((secs_of_day % 3600UL) / 60UL);
+    tm->tm_sec  = (unsigned char)(secs_of_day % 60UL);
+
+    /* day of week: Jan 1 1970 was a Thursday (tm_wday = 4) */
+    tm->tm_wday = (unsigned char)((days + 4) % 7);
+
+    y = 1970;
+    for (;;) {
+        leap = (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)) ? 1 : 0;
+        ylen = leap ? 366 : 365;
+        if (days < ylen) break;
+        days -= ylen;
+        y++;
+    }
+    tm->tm_year = y - 1900;
+
+    leap = (y % 4 == 0 && (y % 100 != 0 || y % 400 == 0)) ? 1 : 0;
+    for (mo = 0; mo < 12; mo++) {
+        dim = mdays[mo] + ((mo == 1 && leap) ? 1 : 0);
+        if (days < dim) break;
+        days -= dim;
+    }
+    tm->tm_mon = mo;                       /* 0-11, matches struct tm convention */
+    tm->tm_mday = (unsigned char)(days + 1);
 }

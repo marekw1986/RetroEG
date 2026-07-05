@@ -138,15 +138,22 @@ static void prepare_disp (void) {
 	switch (state) {
 		case SHOW_RAD:
 		hd44780_gotoxy(0, 0);
+        hd44780_puts("                    ");
+		hd44780_gotoxy(0, 0);
 		hd44780_puts("Promieniowanie");
 		break;
 		
 		case SHOW_TIME:
 		hd44780_gotoxy(0, 0);
-		hd44780_puts(use_utc ? "Czas (UTC)" : "Czas");		
+        hd44780_puts("                    ");
+		hd44780_gotoxy(0, 0);
+        if (use_utc) { hd44780_puts("Czas (UTC)"); }
+        else { hd44780_puts("Czas"); }	
 		break;
 		
 		case SHOW_STATS:
+		hd44780_gotoxy(0, 0);
+        hd44780_puts("                    ");
 		hd44780_gotoxy(0, 0);
 		hd44780_puts("Stats");		
 		break;		
@@ -179,11 +186,13 @@ static void update_disp (void) {
 		hd44780_gotoxy(1, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(1, 0);
-		hd44780_puts(use_utc ? m6242_read_time_str() : m6242_read_time_str_tz());
+        if (use_utc) { hd44780_puts(m6242_read_time_str()); }
+        else { hd44780_puts(m6242_read_time_str_tz()); }
 		hd44780_gotoxy(2, 0);
 		hd44780_puts("                    ");
 		hd44780_gotoxy(2, 0);
-		hd44780_puts(use_utc ? m6242_read_time_str() : m6242_read_date_str_tz());		
+        if (use_utc) { hd44780_puts(m6242_read_date_str()); }
+        else { hd44780_puts(m6242_read_date_str_tz()); }	
 		break;
 		
 		case SHOW_STATS:
