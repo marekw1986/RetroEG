@@ -28,6 +28,7 @@ enum modbus_holding_idx {
 #define MODBUS_CMD_SET_DATE 		0x02
 #define MODBUS_CMD_SET_DATETIME 	0x03
 #define MODBUS_CMD_SET_TIMEZONE		0x04
+#define MODBUS_CMD_SET_DST          0x05
 
 void modbus_process_frame(void);
 

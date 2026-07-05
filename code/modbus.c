@@ -238,6 +238,10 @@ void modbus_apply_command(void)
 			EEConfig.timezone = (int8_t)holding[MODBUS_H1];
 			break;
 		}
+        case MODBUS_CMD_SET_DST:
+        {
+            EEConfig.dst = (uint8_t)holding[MODBUS_H1];
+        }
 		default:
 			break;
 	}
