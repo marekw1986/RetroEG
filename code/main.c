@@ -88,6 +88,7 @@ int main (void) {
 	m6242_init();
 	mos6551_init();
 	hd44780_init();
+    modbus_init();
 	//cfInit();
 	
 	feed_hungry_watchdog();
@@ -239,7 +240,8 @@ static void log_data (void) {
 		utoa(cpmin, buffer, 10);
 		f_write(&file, buffer, strlen(buffer), &bytes_written);
 		f_write(&file, " CPM)\r\n", 7, &bytes_written);
-		f_close(&file);            
+		f_close(&file);
+        modbus_set_cf_time();        
     }   
 }
 

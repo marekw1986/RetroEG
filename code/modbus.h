@@ -11,6 +11,8 @@ enum modbus_input_idx {
 	MODBUS_INPUT_TIMEL,
 	MODBUS_INPUT_UPTIMEH,
 	MODBUS_INPUT_UPTIMEL,
+    MODBUS_INPUT_LASTCFH,
+    MODBUS_INPUT_LASTCFL,
 	MODBUS_INPUT_CFRES
 };
 	
@@ -30,14 +32,15 @@ enum modbus_holding_idx {
 #define MODBUS_CMD_SET_TIMEZONE		0x04
 #define MODBUS_CMD_SET_DST          0x05
 
+void modbus_init(void) ;
 void modbus_process_frame(void);
-
 void modbus_set_cpm(void);
 uint16_t modbus_get_cpm(void);
 void modbus_set_sivert(void);
 volatile uint16_t* modbus_get_sivert(void);
 void modbus_set_time(void);
 void modbus_set_uptime(void);
+void modbus_set_cf_time();
 void modbus_set_cf_result(uint8_t res);
 
 #endif

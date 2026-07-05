@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include "config.h"
 #include "modbus.h"
 #include "mc6840.h"
@@ -11,6 +12,13 @@ extern uint8_t mb_len;
 #define MB_MAX_REGS  16
 volatile uint16_t holding[MB_MAX_REGS];
 volatile uint16_t input[MB_MAX_REGS] = {0x1234, 0x5678, 0xFFFF, 0xFAFA};
+
+extern time_t timestamp;
+
+void modbus_init(void) {
+    memset(holding, 0x00, sizeof(holding));
+    memset(input, 0x00, sizeof(input));
+}
 
 uint16_t modbus_crc(const uint8_t *buf, uint16_t len);
 void modbus_apply_if_needed(uint16_t reg);
@@ -268,15 +276,20 @@ volatile uint16_t* modbus_get_sivert(void) {
 }
 
 void modbus_set_time(void) {
-	time_t* timestamp = m6242_read_timestamp();
-	input[MODBUS_INPUT_TIMEH] = (uint16_t)(*timestamp >> 16);
-	input[MODBUS_INPUT_TIMEL] = (uint16_t)(*timestamp & 0xFFFF);
+	time_t* tmstmp = m6242_read_timestamp();
+	input[MODBUS_INPUT_TIMEH] = (uint16_t)(*tmstmp >> 16);
+	input[MODBUS_INPUT_TIMEL] = (uint16_t)(*tmstmp & 0xFFFF);
 }
 
 void modbus_set_uptime(void) {
 	uint32_t upt = uptime();
 	input[MODBUS_INPUT_UPTIMEH] = (uint16_t)(upt >> 16);
 	input[MODBUS_INPUT_UPTIMEL] = (uint16_t)(upt & 0xFFFF);
+}
+
+void modbus_set_cf_time() {
+	input[MODBUS_INPUT_LASTCFH] = (uint16_t)(timestamp >> 16);
+	input[MODBUS_INPUT_LASTCFL] = (uint16_t)(timestamp & 0xFFFF);    
 }
 
 void modbus_set_cf_result(uint8_t res) {

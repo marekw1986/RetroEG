@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
-
 from pymodbus.client import ModbusSerialClient
+from pymodbus.exceptions import ModbusException
 import time
 
 SLAVE_ADDR = 0xAB
 
-# Register mapping (your firmware layout)
 MODBUS_INPUT_CPM = 0
 MODBUS_INPUT_SIVERT_INT = 1
 MODBUS_INPUT_SIVERT_FRACT = 2
@@ -13,40 +12,48 @@ MODBUS_INPUT_TIMEH = 3
 MODBUS_INPUT_TIMEL = 4
 MODBUS_INPUT_UPTIMEH = 5
 MODBUS_INPUT_UPTIMEL = 6
+MODBUS_INPUT_LASTCFH = 7
+MODBUS_INPUT_LASTCFL = 8
+MODBUS_INPUT_CFRES = 9
 
 def read_inputs(client):
-    rr = client.read_input_registers(
-        address=0,
-        count=7,
-        slave=SLAVE_ADDR
-    )
+    try:
+        rr = client.read_input_registers(
+            address=0,
+            count=10,
+            slave=SLAVE_ADDR
+        )
+    except ModbusException as exc:
+        print("Modbus exception:", exc)
+        return
 
-    if rr.isError():
+    if rr is None or rr.isError():
         print("Read error:", rr)
         return
 
     regs = rr.registers
-
     cpm = regs[MODBUS_INPUT_CPM]
     siv_int = regs[MODBUS_INPUT_SIVERT_INT]
     siv_fract = regs[MODBUS_INPUT_SIVERT_FRACT]
-
     timeh = regs[MODBUS_INPUT_TIMEH]
     timel = regs[MODBUS_INPUT_TIMEL]
-
     uptimeh = regs[MODBUS_INPUT_UPTIMEH]
     uptimel = regs[MODBUS_INPUT_UPTIMEL]
+    cftimeh = regs[MODBUS_INPUT_LASTCFH]
+    cftimel = regs[MODBUS_INPUT_LASTCFL]
+    cfres = regs[MODBUS_INPUT_CFRES]
 
-    # Combine 32-bit values
     timestamp = (timeh << 16) | timel
     uptime = (uptimeh << 16) | uptimel
+    cftime = (cftimeh << 16) | cftimel
 
     print("CPM:", cpm)
-    print("Dose:", f"{siv_int}.{siv_fract:04d} uSv")
-    print("Time raw:", hex(timestamp))
+    print("Siv:", f"{siv_int}.{siv_fract:04d} uSv/h")
+    print("Time raw:", timestamp)
     print("Uptime:", uptime, "seconds")
+    print("CF update: ", cftime)
+    print("CF result:", hex(cfres))
     print("-" * 40)
-
 
 def main():
     client = ModbusSerialClient(
@@ -57,22 +64,17 @@ def main():
         bytesize=8,
         timeout=1
     )
-
     if not client.connect():
         print("Failed to connect to serial port")
         return
-
     try:
         while True:
             read_inputs(client)
-            time.sleep(1)
-
+            time.sleep(10)
     except KeyboardInterrupt:
         print("Stopped")
-
     finally:
         client.close()
-
 
 if __name__ == "__main__":
     main()
