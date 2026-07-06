@@ -7,6 +7,8 @@ enum modbus_input_idx {
 	MODBUS_INPUT_CPM=0,
 	MODBUS_INPUT_SIVERT_INT,
 	MODBUS_INPUT_SIVERT_FRACT,
+    MODBUS_INPUT_DSTEMPH,
+    MODBUS_INPUT_DSTEMPL,
 	MODBUS_INPUT_TIMEH,
 	MODBUS_INPUT_TIMEL,
 	MODBUS_INPUT_UPTIMEH,
@@ -38,6 +40,7 @@ void modbus_set_cpm(void);
 uint16_t modbus_get_cpm(void);
 void modbus_set_sivert(void);
 volatile uint16_t* modbus_get_sivert(void);
+void modbus_set_ds18b20_temp(int32_t val);
 void modbus_set_time(void);
 void modbus_set_uptime(void);
 void modbus_set_cf_time();

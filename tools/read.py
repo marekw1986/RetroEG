@@ -8,19 +8,21 @@ SLAVE_ADDR = 0xAB
 MODBUS_INPUT_CPM = 0
 MODBUS_INPUT_SIVERT_INT = 1
 MODBUS_INPUT_SIVERT_FRACT = 2
-MODBUS_INPUT_TIMEH = 3
-MODBUS_INPUT_TIMEL = 4
-MODBUS_INPUT_UPTIMEH = 5
-MODBUS_INPUT_UPTIMEL = 6
-MODBUS_INPUT_LASTCFH = 7
-MODBUS_INPUT_LASTCFL = 8
-MODBUS_INPUT_CFRES = 9
+MODBUS_INPUT_DSTEMPH = 3
+MODBUS_INPUT_DSTEMPL = 4
+MODBUS_INPUT_TIMEH = 5
+MODBUS_INPUT_TIMEL = 6
+MODBUS_INPUT_UPTIMEH = 7
+MODBUS_INPUT_UPTIMEL = 8
+MODBUS_INPUT_LASTCFH = 9
+MODBUS_INPUT_LASTCFL = 10
+MODBUS_INPUT_CFRES = 11
 
 def read_inputs(client):
     try:
         rr = client.read_input_registers(
             address=0,
-            count=10,
+            count=12,
             slave=SLAVE_ADDR
         )
     except ModbusException as exc:
@@ -35,6 +37,10 @@ def read_inputs(client):
     cpm = regs[MODBUS_INPUT_CPM]
     siv_int = regs[MODBUS_INPUT_SIVERT_INT]
     siv_fract = regs[MODBUS_INPUT_SIVERT_FRACT]
+    
+    dsh = regs[MODBUS_INPUT_DSTEMPH]
+    dsl = regs[MODBUS_INPUT_DSTEMPL]
+    
     timeh = regs[MODBUS_INPUT_TIMEH]
     timel = regs[MODBUS_INPUT_TIMEL]
     uptimeh = regs[MODBUS_INPUT_UPTIMEH]
@@ -43,6 +49,7 @@ def read_inputs(client):
     cftimel = regs[MODBUS_INPUT_LASTCFL]
     cfres = regs[MODBUS_INPUT_CFRES]
 
+    ds18b20_temp = (dsh << 16) | dsl
     timestamp = (timeh << 16) | timel
     uptime = (uptimeh << 16) | uptimel
     cftime = (cftimeh << 16) | cftimel

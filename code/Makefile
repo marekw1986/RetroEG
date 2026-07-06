@@ -4,8 +4,8 @@ all: ethergeiger.hex
 ethergeiger.hex: a.out
 	bin2hex.py a.out ethergeiger.hex
 
-a.out: interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o modbus.o cf.o diskio.o ff.o bus8255.o onewire.o i2c.o main.o 
-	ld65 -C ./lib/ethergeiger.cfg -m main.map interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o modbus.o cf.o diskio.o ff.o bus8255.o onewire.o i2c.o main.o ./lib/ethergeiger.lib	
+a.out: interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o modbus.o cf.o diskio.o ff.o bus8255.o onewire.o ds18b20.o i2c.o main.o 
+	ld65 -C ./lib/ethergeiger.cfg -m main.map interrupt.o vectors.o mc6840.o mos6551.o hd44780.o delay.o m6242.o io.o modbus.o cf.o diskio.o ff.o bus8255.o onewire.o ds18b20.o i2c.o main.o ./lib/ethergeiger.lib	
 
 main.s: main.c
 	cc65 -t none -O --cpu 65c02 main.c
@@ -68,7 +68,12 @@ bus8255.o: bus8255.s
 onewire.s: onewire.c
 	cc65 -t none -O --cpu 65c02 onewire.c	
 onewire.o: onewire.s
-	ca65 --cpu 65c02 onewire.s		
+	ca65 --cpu 65c02 onewire.s
+	
+ds18b20.s: ds18b20.c
+	cc65 -t none -O --cpu 65c02 ds18b20.c	
+ds18b20.o: ds18b20.s
+	ca65 --cpu 65c02 ds18b20.s				
 	
 i2c.s: i2c.c
 	cc65 -t none -O --cpu 65c02 i2c.c	
@@ -82,4 +87,4 @@ vectors.o: vectors.s
 	ca65 --cpu 65c02 vectors.s	
 	
 clean:
-	$(RM) *.o *.lst *.map *.out *.hex a.out m6242.s ff.s diskio.s cf.s main.s hd44780.s mc6840.s mos6551.s io.s modbus.s bus8255.s onewire.s i2c.s
+	$(RM) *.o *.lst *.map *.out *.hex a.out m6242.s ff.s diskio.s cf.s main.s hd44780.s mc6840.s mos6551.s io.s modbus.s bus8255.s onewire.s ds18b20.s i2c.s
