@@ -57,7 +57,6 @@ static key_t key0, key1, key2, key3;
 static uint32_t last_uptime = 0;
 static uint16_t  last_millis = 0;
 static uint16_t backlight_timer = 0;
-static uint32_t sensors_timer = 0;
 static uint8_t use_utc = 0x00;
 
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
@@ -120,16 +119,7 @@ int main (void) {
 			feed_hungry_watchdog();								// Reset watchdog
 		}
         
-        if ((uint32_t)(uptime()-sensors_timer) > 10) {
-            int32_t ds18b20_temp = 0;
-            
-            sensors_timer = uptime();
-            /*
-            if (ds18b20_read_temp(&ds18b20_temp)) {
-                modbus_set_ds18b20_temp(ds18b20_temp);
-            }
-            */
-        }
+        handle_ds18b20_poll();
 		
 		if (backlight_timer && ( (uint16_t)(millis()-backlight_timer) > 4000 ) ) {
 			port_set(BACKLIGHT_PIN);							//Turn the backlight off

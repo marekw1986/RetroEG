@@ -1,3 +1,5 @@
+#include "mc6840.h"
+#include "modbus.h"
 #include "onewire.h"
 #include "ds18b20.h"
 #include "io.h"
@@ -6,65 +8,65 @@
 #define DS18B20_CMD_CONVERT_T    0x44
 #define DS18B20_CMD_READ_SCRATCH 0xBE
 
-/* ~1 second worth of ow_read_bit() calls at ~80us each - see the
- * comment on the poll loop below. */
-#define DS18B20_POLL_TIMEOUT_ITERS 12000
+#define TICK_20S    20000
+#define TICK_750MS  750
 
-#define WDT_FEED()  feed_hungry_watchdog()
+typedef enum {
+    DS_IDLE,
+    DS_CONVERTING,
+    DS_READING
+} ds18b20_state_t;
 
-uint8_t ds18b20_read_temp(int32_t *millic) {
-    uint8_t lsb, msb;
-    int16_t raw;
-    uint16_t timeout;
+static ds18b20_state_t state = DS_IDLE;
+static uint32_t ds18b20_timer;
+static int32_t  last_millic;
+static uint8_t  last_valid = 0;
 
-    if (!ow_reset()) {
-        return 0;                    /* nothing answered the bus reset */
-    }
-    ow_write_byte(DS18B20_CMD_SKIP_ROM);
-    ow_write_byte(DS18B20_CMD_CONVERT_T);
+void handle_ds18b20_poll(void) {
+    switch (state) {
+        case DS_IDLE:
+            if ((uint16_t)(millis()-ds18b20_timer) > TICK_20S) {
+                if (ow_reset()) {
+                    ow_write_byte(DS18B20_CMD_SKIP_ROM);
+                    ow_write_byte(DS18B20_CMD_CONVERT_T);
+                    ds18b20_timer = millis();
+                    state = DS_CONVERTING;
+                } else {
+                    ds18b20_timer = millis();   /* retry again in 30s */
+                }
+            }
+            break;
 
-    /*
-     * An externally-powered DS18B20 pulls the bus low while it's
-     * converting and lets it float high (reads as 1) the instant
-     * it's done, so we poll instead of guessing at a fixed delay.
-     * Worst case (12-bit resolution, the power-on default) this
-     * takes up to ~750ms - long enough to trip a watchdog if you
-     * have one, so feed it on every iteration.
-     *
-     * DS18B20_POLL_TIMEOUT_ITERS bounds the loop independently of
-     * the watchdog, so a wiring fault or dead sensor fails this
-     * one reading instead of hanging forever. It's a rough count
-     * (~1s worth of ow_read_bit() calls at ~80us each per the
-     * timing in onewire.c) - tune it if your actual loop timing
-     * ends up noticeably different.
-     */
-    for (timeout = 0; timeout < DS18B20_POLL_TIMEOUT_ITERS; timeout++) {
-        if (ow_read_bit() != 0) {
+        case DS_CONVERTING:
+            /* Don't poll ow_read_bit() in a tight spin here - either
+             * check it occasionally (every few main-loop passes) or
+             * just wait out a fixed ~750ms via tick comparison, since
+             * you don't need the earliest-possible result. */
+            if ((uint16_t)(millis()-ds18b20_timer) > TICK_750MS) {
+                state = DS_READING;
+            }
+            break;
+
+        case DS_READING: {
+            uint8_t lsb, msb;
+            if (ow_reset()) {
+                ow_write_byte(DS18B20_CMD_SKIP_ROM);
+                ow_write_byte(DS18B20_CMD_READ_SCRATCH);
+                lsb = ow_read_byte();
+                msb = ow_read_byte();
+                last_millic = ((int32_t)(int16_t)(((uint16_t)msb << 8) | lsb) * 625) / 10;
+                modbus_set_ds18b20_temp(last_millic);
+                last_valid = 1;
+            }
+            ds18b20_timer = millis();
+            state = DS_IDLE;
             break;
         }
-        WDT_FEED();   /* <-- replace with your board's actual watchdog feed call */
     }
-    if (timeout == DS18B20_POLL_TIMEOUT_ITERS) {
-        return 0;     /* conversion never completed - treat as a fault */
-    }
+}
 
-    if (!ow_reset()) {
-        return 0;
-    }
-    ow_write_byte(DS18B20_CMD_SKIP_ROM);
-    ow_write_byte(DS18B20_CMD_READ_SCRATCH);
-
-    lsb = ow_read_byte();
-    msb = ow_read_byte();
-    /* Scratchpad bytes 2-8 (alarm registers, config, CRC) are left
-     * unread here. If you want to guard against a corrupted read
-     * (line noise, a bad connection), read all 9 bytes and check
-     * them against the CRC-8/MAXIM algorithm - happy to add that
-     * if you want it. */
-
-    raw = (int16_t)(((uint16_t)msb << 8) | lsb);  /* two's complement, 0.0625C/count */
-
-    *millic = ((int32_t)raw * 625) / 10;   /* 0.0625C = 62.5 milli-C per count */
-
+uint8_t ds18b20_get_last(int32_t *millic) {
+    if (!last_valid) return 0;
+    *millic = last_millic;
     return 1;
 }
