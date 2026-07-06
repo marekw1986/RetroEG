@@ -56,6 +56,7 @@ def read_inputs(client):
 
     print("CPM:", cpm)
     print("Siv:", f"{siv_int}.{siv_fract:04d} uSv/h")
+    print("Temp: ", ds18b20_temp)
     print("Time raw:", timestamp)
     print("Uptime:", uptime, "seconds")
     print("CF update: ", cftime)

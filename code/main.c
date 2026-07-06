@@ -42,6 +42,7 @@
 #include "io.h"
 #include "cf.h"
 #include "ff.h"
+#include "bus8255.h"
 #include "ds18b20.h"
 
 FATFS cffs;
@@ -91,6 +92,7 @@ int main (void) {
 	mos6551_init();
 	hd44780_init();
     modbus_init();
+    bus8255_init();
 	//cfInit();
 	
 	feed_hungry_watchdog();
@@ -122,9 +124,11 @@ int main (void) {
             int32_t ds18b20_temp = 0;
             
             sensors_timer = uptime();
+            /*
             if (ds18b20_read_temp(&ds18b20_temp)) {
                 modbus_set_ds18b20_temp(ds18b20_temp);
             }
+            */
         }
 		
 		if (backlight_timer && ( (uint16_t)(millis()-backlight_timer) > 4000 ) ) {

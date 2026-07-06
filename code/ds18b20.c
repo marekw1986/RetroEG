@@ -1,13 +1,21 @@
 #include "onewire.h"
 #include "ds18b20.h"
+#include "io.h"
 
 #define DS18B20_CMD_SKIP_ROM     0xCC
 #define DS18B20_CMD_CONVERT_T    0x44
 #define DS18B20_CMD_READ_SCRATCH 0xBE
 
+/* ~1 second worth of ow_read_bit() calls at ~80us each - see the
+ * comment on the poll loop below. */
+#define DS18B20_POLL_TIMEOUT_ITERS 12000
+
+#define WDT_FEED()  feed_hungry_watchdog()
+
 uint8_t ds18b20_read_temp(int32_t *millic) {
     uint8_t lsb, msb;
     int16_t raw;
+    uint16_t timeout;
 
     if (!ow_reset()) {
         return 0;                    /* nothing answered the bus reset */
@@ -20,17 +28,24 @@ uint8_t ds18b20_read_temp(int32_t *millic) {
      * converting and lets it float high (reads as 1) the instant
      * it's done, so we poll instead of guessing at a fixed delay.
      * Worst case (12-bit resolution, the power-on default) this
-     * takes up to ~750ms.
+     * takes up to ~750ms - long enough to trip a watchdog if you
+     * have one, so feed it on every iteration.
      *
-     * If your sensor is parasite-powered instead (Vdd tied to
-     * GND, drawing power from the data line), this loop will
-     * never see a 1 - the bus has to be held high with a strong
-     * pull-up during conversion instead. In that case, replace
-     * this loop with a fixed wait of your own, e.g.:
-     *     for (i = 0; i < 47; i++) delay_16us(255);  // ~750ms-ish, tune it
+     * DS18B20_POLL_TIMEOUT_ITERS bounds the loop independently of
+     * the watchdog, so a wiring fault or dead sensor fails this
+     * one reading instead of hanging forever. It's a rough count
+     * (~1s worth of ow_read_bit() calls at ~80us each per the
+     * timing in onewire.c) - tune it if your actual loop timing
+     * ends up noticeably different.
      */
-    while (ow_read_bit() == 0) {
-        /* waiting for conversion to complete */
+    for (timeout = 0; timeout < DS18B20_POLL_TIMEOUT_ITERS; timeout++) {
+        if (ow_read_bit() != 0) {
+            break;
+        }
+        WDT_FEED();   /* <-- replace with your board's actual watchdog feed call */
+    }
+    if (timeout == DS18B20_POLL_TIMEOUT_ITERS) {
+        return 0;     /* conversion never completed - treat as a fault */
     }
 
     if (!ow_reset()) {
