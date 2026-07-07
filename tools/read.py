@@ -53,7 +53,13 @@ def read_inputs(client):
     cftimel = regs[MODBUS_INPUT_LASTCFL]
     cfres = regs[MODBUS_INPUT_CFRES]
 
-    ds18b20_temp = (dsh << 16) | dsl
+    temp_int = int16(dsh)
+	temp_frac = dsl
+	if temp_int < 0:
+		temp_str = f"-{abs(temp_int)}.{temp_frac:03d}"
+	else:
+		temp_str = f"{temp_int}.{temp_frac:03d}"
+
     ds18b20_temp_timestamp = (dstimeh << 16) | dstimel
     timestamp = (timeh << 16) | timel
     uptime = (uptimeh << 16) | uptimel
@@ -61,13 +67,17 @@ def read_inputs(client):
 
     print("CPM:", cpm)
     print("Siv:", f"{siv_int}.{siv_fract:04d} uSv/h")
-    print("Temp: ", ds18b20_temp)
+    print("Temp:", temp_str, "°C")
     print("Temp timestamp: ", ds18b20_temp_timestamp)
     print("Time raw:", timestamp)
     print("Uptime:", uptime, "seconds")
     print("CF update: ", cftime)
     print("CF result:", hex(cfres))
     print("-" * 40)
+
+def int16(v):
+    """Convert unsigned Modbus register to signed int16."""
+    return v - 0x10000 if v & 0x8000 else v
 
 def main():
     client = ModbusSerialClient(
