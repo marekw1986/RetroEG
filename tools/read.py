@@ -54,11 +54,11 @@ def read_inputs(client):
     cfres = regs[MODBUS_INPUT_CFRES]
 
     temp_int = int16(dsh)
-	temp_frac = dsl
-	if temp_int < 0:
-		temp_str = f"-{abs(temp_int)}.{temp_frac:03d}"
-	else:
-		temp_str = f"{temp_int}.{temp_frac:03d}"
+    temp_frac = dsl
+    if temp_int < 0:
+        temp_str = f"-{abs(temp_int)}.{temp_frac:03d}"
+    else:
+        temp_str = f"{temp_int}.{temp_frac:03d}"
 
     ds18b20_temp_timestamp = (dstimeh << 16) | dstimel
     timestamp = (timeh << 16) | timel

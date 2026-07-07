@@ -175,11 +175,11 @@ static void prepare_disp (void) {
 }
 
 static void update_disp_meas(void) {
-	char buffer[32];
 	switch(meas_ind) {
 		case MEAS_RAD:
 		{
-			uint16_t cpmin;
+			char buffer[32];
+            uint16_t cpmin;
 			cpmin = modbus_get_cpm();
 			get_usiv_str(buffer);
 			hd44780_gotoxy(1, 0);
@@ -197,7 +197,8 @@ static void update_disp_meas(void) {
 		}
 		case MEAS_TEMP:
 		{
-			uint16_t* temp;
+			char buffer[32];
+            uint16_t* temp = modbus_get_ds18b20_temp();
 			hd44780_gotoxy(1, 0);
 			hd44780_puts("                    ");
 			hd44780_gotoxy(1, 0);
