@@ -49,8 +49,13 @@ FATFS cffs;
 FRESULT res;
 FIL file;
 
-typedef enum {SHOW_RAD, SHOW_TIME, SHOW_STATS} state_t;
-static state_t state = SHOW_RAD;
+typedef enum {SHOW_MEAS, SHOW_TIME, SHOW_STATS} state_t;
+typedef enum {MEAS_RAD=0, MEAS_TEMP, MEAS_END} meas_ind_t;
+
+const char* titles[MEAS_END] = {"Promieniowanie", "Temperatura"};
+meas_ind_t meas_ind = MEAS_RAD;
+
+static state_t state = SHOW_MEAS;
 
 static key_t key0, key1, key2, key3;	
 
@@ -59,6 +64,7 @@ static uint16_t  last_millis = 0;
 static uint16_t backlight_timer = 0;
 static uint8_t use_utc = 0x00;
 
+char* __fastcall__ itoa (int val, char* buf, int radix);
 char* __fastcall__ utoa (unsigned val, char* buf, int radix);
 char* __fastcall__ ultoa (unsigned long val, char* buf, int radix);
 char* __fastcall__ strcpy (char* s1, const char* s2);
@@ -73,6 +79,8 @@ static void key0_func (void);
 static void key1_func (void);
 static void key2_func (void);
 static void key3_func (void);
+
+static void update_disp_meas(void);
 
 int main (void) {
 	//char buf[32];
@@ -142,19 +150,19 @@ int main (void) {
 static void prepare_disp (void) {
 	hd44780_clrscr();
 	switch (state) {
-		case SHOW_RAD:
+		case SHOW_MEAS:
 		hd44780_gotoxy(0, 0);
         hd44780_puts("                    ");
 		hd44780_gotoxy(0, 0);
-		hd44780_puts("Promieniowanie");
+		hd44780_puts(titles[meas_ind]);
 		break;
 		
 		case SHOW_TIME:
 		hd44780_gotoxy(0, 0);
         hd44780_puts("                    ");
 		hd44780_gotoxy(0, 0);
-        if (use_utc) { hd44780_puts("Czas (UTC)"); }
-        else { hd44780_puts("Czas"); }	
+		hd44780_puts("Czas");
+		if (use_utc) { hd44780_puts(" (UTC)"); }
 		break;
 		
 		case SHOW_STATS:
@@ -166,50 +174,80 @@ static void prepare_disp (void) {
 	}
 }
 
+static void update_disp_meas(void) {
+	char buffer[32];
+	switch(meas_ind) {
+		case MEAS_RAD:
+		{
+			uint16_t cpmin;
+			cpmin = modbus_get_cpm();
+			get_usiv_str(buffer);
+			hd44780_gotoxy(1, 0);
+			hd44780_puts("                    ");
+			hd44780_gotoxy(1, 0);
+			hd44780_puts(buffer);
+			hd44780_puts(" uS/h");
+			utoa(cpmin, buffer, 10);
+			hd44780_gotoxy(2, 0);
+			hd44780_puts("                    ");
+			hd44780_gotoxy(2, 0);
+			hd44780_puts(buffer);
+			hd44780_puts(" CPM");		
+			break;
+		}
+		case MEAS_TEMP:
+		{
+			uint16_t* temp;
+			hd44780_gotoxy(1, 0);
+			hd44780_puts("                    ");
+			hd44780_gotoxy(1, 0);
+			itoa((int16_t)temp[0], buffer, 10);
+			hd44780_puts(buffer);
+			hd44780_putc('.');
+			utoa((uint16_t)temp[1], buffer, 10);
+			hd44780_puts(buffer);
+			hd44780_puts(" st. C");
+		}
+		default:
+			break;
+	}
+}
 
 static void update_disp (void) {
-	uint16_t cpmin;
-	char buffer[32];
-	
 	switch (state) {
-		case SHOW_RAD:
-		cpmin = modbus_get_cpm();
-		get_usiv_str(buffer);
-		hd44780_gotoxy(1, 0);
-		hd44780_puts("                    ");
-		hd44780_gotoxy(1, 0);
-		hd44780_puts(buffer);
-		hd44780_puts(" uS/h");
-		utoa(cpmin, buffer, 10);
-		hd44780_gotoxy(2, 0);
-		hd44780_puts("                    ");
-		hd44780_gotoxy(2, 0);
-		hd44780_puts(buffer);
-		hd44780_puts(" CPM");		
+		case SHOW_MEAS:
+		update_disp_meas();	
 		break;
 		
 		case SHOW_TIME:
-		hd44780_gotoxy(1, 0);
-		hd44780_puts("                    ");
-		hd44780_gotoxy(1, 0);
-        if (use_utc) { hd44780_puts(m6242_read_time_str()); }
-        else { hd44780_puts(m6242_read_time_str_tz()); }
-		hd44780_gotoxy(2, 0);
-		hd44780_puts("                    ");
-		hd44780_gotoxy(2, 0);
-        if (use_utc) { hd44780_puts(m6242_read_date_str()); }
-        else { hd44780_puts(m6242_read_date_str_tz()); }	
-		break;
+		{
+			hd44780_gotoxy(1, 0);
+			hd44780_puts("                    ");
+			hd44780_gotoxy(1, 0);
+			if (use_utc) { hd44780_puts(m6242_read_time_str()); }
+			else { hd44780_puts(m6242_read_time_str_tz()); }
+			hd44780_gotoxy(2, 0);
+			hd44780_puts("                    ");
+			hd44780_gotoxy(2, 0);
+			if (use_utc) { hd44780_puts(m6242_read_date_str()); }
+			else { hd44780_puts(m6242_read_date_str_tz()); }	
+			break;
+		}
 		
 		case SHOW_STATS:
-		hd44780_gotoxy(1, 0);
-		hd44780_puts("                    ");
-		hd44780_gotoxy(1, 0);
-		hd44780_puts("U: ");
-		ultoa(uptime(), buffer, 10);
-		hd44780_puts(buffer);					
-		break;
+		{
+			char buffer[32];
+			hd44780_gotoxy(1, 0);
+			hd44780_puts("                    ");
+			hd44780_gotoxy(1, 0);
+			hd44780_puts("U: ");
+			ultoa(uptime(), buffer, 10);
+			hd44780_puts(buffer);					
+			break;
+		}
 		
+		default:
+			break;
 	}
 }
 
@@ -254,7 +292,14 @@ static void log_data (void) {
 static void key0_func (void) {
 	port_clr(BACKLIGHT_PIN);				//Turn the backlight on
 	backlight_timer = millis();				//Set timer for backlight utomatic turn off
-	state = SHOW_RAD;
+	if (state == SHOW_MEAS) {
+		meas_ind++;
+		if (meas_ind >= MEAS_END) { meas_ind = MEAS_RAD; }
+	}
+	else {
+		state = SHOW_MEAS;
+		meas_ind = MEAS_RAD;
+	}
 	prepare_disp();
 	update_disp();
 }

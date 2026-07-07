@@ -280,6 +280,10 @@ void modbus_set_ds18b20_temp(int32_t val) {
     input[MODBUS_INPUT_DSTEMPL] = (uint16_t)(val & 0xFFFF);
 }
 
+volatile uint16_t* modbus_ds18b20_temp(void) {
+	return &input[MODBUS_INPUT_DSTEMPH];
+}
+
 void modbus_set_time(void) {
 	time_t* tmstmp = m6242_read_timestamp();
 	input[MODBUS_INPUT_TIMEH] = (uint16_t)(*tmstmp >> 16);
