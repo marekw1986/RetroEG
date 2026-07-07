@@ -278,6 +278,8 @@ volatile uint16_t* modbus_get_sivert(void) {
 void modbus_set_ds18b20_temp(int32_t val) {
     input[MODBUS_INPUT_DSTEMPH] = (uint16_t)(val >> 16);
     input[MODBUS_INPUT_DSTEMPL] = (uint16_t)(val & 0xFFFF);
+    input[MODBUS_INPUT_DSTEMP_TIMEH] = (uint16_t)(timestamp >> 16);
+    input[MODBUS_INPUT_DSTEMP_TIMEL] = (uint16_t)(timestamp & 0xFFFF);    
 }
 
 volatile uint16_t* modbus_ds18b20_temp(void) {

@@ -10,19 +10,21 @@ MODBUS_INPUT_SIVERT_INT = 1
 MODBUS_INPUT_SIVERT_FRACT = 2
 MODBUS_INPUT_DSTEMPH = 3
 MODBUS_INPUT_DSTEMPL = 4
-MODBUS_INPUT_TIMEH = 5
-MODBUS_INPUT_TIMEL = 6
-MODBUS_INPUT_UPTIMEH = 7
-MODBUS_INPUT_UPTIMEL = 8
-MODBUS_INPUT_LASTCFH = 9
-MODBUS_INPUT_LASTCFL = 10
-MODBUS_INPUT_CFRES = 11
+MODBUS_INPUT_DSTEMP_TIMEH = 5
+MODBUS_INPUT_DSTEMP_TIMEL = 6
+MODBUS_INPUT_TIMEH = 7
+MODBUS_INPUT_TIMEL = 8
+MODBUS_INPUT_UPTIMEH = 9
+MODBUS_INPUT_UPTIMEL = 10
+MODBUS_INPUT_LASTCFH = 11
+MODBUS_INPUT_LASTCFL = 12
+MODBUS_INPUT_CFRES = 13
 
 def read_inputs(client):
     try:
         rr = client.read_input_registers(
             address=0,
-            count=12,
+            count=14,
             slave=SLAVE_ADDR
         )
     except ModbusException as exc:
@@ -40,6 +42,8 @@ def read_inputs(client):
     
     dsh = regs[MODBUS_INPUT_DSTEMPH]
     dsl = regs[MODBUS_INPUT_DSTEMPL]
+    dstimeh = regs[MODBUS_INPUT_DSTEMP_TIMEH]
+    dstimel = regs[MODBUS_INPUT_DSTEMP_TIMEL]
     
     timeh = regs[MODBUS_INPUT_TIMEH]
     timel = regs[MODBUS_INPUT_TIMEL]
@@ -50,6 +54,7 @@ def read_inputs(client):
     cfres = regs[MODBUS_INPUT_CFRES]
 
     ds18b20_temp = (dsh << 16) | dsl
+    ds18b20_temp_timestamp = (dstimeh << 16) | dstimel
     timestamp = (timeh << 16) | timel
     uptime = (uptimeh << 16) | uptimel
     cftime = (cftimeh << 16) | cftimel
@@ -57,6 +62,7 @@ def read_inputs(client):
     print("CPM:", cpm)
     print("Siv:", f"{siv_int}.{siv_fract:04d} uSv/h")
     print("Temp: ", ds18b20_temp)
+    print("Temp timestamp: ", ds18b20_temp_timestamp)
     print("Time raw:", timestamp)
     print("Uptime:", uptime, "seconds")
     print("CF update: ", cftime)
