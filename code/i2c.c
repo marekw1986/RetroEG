@@ -10,10 +10,14 @@
  * is already well under 100kHz on its own) if you want it faster. */
 #define I2C_HALFBIT_UNITS 1
 
-static void sda_low(void)     { porta_shadow &= (uint8_t)~BIT_PA_SDA_OUT; PA_8255 = porta_shadow; }
-static void sda_release(void) { porta_shadow |=  BIT_PA_SDA_OUT;          PA_8255 = porta_shadow; }
-static void scl_low(void)     { porta_shadow &= (uint8_t)~BIT_PA_SCL_OUT; PA_8255 = porta_shadow; }
-static void scl_release(void) { porta_shadow |=  BIT_PA_SCL_OUT;          PA_8255 = porta_shadow; }
+static void sda_low(void)     { porta_shadow |=  BIT_PA_SDA_OUT;          PA_8255 = porta_shadow; }
+static void sda_release(void) { porta_shadow &= (uint8_t)~BIT_PA_SDA_OUT; PA_8255 = porta_shadow; }
+static void scl_low(void)     { porta_shadow |=  BIT_PA_SCL_OUT;          PA_8255 = porta_shadow; }
+static void scl_release(void) { porta_shadow &= (uint8_t)~BIT_PA_SCL_OUT; PA_8255 = porta_shadow; }
+
+/* SDA_IN (PB3) is wired directly to the bus with no buffer in
+ * between, so unlike the outputs above, this reading needs no
+ * inversion regardless of the 7406/7407 mix-up. */
 
 static uint8_t sda_read(void) {
     return (PB_8255 & BIT_PB_SDA_IN) ? 1 : 0;

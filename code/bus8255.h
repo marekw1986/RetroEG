@@ -7,21 +7,23 @@
 /* Mode 0, Port A = output, Port B = input, Port C = output (unused) */
 #define CONF_8255_MODE0_A_OUT_B_IN   0x82
 
-/* ---- Port A bit assignments (open-collector drivers via 7407) ---- */
+/* ---- Port A bit assignments (open-collector drivers via 7406, inverting) ---- */
 #define BIT_PA_1W_OUT   0x08   /* PA3 - 1-Wire bus driver  */
 #define BIT_PA_SDA_OUT  0x10   /* PA4 - I2C SDA driver     */
 #define BIT_PA_SCL_OUT  0x40   /* PA6 - I2C SCL driver     */
 
-/* ---- Port B bit assignments (bus sense inputs) ---- */
+/* ---- Port B bit assignments (bus sense inputs, wired directly to
+ * the bus - no buffer, no inversion) ---- */
 #define BIT_PB_1W_IN    0x04   /* PB2 - 1-Wire bus sense   */
 #define BIT_PB_SDA_IN   0x08   /* PB3 - I2C SDA sense      */
 
 /*
  * Shadow copy of the Port A output latch.
  *
- * PA3/PA4/PA6 drive open-collector 7407 buffers, so the *logical*
- * idle state is '1' (driver released, external pull-up holds the
- * bus high) and '0' actively pulls the corresponding bus line low.
+ * PA3/PA4/PA6 drive INVERTING open-collector 7406 buffers, so the
+ * *logical* idle state is '0' (driver released, external pull-up
+ * holds the bus high) and '1' actively pulls the corresponding bus
+ * line low - the opposite of what a non-inverting 7407 would need.
  *
  * We keep a software shadow instead of reading PA_8255 back before
  * every read-modify-write. That avoids ever mixing bits belonging

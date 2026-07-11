@@ -1,19 +1,24 @@
 #include "bus8255.h"
 #include "onewire.h"
 
-/* Drive the bus low (turn the PA3 -> 7407 driver on) */
+/* Drive the bus low. 7406 is inverting: writing 1 to the GPIO pulls
+ * the bus low (the opposite of what a non-inverting 7407 would do). */
 static void ow_low(void) {
-    porta_shadow &= (uint8_t)~BIT_PA_1W_OUT;
-    PA_8255 = porta_shadow;
-}
-
-/* Release the bus (driver off, external pull-up takes it high) */
-static void ow_release(void) {
     porta_shadow |= BIT_PA_1W_OUT;
     PA_8255 = porta_shadow;
 }
 
-/* Sample the bus level via the separate PB2 input */
+/* Release the bus: writing 0 lets the 7406 output float, and the
+ * external pull-up takes the line high. */
+static void ow_release(void) {
+    porta_shadow &= (uint8_t)~BIT_PA_1W_OUT;
+    PA_8255 = porta_shadow;
+}
+
+/* Sample the bus level via the separate PB2 input. PB2 is wired
+ * directly to the bus with no buffer in between (only the output
+ * drivers PA3/PA4/PA6 are buffered), so this reading needs no
+ * inversion regardless of the 7406/7407 mix-up on the output side. */
 static uint8_t ow_sample(void) {
     return (PB_8255 & BIT_PB_1W_IN) ? 1 : 0;
 }
